@@ -54,7 +54,21 @@ public class Constanta {
     
     public class Default{
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
+        public static final int DEFAULT_NUMERIC_VALUE = 0;
         public static final String BUTTON_ADD = "Save";
         public static final String BUTTON_UPDATE = "Update";
+    }
+    
+    public class Role{
+        public static final int ADMINISTRATOR = 1;
+        public static final int HRD = 2;
+        public static final int GENERAL = 3;
+    }
+    
+    public class Leave{
+        public static final String DRAF = "DRAF";
+        public static final String SUBMIT = "SUBMIT";
+        public static final String APPROVED = "APPROVED";
+        public static final String REJECTED = "REJECTED";
     }
 }

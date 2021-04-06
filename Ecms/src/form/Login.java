@@ -243,11 +243,13 @@ public class Login extends javax.swing.JFrame {
             boolean is_success = users.login(formLoginMainTextFieldUsername.getText(), formLoginMainPasswordFieldPassword.getText());
 
             if (is_success) {
-                EmployeeManagement employeeManagement = new EmployeeManagement();
-                employeeManagement.show(true);
-                employeeManagement.setLabelId(users.getId().toString());
-                employeeManagement.setLabelNik(users.getUsername());
-                employeeManagement.setLabelFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+                Dashboard dashboard = new Dashboard();
+                dashboard.show(true);
+                dashboard.setLabelId(users.getId().toString());
+                dashboard.setLabelNik(users.getUsername());
+                dashboard.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+                dashboard.setAccessMenu(users.getAccessMenu());
+                dashboard.loadDataAttendance();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED_LOGIN);
@@ -264,11 +266,13 @@ public class Login extends javax.swing.JFrame {
             boolean is_success = users.login(formLoginMainTextFieldUsername.getText(), formLoginMainPasswordFieldPassword.getText());
 
             if (is_success) {
-                EmployeeManagement employeeManagement = new EmployeeManagement();
-                employeeManagement.show(true);
-                employeeManagement.setLabelId(users.getId().toString());
-                employeeManagement.setLabelNik(users.getUsername());
-                employeeManagement.setLabelFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+                Dashboard dashboard = new Dashboard();
+                dashboard.show(true);
+                dashboard.setLabelId(users.getId().toString());
+                dashboard.setLabelNik(users.getUsername());
+                dashboard.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+                dashboard.setAccessMenu(users.getAccessMenu());
+                dashboard.loadDataAttendance();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED_LOGIN);

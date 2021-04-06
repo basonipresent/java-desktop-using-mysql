@@ -6,14 +6,11 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import model.Employee;
-import model.Nationality;
-import model.Position;
+import model.Attendance;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,7 +30,6 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         formDashboardHeaderLabelId.setVisible(false);
         formEmployeeHeaderLabelNik.setVisible(false);
-        formEmployeeMainButtonDelete.setVisible(false);
     }
 
     /**
@@ -54,17 +50,36 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardPanelMain = new javax.swing.JPanel();
         formDashboardMainLabelFullName = new javax.swing.JLabel();
         formDashboardMainButtonLogout = new javax.swing.JButton();
-        formDashboardMainButtonBack = new javax.swing.JButton();
         formDashboardMainButtonEmployee = new javax.swing.JButton();
         formDashboardMainButtonReport = new javax.swing.JButton();
         formDashboardMainButtonApproval = new javax.swing.JButton();
-        formEmployeeMainPanelButton = new javax.swing.JPanel();
-        formEmployeeMainButtonSave = new javax.swing.JButton();
-        formEmployeeMainButtonClear = new javax.swing.JButton();
-        formEmployeeMainPanelTable = new javax.swing.JPanel();
+        formDashboardMainAttendancePanelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        formEmployeeMainTable = new javax.swing.JTable();
-        formEmployeeMainButtonDelete = new javax.swing.JButton();
+        formDashboardMainAttendanceTable = new javax.swing.JTable();
+        formDashboardMainAttendanceCheckin = new javax.swing.JButton();
+        formDashboardMainAttendanceCheckout = new javax.swing.JButton();
+        formDashboardMainAttendanceViewMore = new javax.swing.JButton();
+        formDashboardMainAttendancePanel = new javax.swing.JPanel();
+        formDashboardMainAttendanceButtonSearch = new javax.swing.JButton();
+        formDashboardMainAttendanceLebelFrom = new javax.swing.JLabel();
+        formDashboardMainAttendanceLebelTo = new javax.swing.JLabel();
+        formDashboardMainAttendanceJDateChooseFrom = new com.toedter.calendar.JDateChooser();
+        formDashboardMainAttendanceJDateChooseTo = new com.toedter.calendar.JDateChooser();
+        formDashboardMainLeavePanelTable = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        formDashboardMainLeaveTable = new javax.swing.JTable();
+        formDashboardMainLeaveRequest = new javax.swing.JButton();
+        formDashboardMainLeaveView = new javax.swing.JButton();
+        formDashboardMainLeavePanel = new javax.swing.JPanel();
+        formDashboardMainLeaveButtonSearch = new javax.swing.JButton();
+        formDashboardMainLeaveLebelFrom = new javax.swing.JLabel();
+        formDashboardMainLeaveLebelTo = new javax.swing.JLabel();
+        formDashboardMainLeaveJDateChooseFrom = new com.toedter.calendar.JDateChooser();
+        formDashboardMainLeaveJDateChooseTo = new com.toedter.calendar.JDateChooser();
+        formDashboardMainPayslipPanelTable = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        formDashboardMainPayslipTable = new javax.swing.JTable();
+        formDashboardMainPayslipView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -94,7 +109,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formDashboardPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
                     .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                         .addComponent(formDashboardHeaderLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,7 +142,7 @@ public class Dashboard extends javax.swing.JFrame {
             formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
                 .addContainerGap())
         );
         formDashboardPanelFooterLayout.setVerticalGroup(
@@ -151,19 +166,6 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardMainButtonLogout.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formDashboardMainButtonLogoutKeyPressed(evt);
-            }
-        });
-
-        formDashboardMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formDashboardMainButtonBack.setText("Back");
-        formDashboardMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formDashboardMainButtonBackActionPerformed(evt);
-            }
-        });
-        formDashboardMainButtonBack.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formDashboardMainButtonBackKeyPressed(evt);
             }
         });
 
@@ -206,35 +208,255 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        formEmployeeMainButtonSave.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formEmployeeMainButtonSave.setText("Save");
+        formDashboardMainAttendancePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attendance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
 
-        formEmployeeMainButtonClear.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formEmployeeMainButtonClear.setText("Clear");
+        formDashboardMainAttendanceTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        formDashboardMainAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout formEmployeeMainPanelButtonLayout = new javax.swing.GroupLayout(formEmployeeMainPanelButton);
-        formEmployeeMainPanelButton.setLayout(formEmployeeMainPanelButtonLayout);
-        formEmployeeMainPanelButtonLayout.setHorizontalGroup(
-            formEmployeeMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formEmployeeMainPanelButtonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formEmployeeMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(formEmployeeMainButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
-        );
-        formEmployeeMainPanelButtonLayout.setVerticalGroup(
-            formEmployeeMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeeMainPanelButtonLayout.createSequentialGroup()
+            },
+            new String [] {
+                "Id", "Nik", "Full Name", "Check In", "Check Out", "Location", "Duration", "Status", "Information"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        formDashboardMainAttendanceTable.setColumnSelectionAllowed(true);
+        formDashboardMainAttendanceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formDashboardMainAttendanceTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(formDashboardMainAttendanceTable);
+        formDashboardMainAttendanceTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        formDashboardMainAttendanceCheckin.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceCheckin.setText("Check In");
+        formDashboardMainAttendanceCheckin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainAttendanceCheckinActionPerformed(evt);
+            }
+        });
+        formDashboardMainAttendanceCheckin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainAttendanceCheckinKeyPressed(evt);
+            }
+        });
+
+        formDashboardMainAttendanceCheckout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceCheckout.setText("Check Out");
+        formDashboardMainAttendanceCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainAttendanceCheckoutActionPerformed(evt);
+            }
+        });
+        formDashboardMainAttendanceCheckout.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainAttendanceCheckoutKeyPressed(evt);
+            }
+        });
+
+        formDashboardMainAttendanceViewMore.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceViewMore.setText("View more");
+
+        formDashboardMainAttendanceButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceButtonSearch.setText("Search");
+
+        formDashboardMainAttendanceLebelFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceLebelFrom.setText("From");
+
+        formDashboardMainAttendanceLebelTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainAttendanceLebelTo.setText("To");
+
+        formDashboardMainAttendanceJDateChooseFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formDashboardMainAttendanceJDateChooseTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout formDashboardMainAttendancePanelLayout = new javax.swing.GroupLayout(formDashboardMainAttendancePanel);
+        formDashboardMainAttendancePanel.setLayout(formDashboardMainAttendancePanelLayout);
+        formDashboardMainAttendancePanelLayout.setHorizontalGroup(
+            formDashboardMainAttendancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardMainAttendancePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(formEmployeeMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formEmployeeMainButtonClear)
-                    .addComponent(formEmployeeMainButtonSave))
+                .addComponent(formDashboardMainAttendanceLebelFrom)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainAttendanceJDateChooseFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainAttendanceLebelTo)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainAttendanceJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainAttendanceButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(308, Short.MAX_VALUE))
+        );
+        formDashboardMainAttendancePanelLayout.setVerticalGroup(
+            formDashboardMainAttendancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardMainAttendancePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(formDashboardMainAttendancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(formDashboardMainAttendanceButtonSearch)
+                    .addComponent(formDashboardMainAttendanceJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(formDashboardMainAttendancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formDashboardMainAttendanceLebelFrom)
+                        .addComponent(formDashboardMainAttendanceLebelTo))
+                    .addComponent(formDashboardMainAttendanceJDateChooseFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout formDashboardMainAttendancePanelTableLayout = new javax.swing.GroupLayout(formDashboardMainAttendancePanelTable);
+        formDashboardMainAttendancePanelTable.setLayout(formDashboardMainAttendancePanelTableLayout);
+        formDashboardMainAttendancePanelTableLayout.setHorizontalGroup(
+            formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
+                        .addComponent(formDashboardMainAttendanceCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(formDashboardMainAttendanceCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(formDashboardMainAttendanceViewMore, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(formDashboardMainAttendancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        formDashboardMainAttendancePanelTableLayout.setVerticalGroup(
+            formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formDashboardMainAttendancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formDashboardMainAttendanceCheckin)
+                    .addComponent(formDashboardMainAttendanceViewMore)
+                    .addComponent(formDashboardMainAttendanceCheckout))
+                .addContainerGap())
+        );
+
+        formDashboardMainLeavePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Leave Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+
+        formDashboardMainLeaveTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        formDashboardMainLeaveTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Reasons", "Attachment", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        formDashboardMainLeaveTable.setColumnSelectionAllowed(true);
+        formDashboardMainLeaveTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formDashboardMainLeaveTableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(formDashboardMainLeaveTable);
+        formDashboardMainLeaveTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        formDashboardMainLeaveRequest.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainLeaveRequest.setText("Request Leave");
+        formDashboardMainLeaveRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainLeaveRequestActionPerformed(evt);
+            }
+        });
+
+        formDashboardMainLeaveView.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainLeaveView.setText("View more");
+
+        formDashboardMainLeaveButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainLeaveButtonSearch.setText("Search");
+
+        formDashboardMainLeaveLebelFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainLeaveLebelFrom.setText("From");
+
+        formDashboardMainLeaveLebelTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainLeaveLebelTo.setText("To");
+
+        formDashboardMainLeaveJDateChooseFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formDashboardMainLeaveJDateChooseTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout formDashboardMainLeavePanelLayout = new javax.swing.GroupLayout(formDashboardMainLeavePanel);
+        formDashboardMainLeavePanel.setLayout(formDashboardMainLeavePanelLayout);
+        formDashboardMainLeavePanelLayout.setHorizontalGroup(
+            formDashboardMainLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardMainLeavePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formDashboardMainLeaveLebelFrom)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainLeaveJDateChooseFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainLeaveLebelTo)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainLeaveJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainLeaveButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        formDashboardMainLeavePanelLayout.setVerticalGroup(
+            formDashboardMainLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardMainLeavePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(formDashboardMainLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(formDashboardMainLeaveButtonSearch)
+                    .addComponent(formDashboardMainLeaveJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(formDashboardMainLeavePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formDashboardMainLeaveLebelFrom)
+                        .addComponent(formDashboardMainLeaveLebelTo))
+                    .addComponent(formDashboardMainLeaveJDateChooseFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout formDashboardMainLeavePanelTableLayout = new javax.swing.GroupLayout(formDashboardMainLeavePanelTable);
+        formDashboardMainLeavePanelTable.setLayout(formDashboardMainLeavePanelTableLayout);
+        formDashboardMainLeavePanelTableLayout.setHorizontalGroup(
+            formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainLeavePanelTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(formDashboardMainLeavePanelTableLayout.createSequentialGroup()
+                        .addComponent(formDashboardMainLeaveRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(formDashboardMainLeaveView, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(formDashboardMainLeavePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        formDashboardMainLeavePanelTableLayout.setVerticalGroup(
+            formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainLeavePanelTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formDashboardMainLeavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formDashboardMainLeaveRequest)
+                    .addComponent(formDashboardMainLeaveView))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        formEmployeeMainTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
-        formEmployeeMainTable.setModel(new javax.swing.table.DefaultTableModel(
+        formDashboardMainPayslipPanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payslip", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+
+        formDashboardMainPayslipTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        formDashboardMainPayslipTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -250,37 +472,35 @@ public class Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        formEmployeeMainTable.setColumnSelectionAllowed(true);
-        formEmployeeMainTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        formDashboardMainPayslipTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formEmployeeMainTableMouseClicked(evt);
+                formDashboardMainPayslipTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(formEmployeeMainTable);
-        formEmployeeMainTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(formDashboardMainPayslipTable);
+        formDashboardMainPayslipTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        formEmployeeMainButtonDelete.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formEmployeeMainButtonDelete.setText("Delete");
+        formDashboardMainPayslipView.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainPayslipView.setText("View more");
 
-        javax.swing.GroupLayout formEmployeeMainPanelTableLayout = new javax.swing.GroupLayout(formEmployeeMainPanelTable);
-        formEmployeeMainPanelTable.setLayout(formEmployeeMainPanelTableLayout);
-        formEmployeeMainPanelTableLayout.setHorizontalGroup(
-            formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeeMainPanelTableLayout.createSequentialGroup()
+        javax.swing.GroupLayout formDashboardMainPayslipPanelTableLayout = new javax.swing.GroupLayout(formDashboardMainPayslipPanelTable);
+        formDashboardMainPayslipPanelTable.setLayout(formDashboardMainPayslipPanelTableLayout);
+        formDashboardMainPayslipPanelTableLayout.setHorizontalGroup(
+            formDashboardMainPayslipPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainPayslipPanelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
-                    .addComponent(formEmployeeMainButtonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(formDashboardMainPayslipPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addComponent(formDashboardMainPayslipView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        formEmployeeMainPanelTableLayout.setVerticalGroup(
-            formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeeMainPanelTableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formEmployeeMainButtonDelete)
-                .addContainerGap())
+        formDashboardMainPayslipPanelTableLayout.setVerticalGroup(
+            formDashboardMainPayslipPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardMainPayslipPanelTableLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainPayslipView))
         );
 
         javax.swing.GroupLayout formDashboardPanelMainLayout = new javax.swing.GroupLayout(formDashboardPanelMain);
@@ -289,12 +509,6 @@ public class Dashboard extends javax.swing.JFrame {
             formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
                 .addGroup(formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(formEmployeeMainPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(formEmployeeMainPanelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(formDashboardMainLabelFullName)
@@ -305,9 +519,13 @@ public class Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formDashboardMainButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formDashboardMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formDashboardMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(formDashboardMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         formDashboardPanelMainLayout.setVerticalGroup(
@@ -316,24 +534,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addGroup(formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardMainButtonLogout)
-                    .addComponent(formDashboardMainButtonBack)
                     .addComponent(formDashboardMainLabelFullName)
                     .addComponent(formDashboardMainButtonEmployee)
                     .addComponent(formDashboardMainButtonReport)
                     .addComponent(formDashboardMainButtonApproval))
-                .addGap(275, 275, 275)
-                .addComponent(formEmployeeMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formEmployeeMainPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+            .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
             .addComponent(formDashboardPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -356,6 +575,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private List<String> access_menu = new ArrayList<>();
+    private String full_name;
 
     public void setLabelId(String text) {
         formDashboardHeaderLabelId.setText(text);
@@ -365,14 +586,69 @@ public class Dashboard extends javax.swing.JFrame {
         formEmployeeHeaderLabelNik.setText(text);
     }
     
-    public void setLabelFullName(String text) {
+    public String getFullName(){
+        return full_name;
+    }
+    public void setFullName(String text) {
+        this.full_name = text;
         formDashboardMainLabelFullName.setText("Welcome " + text + ",");
     }
 
-    private void formEmployeeMainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formEmployeeMainTableMouseClicked
+    public List<String> getAccessMenu() {
+        return access_menu;
+    }
+    public void setAccessMenu(List<String> value) {
+        this.access_menu = value;
+    }
+    
+    public void loadDataAttendance(){
+        try {
+            List<Attendance> listAttendance;
+            if (formEmployeeHeaderLabelNik.getText().equals("hrd") 
+                    || formEmployeeHeaderLabelNik.getText().equals("admin")) {
+                listAttendance = Attendance.listParams()
+                        .withUsername("")
+                        .withDateFrom(null)
+                        .withDateTo(null)
+                        .build();
+            } else {
+                listAttendance = Attendance.listParams()
+                        .withUsername(formEmployeeHeaderLabelNik.getText())
+                        .withDateFrom(null)
+                        .withDateTo(null)
+                        .build();
+            }
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainAttendanceTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] rows = new Object[9];
+            for(int i = 0; i < listAttendance.size(); i++){
+                TableColumnModel tableColumnModel = formDashboardMainAttendanceTable.getColumnModel();
+                tableColumnModel.getColumn(0).setMaxWidth(0);
+                tableColumnModel.getColumn(0).setMinWidth(0);
+                
+                rows[0] = listAttendance.get(i).getId();
+                rows[1] = listAttendance.get(i).getUsername();
+                rows[2] = listAttendance.get(i).getFullName();
+                rows[3] = listAttendance.get(i).getCheckIn();
+                rows[4] = listAttendance.get(i).getCheckOut();
+                rows[5] = listAttendance.get(i).getLocation();
+                rows[6] = String.format("%.0f", listAttendance.get(i).getDuration());
+                rows[7] = listAttendance.get(i).getStatus();
+                rows[8] = listAttendance.get(i).getInformation();
+
+                defaultTableModel.addRow(rows);
+            }
+            formDashboardMainAttendanceTable.setAutoCreateRowSorter(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
+    private void formDashboardMainAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceTableMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_formEmployeeMainTableMouseClicked
+
+    }//GEN-LAST:event_formDashboardMainAttendanceTableMouseClicked
 
     private void formDashboardMainButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonLogoutActionPerformed
         // TODO add your handling code here:
@@ -388,7 +664,7 @@ public class Dashboard extends javax.swing.JFrame {
                 login.show();
                 this.dispose();
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainButtonLogoutActionPerformed
@@ -407,25 +683,39 @@ public class Dashboard extends javax.swing.JFrame {
                 login.show();
                 this.dispose();
             }
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainButtonLogoutKeyPressed
 
-    private void formDashboardMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formDashboardMainButtonBackActionPerformed
-
-    private void formDashboardMainButtonBackKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonBackKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formDashboardMainButtonBackKeyPressed
-
     private void formDashboardMainButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonEmployeeActionPerformed
         // TODO add your handling code here:
+        try {
+            EmployeeManagement employeeManagement = new EmployeeManagement();
+            employeeManagement.show(true);
+            employeeManagement.setLabelId(formDashboardHeaderLabelId.getText());
+            employeeManagement.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            employeeManagement.setFullName(getFullName());
+            employeeManagement.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonEmployeeActionPerformed
 
     private void formDashboardMainButtonEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonEmployeeKeyPressed
         // TODO add your handling code here:
+        try {
+            EmployeeManagement employeeManagement = new EmployeeManagement();
+            employeeManagement.show(true);
+            employeeManagement.setLabelId(formDashboardHeaderLabelId.getText());
+            employeeManagement.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            employeeManagement.setFullName(getFullName());
+            employeeManagement.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonEmployeeKeyPressed
 
     private void formDashboardMainButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonReportActionPerformed
@@ -443,6 +733,34 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainButtonApprovalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonApprovalKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formDashboardMainButtonApprovalKeyPressed
+
+    private void formDashboardMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainLeaveTableMouseClicked
+
+    private void formDashboardMainLeaveRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveRequestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainLeaveRequestActionPerformed
+
+    private void formDashboardMainPayslipTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainPayslipTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainPayslipTableMouseClicked
+
+    private void formDashboardMainAttendanceCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainAttendanceCheckinActionPerformed
+
+    private void formDashboardMainAttendanceCheckinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainAttendanceCheckinKeyPressed
+
+    private void formDashboardMainAttendanceCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainAttendanceCheckoutActionPerformed
+
+    private void formDashboardMainAttendanceCheckoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formDashboardMainAttendanceCheckoutKeyPressed
 
     /**
      * @param args the command line arguments
@@ -490,22 +808,41 @@ public class Dashboard extends javax.swing.JFrame {
     public javax.swing.JLabel formDashboardHeaderLabelId;
     private javax.swing.JLabel formDashboardHeaderLable;
     private javax.swing.JLabel formDashboardLabelFooter2;
+    private javax.swing.JButton formDashboardMainAttendanceButtonSearch;
+    private javax.swing.JButton formDashboardMainAttendanceCheckin;
+    private javax.swing.JButton formDashboardMainAttendanceCheckout;
+    private com.toedter.calendar.JDateChooser formDashboardMainAttendanceJDateChooseFrom;
+    private com.toedter.calendar.JDateChooser formDashboardMainAttendanceJDateChooseTo;
+    private javax.swing.JLabel formDashboardMainAttendanceLebelFrom;
+    private javax.swing.JLabel formDashboardMainAttendanceLebelTo;
+    private javax.swing.JPanel formDashboardMainAttendancePanel;
+    private javax.swing.JPanel formDashboardMainAttendancePanelTable;
+    private javax.swing.JTable formDashboardMainAttendanceTable;
+    private javax.swing.JButton formDashboardMainAttendanceViewMore;
     private javax.swing.JButton formDashboardMainButtonApproval;
-    private javax.swing.JButton formDashboardMainButtonBack;
     private javax.swing.JButton formDashboardMainButtonEmployee;
     private javax.swing.JButton formDashboardMainButtonLogout;
     private javax.swing.JButton formDashboardMainButtonReport;
     private javax.swing.JLabel formDashboardMainLabelFullName;
+    private javax.swing.JButton formDashboardMainLeaveButtonSearch;
+    private com.toedter.calendar.JDateChooser formDashboardMainLeaveJDateChooseFrom;
+    private com.toedter.calendar.JDateChooser formDashboardMainLeaveJDateChooseTo;
+    private javax.swing.JLabel formDashboardMainLeaveLebelFrom;
+    private javax.swing.JLabel formDashboardMainLeaveLebelTo;
+    private javax.swing.JPanel formDashboardMainLeavePanel;
+    private javax.swing.JPanel formDashboardMainLeavePanelTable;
+    private javax.swing.JButton formDashboardMainLeaveRequest;
+    private javax.swing.JTable formDashboardMainLeaveTable;
+    private javax.swing.JButton formDashboardMainLeaveView;
+    private javax.swing.JPanel formDashboardMainPayslipPanelTable;
+    private javax.swing.JTable formDashboardMainPayslipTable;
+    private javax.swing.JButton formDashboardMainPayslipView;
     private javax.swing.JPanel formDashboardPanelFooter;
     private javax.swing.JPanel formDashboardPanelHeader;
     private javax.swing.JPanel formDashboardPanelMain;
     public javax.swing.JLabel formEmployeeHeaderLabelNik;
-    private javax.swing.JButton formEmployeeMainButtonClear;
-    private javax.swing.JButton formEmployeeMainButtonDelete;
-    private javax.swing.JButton formEmployeeMainButtonSave;
-    private javax.swing.JPanel formEmployeeMainPanelButton;
-    private javax.swing.JPanel formEmployeeMainPanelTable;
-    private javax.swing.JTable formEmployeeMainTable;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }

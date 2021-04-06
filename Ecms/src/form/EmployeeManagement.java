@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
@@ -525,7 +526,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+    private List<String> access_menu = new ArrayList<>();
+    private String full_name;
+    
     public void setLabelId(String text) {
         formEmployeeHeaderLabelId.setText(text);
     }
@@ -534,10 +537,21 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeHeaderLabelNik.setText(text);
     }
     
-    public void setLabelFullName(String text) {
+    public String getFullName(){
+        return full_name;
+    }
+    public void setFullName(String text) {
+        this.full_name = text;
         formEmployeeMainLabelFullName.setText("Welcome " + text + ",");
     }
-
+    
+    public List<String> getAccessMenu(){
+        return access_menu;
+    }
+    public void setAccessMenu(List<String> value){
+        this.access_menu = value;
+    }
+    
     private void bindDataPosition() {
         try {
             Position position = new Position();
@@ -586,8 +600,8 @@ public class EmployeeManagement extends javax.swing.JFrame {
         try {
             Employee employee = new Employee();
             List<Employee> listEmployee = employee.list();
-            DefaultTableModel defaulTableModel = (DefaultTableModel) formEmployeeMainTable.getModel();
-            defaulTableModel.setRowCount(0);
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formEmployeeMainTable.getModel();
+            defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
             for (int i = 0; i < listEmployee.size(); i++) {
                 TableColumnModel tableColumnModel = formEmployeeMainTable.getColumnModel();
@@ -604,7 +618,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 rows[7] = listEmployee.get(i).getDaysOff();
                 rows[8] = listEmployee.get(i).getStatus();
 
-                defaulTableModel.addRow(rows);
+                defaultTableModel.addRow(rows);
             }
             formEmployeeMainTable.setAutoCreateRowSorter(true);
         } catch (SQLException e) {
@@ -706,7 +720,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     private void formEmployeeMainButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formEmployeeMainButtonSaveActionPerformed
         // TODO add your handling code here:
         try {
@@ -856,10 +870,32 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
     private void formEmployeeMainButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formEmployeeMainButtonCancelActionPerformed
         // TODO add your handling code here:
+        try {
+            Dashboard dashboard = new Dashboard();
+            dashboard.show();
+            dashboard.setLabelId(formEmployeeHeaderLabelId.getText());
+            dashboard.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            dashboard.setFullName(getFullName());
+            dashboard.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formEmployeeMainButtonCancelActionPerformed
 
     private void formEmployeeMainButtonCancelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formEmployeeMainButtonCancelKeyPressed
         // TODO add your handling code here:
+        try {
+            Dashboard dashboard = new Dashboard();
+            dashboard.show();
+            dashboard.setLabelId(formEmployeeHeaderLabelId.getText());
+            dashboard.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            dashboard.setFullName(getFullName());
+            dashboard.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formEmployeeMainButtonCancelKeyPressed
 
     /**
