@@ -230,6 +230,7 @@ public class Attendance {
                 + "SET\n"
                 + "`checkout` = NOW(),\n"
                 + "`duration` = ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2),\n"
+                + "`status` = '" + Constanta.Default.DEFAULT_CHECKOUT_STATUS + "',\n"
                 + "`information` = '" + params.getInformation() + "'"
                 + "WHERE `id` = " + params.getId() + ";";
         
@@ -240,5 +241,32 @@ public class Attendance {
         if(affected > 0)
             result = true;
         return result;
+    }
+    
+    public Attendance getCurrentCheckIn(String username) throws SQLException{
+        Attendance attendance = new Attendance();
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT * FROM `e-cms`.attendance\n"
+                + "WHERE username = '" + username + "'\n"
+                + "AND status = '" + Constanta.Default.DEFAULT_CHECKIN_STATUS + "';";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            attendance.setId(Integer.parseInt(resultSet.getString("id")));
+            attendance.setUsername(resultSet.getString("username"));
+            attendance.setCheckIn(resultSet.getString("checkin"));
+            attendance.setCheckOut(resultSet.getString("checkout"));
+            attendance.setLocation(resultSet.getString("location"));
+            attendance.setDuration(Float.parseFloat(resultSet.getString("duration")));
+            attendance.setStatus(resultSet.getString("status"));
+            attendance.setInformation(resultSet.getString("information"));
+        }
+        
+        return attendance;
     }
 }

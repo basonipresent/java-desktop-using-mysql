@@ -112,7 +112,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formDashboardPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
+                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                     .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                         .addComponent(formDashboardHeaderLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,7 +145,7 @@ public class Dashboard extends javax.swing.JFrame {
             formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
+                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                 .addContainerGap())
         );
         formDashboardPanelFooterLayout.setVerticalGroup(
@@ -231,6 +231,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         formDashboardMainAttendanceTable.setColumnSelectionAllowed(true);
+        formDashboardMainAttendanceTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         formDashboardMainAttendanceTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formDashboardMainAttendanceTableMouseClicked(evt);
@@ -238,6 +239,17 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(formDashboardMainAttendanceTable);
         formDashboardMainAttendanceTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (formDashboardMainAttendanceTable.getColumnModel().getColumnCount() > 0) {
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(0).setHeaderValue("Id");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(1).setHeaderValue("Nik");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(2).setHeaderValue("Full Name");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(3).setHeaderValue("Check In");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(4).setHeaderValue("Check Out");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(5).setHeaderValue("Location");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(6).setHeaderValue("Duration");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(7).setHeaderValue("Status");
+            formDashboardMainAttendanceTable.getColumnModel().getColumn(8).setHeaderValue("Information");
+        }
 
         formDashboardMainAttendanceCheckin.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceCheckin.setText("Check In");
@@ -306,7 +318,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(formDashboardMainAttendanceJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(formDashboardMainAttendanceButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         formDashboardMainAttendancePanelLayout.setVerticalGroup(
             formDashboardMainAttendancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +357,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formDashboardMainAttendancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardMainAttendanceCheckin)
@@ -574,8 +586,8 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
-            .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
+            .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(formDashboardPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -823,7 +835,7 @@ public class Dashboard extends javax.swing.JFrame {
         attendance.setLocation(Constanta.Default.DEFAULT_LOCATION);
         attendance.setStatus(Constanta.Default.DEFAULT_CHECKIN_STATUS);
         attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKIN_INFORMATION, 
-                formDashboardMainLabelFullName.getText(), 
+                getFullName(), 
                 localDateTimeNow.format(DATETIME_FORMATTER),
                 Constanta.Default.DEFAULT_LOCATION));
         result = attendance.checkIn(attendance);
@@ -831,13 +843,12 @@ public class Dashboard extends javax.swing.JFrame {
         return result;
     }
     
-    private boolean checkOut() throws SQLException{
+    private boolean checkOut(Attendance attendance) throws SQLException{
         boolean result;
         
-        Attendance attendance = new Attendance();
-        attendance.setId(1);
+        attendance.setId(attendance.getId());
         attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKOUT_INFORMATION,
-                formDashboardMainLabelFullName.getText(), 
+                getFullName(), 
                 localDateTimeNow.format(DATETIME_FORMATTER),
                 Constanta.Default.DEFAULT_LOCATION,
                 "0"));
@@ -950,10 +961,16 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainAttendanceCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinActionPerformed
         // TODO add your handling code here:
         try {
-            if (checkIn()) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            Attendance attendance = new Attendance();
+            Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
+            if(result.getId() == null){
+                if (checkIn()) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ALREADY_CHECKIN);
             }
             loadDataAttendance();
         } catch (SQLException e) {
@@ -964,10 +981,16 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainAttendanceCheckinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinKeyPressed
         // TODO add your handling code here:
         try {
-            if (checkIn()) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            Attendance attendance = new Attendance();
+            Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
+            if(result.getId() == null){
+                if (checkIn()) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ALREADY_CHECKIN);
             }
             loadDataAttendance();
         } catch (SQLException e) {
@@ -978,10 +1001,16 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainAttendanceCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutActionPerformed
         // TODO add your handling code here:
         try {
-            if (checkOut()) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            Attendance attendance = new Attendance();
+            Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
+            if(result.getId() != null){
+                if (checkOut(result)) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ALREADY_CHECKOUT);
             }
             loadDataAttendance();
         } catch (SQLException e) {
@@ -992,10 +1021,16 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainAttendanceCheckoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutKeyPressed
         // TODO add your handling code here:
         try {
-            if (checkOut()) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            Attendance attendance = new Attendance();
+            Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
+            if(result.getId() != null){
+                if (checkOut(result)) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ALREADY_CHECKOUT);
             }
             loadDataAttendance();
         } catch (SQLException e) {
