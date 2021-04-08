@@ -74,7 +74,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="formDashboardHeaderLabelId" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formEmployeeHeaderLabelNik" max="-2" attributes="0"/>
+                          <Component id="formDashboardHeaderLabelNik" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -90,7 +90,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="formDashboardHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formEmployeeHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formDashboardHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -123,7 +123,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formEmployeeHeaderLabelNik">
+        <Component class="javax.swing.JLabel" name="formDashboardHeaderLabelNik">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -502,6 +502,10 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainAttendanceButtonSearchActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainAttendanceButtonSearchKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="formDashboardMainAttendanceLebelFrom">
                   <Properties>
@@ -734,6 +738,10 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainLeaveButtonSearchActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainLeaveButtonSearchKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="formDashboardMainLeaveLebelFrom">
                   <Properties>

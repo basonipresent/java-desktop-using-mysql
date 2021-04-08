@@ -5,7 +5,6 @@
  */
 package model;
 
-import com.sun.istack.internal.Nullable;
 import config.Connections;
 import config.Constanta;
 import java.sql.Connection;
@@ -16,7 +15,6 @@ import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -174,8 +172,8 @@ public class Attendance {
             
             attendance.setId(Integer.parseInt(resultSet.getString("id")));
             attendance.setUsername(resultSet.getString("username"));
-            attendance.setCheckIn(resultSet.getString("check_in"));
-            attendance.setCheckOut(resultSet.getString("check_out"));
+            attendance.setCheckIn(resultSet.getString("checkin"));
+            attendance.setCheckOut(resultSet.getString("checkout"));
             attendance.setLocation(resultSet.getString("location"));
             attendance.setDuration(Float.parseFloat(resultSet.getString("duration")));
             attendance.setStatus(resultSet.getString("status"));
@@ -231,7 +229,8 @@ public class Attendance {
         query = "UPDATE `e-cms`.`attendance`\n"
                 + "SET\n"
                 + "`checkout` = NOW(),\n"
-                + "`duration` = ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2)\n"
+                + "`duration` = ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2),\n"
+                + "`information` = '" + params.getInformation() + "'"
                 + "WHERE `id` = " + params.getId() + ";";
         
         PreparedStatement preparedStatement = connection.prepareStatement(query);

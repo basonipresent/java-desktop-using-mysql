@@ -4,13 +4,16 @@ import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attendance;
+import model.Leave;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,7 +32,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         formDashboardHeaderLabelId.setVisible(false);
-        formEmployeeHeaderLabelNik.setVisible(false);
+        formDashboardHeaderLabelNik.setVisible(false);
     }
 
     /**
@@ -44,7 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardPanelHeader = new javax.swing.JPanel();
         formDashboardHeaderLable = new javax.swing.JLabel();
         formDashboardHeaderLabelId = new javax.swing.JLabel();
-        formEmployeeHeaderLabelNik = new javax.swing.JLabel();
+        formDashboardHeaderLabelNik = new javax.swing.JLabel();
         formDashboardPanelFooter = new javax.swing.JPanel();
         formDashboardLabelFooter2 = new javax.swing.JLabel();
         formDashboardPanelMain = new javax.swing.JPanel();
@@ -98,9 +101,9 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardHeaderLabelId.setText("Id");
         formDashboardHeaderLabelId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        formEmployeeHeaderLabelNik.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
-        formEmployeeHeaderLabelNik.setText("Nik");
-        formEmployeeHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        formDashboardHeaderLabelNik.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
+        formDashboardHeaderLabelNik.setText("Nik");
+        formDashboardHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout formDashboardPanelHeaderLayout = new javax.swing.GroupLayout(formDashboardPanelHeader);
         formDashboardPanelHeader.setLayout(formDashboardPanelHeaderLayout);
@@ -113,7 +116,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                         .addComponent(formDashboardHeaderLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formEmployeeHeaderLabelNik)
+                        .addComponent(formDashboardHeaderLabelNik)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -125,7 +128,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formDashboardPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardHeaderLabelId)
-                    .addComponent(formEmployeeHeaderLabelNik)))
+                    .addComponent(formDashboardHeaderLabelNik)))
         );
 
         formDashboardHeaderLable.getAccessibleContext().setAccessibleDescription("");
@@ -267,6 +270,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         formDashboardMainAttendanceButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceButtonSearch.setText("Search");
+        formDashboardMainAttendanceButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainAttendanceButtonSearchActionPerformed(evt);
+            }
+        });
+        formDashboardMainAttendanceButtonSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainAttendanceButtonSearchKeyPressed(evt);
+            }
+        });
 
         formDashboardMainAttendanceLebelFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceLebelFrom.setText("From");
@@ -382,6 +395,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         formDashboardMainLeaveButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainLeaveButtonSearch.setText("Search");
+        formDashboardMainLeaveButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainLeaveButtonSearchActionPerformed(evt);
+            }
+        });
+        formDashboardMainLeaveButtonSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainLeaveButtonSearchKeyPressed(evt);
+            }
+        });
 
         formDashboardMainLeaveLebelFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainLeaveLebelFrom.setText("From");
@@ -574,7 +597,7 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
-    DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private List<String> access_menu = new ArrayList<>();
     private String full_name;
 
@@ -583,7 +606,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     public void setLabelNik(String text) {
-        formEmployeeHeaderLabelNik.setText(text);
+        formDashboardHeaderLabelNik.setText(text);
     }
     
     public String getFullName(){
@@ -604,8 +627,8 @@ public class Dashboard extends javax.swing.JFrame {
     public void loadDataAttendance(){
         try {
             List<Attendance> listAttendance;
-            if (formEmployeeHeaderLabelNik.getText().equals("hrd") 
-                    || formEmployeeHeaderLabelNik.getText().equals("admin")) {
+            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+                    || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
                         .withUsername("")
                         .withDateFrom(null)
@@ -613,7 +636,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .build();
             } else {
                 listAttendance = Attendance.listParams()
-                        .withUsername(formEmployeeHeaderLabelNik.getText())
+                        .withUsername(formDashboardHeaderLabelNik.getText())
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
@@ -643,6 +666,184 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
+    }
+    
+    public void searchDataAttendance(){
+        try {
+            Date dateFrom = formDashboardMainAttendanceJDateChooseFrom.getDate();
+            Date dateTo = formDashboardMainAttendanceJDateChooseTo.getDate();
+            SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date_from = simpleDateFormatFrom.format(dateFrom);
+            String date_to = simpleDateFormatTo.format(dateTo);
+            
+            List<Attendance> listAttendance;
+            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+                    || formDashboardHeaderLabelNik.getText().equals("admin")) {
+                listAttendance = Attendance.listParams()
+                        .withUsername("")
+                        .withDateFrom(date_from)
+                        .withDateTo(date_to)
+                        .build();
+            } else {
+                listAttendance = Attendance.listParams()
+                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withDateFrom(date_from)
+                        .withDateTo(date_to)
+                        .build();
+            }
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainAttendanceTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] rows = new Object[9];
+            for(int i = 0; i < listAttendance.size(); i++){
+                TableColumnModel tableColumnModel = formDashboardMainAttendanceTable.getColumnModel();
+                tableColumnModel.getColumn(0).setMaxWidth(0);
+                tableColumnModel.getColumn(0).setMinWidth(0);
+                
+                rows[0] = listAttendance.get(i).getId();
+                rows[1] = listAttendance.get(i).getUsername();
+                rows[2] = listAttendance.get(i).getFullName();
+                rows[3] = listAttendance.get(i).getCheckIn();
+                rows[4] = listAttendance.get(i).getCheckOut();
+                rows[5] = listAttendance.get(i).getLocation();
+                rows[6] = String.format("%.0f", listAttendance.get(i).getDuration());
+                rows[7] = listAttendance.get(i).getStatus();
+                rows[8] = listAttendance.get(i).getInformation();
+
+                defaultTableModel.addRow(rows);
+            }
+            formDashboardMainAttendanceTable.setAutoCreateRowSorter(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
+    public void loadDataLeave(){
+        try {
+            List<Leave> listLeave;
+            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+                    || formDashboardHeaderLabelNik.getText().equals("admin")) {
+                listLeave = Leave.listParams()
+                        .withUsername("")
+                        .withDateFrom(null)
+                        .withDateTo(null)
+                        .build();
+            } else {
+                listLeave = Leave.listParams()
+                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withDateFrom(null)
+                        .withDateTo(null)
+                        .build();
+            }
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainLeaveTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] rows = new Object[9];
+            for(int i = 0; i < listLeave.size(); i++){
+                TableColumnModel tableColumnModel = formDashboardMainLeaveTable.getColumnModel();
+                tableColumnModel.getColumn(0).setMaxWidth(0);
+                tableColumnModel.getColumn(0).setMinWidth(0);
+                
+                rows[0] = listLeave.get(i).getId();
+                rows[1] = listLeave.get(i).getUsername();
+                rows[2] = listLeave.get(i).getFullName();
+                rows[3] = listLeave.get(i).getRequestDate();
+                rows[4] = listLeave.get(i).getDateFrom();
+                rows[5] = listLeave.get(i).getDateTo();
+                rows[6] = listLeave.get(i).getReasons();
+                rows[7] = listLeave.get(i).getListAttachment().get(0).getFileName();
+                rows[8] = listLeave.get(i).getStatus();
+
+                defaultTableModel.addRow(rows);
+            }
+            formDashboardMainLeaveTable.setAutoCreateRowSorter(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
+    public void searchDataLeave(){
+        try {
+            Date dateFrom = formDashboardMainLeaveJDateChooseFrom.getDate();
+            Date dateTo = formDashboardMainLeaveJDateChooseTo.getDate();
+            SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date_from = simpleDateFormatFrom.format(dateFrom);
+            String date_to = simpleDateFormatTo.format(dateTo);
+            
+            List<Leave> listLeave;
+            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+                    || formDashboardHeaderLabelNik.getText().equals("admin")) {
+                listLeave = Leave.listParams()
+                        .withUsername("")
+                        .withDateFrom(null)
+                        .withDateTo(null)
+                        .build();
+            } else {
+                listLeave = Leave.listParams()
+                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withDateFrom(date_from)
+                        .withDateTo(date_to)
+                        .build();
+            }
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainLeaveTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] rows = new Object[9];
+            for(int i = 0; i < listLeave.size(); i++){
+                TableColumnModel tableColumnModel = formDashboardMainLeaveTable.getColumnModel();
+                tableColumnModel.getColumn(0).setMaxWidth(0);
+                tableColumnModel.getColumn(0).setMinWidth(0);
+                
+                rows[0] = listLeave.get(i).getId();
+                rows[1] = listLeave.get(i).getUsername();
+                rows[2] = listLeave.get(i).getFullName();
+                rows[3] = listLeave.get(i).getRequestDate();
+                rows[4] = listLeave.get(i).getDateFrom();
+                rows[5] = listLeave.get(i).getDateTo();
+                rows[6] = listLeave.get(i).getReasons();
+                rows[7] = listLeave.get(i).getListAttachment().get(0).getFileName();
+                rows[8] = listLeave.get(i).getStatus();
+
+                defaultTableModel.addRow(rows);
+            }
+            formDashboardMainLeaveTable.setAutoCreateRowSorter(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
+    private boolean checkIn() throws SQLException{
+        boolean result;
+        
+        Attendance attendance = new Attendance();
+        attendance.setUsername(formDashboardHeaderLabelNik.getText());
+        attendance.setCheckIn(localDateTimeNow.format(DATETIME_FORMATTER));
+        attendance.setLocation(Constanta.Default.DEFAULT_LOCATION);
+        attendance.setStatus(Constanta.Default.DEFAULT_CHECKIN_STATUS);
+        attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKIN_INFORMATION, 
+                formDashboardMainLabelFullName.getText(), 
+                localDateTimeNow.format(DATETIME_FORMATTER),
+                Constanta.Default.DEFAULT_LOCATION));
+        result = attendance.checkIn(attendance);
+        
+        return result;
+    }
+    
+    private boolean checkOut() throws SQLException{
+        boolean result;
+        
+        Attendance attendance = new Attendance();
+        attendance.setId(1);
+        attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKOUT_INFORMATION,
+                formDashboardMainLabelFullName.getText(), 
+                localDateTimeNow.format(DATETIME_FORMATTER),
+                Constanta.Default.DEFAULT_LOCATION,
+                "0"));
+        result = attendance.checkOut(attendance);
+        
+        return result;
     }
     
     private void formDashboardMainAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceTableMouseClicked
@@ -694,7 +895,7 @@ public class Dashboard extends javax.swing.JFrame {
             EmployeeManagement employeeManagement = new EmployeeManagement();
             employeeManagement.show(true);
             employeeManagement.setLabelId(formDashboardHeaderLabelId.getText());
-            employeeManagement.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            employeeManagement.setLabelNik(formDashboardHeaderLabelNik.getText());
             employeeManagement.setFullName(getFullName());
             employeeManagement.setAccessMenu(getAccessMenu());
             this.dispose();
@@ -709,7 +910,7 @@ public class Dashboard extends javax.swing.JFrame {
             EmployeeManagement employeeManagement = new EmployeeManagement();
             employeeManagement.show(true);
             employeeManagement.setLabelId(formDashboardHeaderLabelId.getText());
-            employeeManagement.setLabelNik(formEmployeeHeaderLabelNik.getText());
+            employeeManagement.setLabelNik(formDashboardHeaderLabelNik.getText());
             employeeManagement.setFullName(getFullName());
             employeeManagement.setAccessMenu(getAccessMenu());
             this.dispose();
@@ -748,19 +949,95 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void formDashboardMainAttendanceCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinActionPerformed
         // TODO add your handling code here:
+        try {
+            if (checkIn()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+            loadDataAttendance();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainAttendanceCheckinActionPerformed
 
     private void formDashboardMainAttendanceCheckinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckinKeyPressed
         // TODO add your handling code here:
+        try {
+            if (checkIn()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+            loadDataAttendance();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainAttendanceCheckinKeyPressed
 
     private void formDashboardMainAttendanceCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutActionPerformed
         // TODO add your handling code here:
+        try {
+            if (checkOut()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+            loadDataAttendance();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainAttendanceCheckoutActionPerformed
 
     private void formDashboardMainAttendanceCheckoutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceCheckoutKeyPressed
         // TODO add your handling code here:
+        try {
+            if (checkOut()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+            loadDataAttendance();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainAttendanceCheckoutKeyPressed
+
+    private void formDashboardMainAttendanceButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceButtonSearchActionPerformed
+        // TODO add your handling code here:
+        try {
+            searchDataAttendance();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainAttendanceButtonSearchActionPerformed
+
+    private void formDashboardMainAttendanceButtonSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceButtonSearchKeyPressed
+        // TODO add your handling code here:
+        try {
+            searchDataAttendance();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainAttendanceButtonSearchKeyPressed
+
+    private void formDashboardMainLeaveButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveButtonSearchActionPerformed
+        // TODO add your handling code here:
+        try {
+            searchDataLeave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveButtonSearchActionPerformed
+
+    private void formDashboardMainLeaveButtonSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveButtonSearchKeyPressed
+        // TODO add your handling code here:
+        try {
+            searchDataLeave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveButtonSearchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -806,6 +1083,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel formDashboardHeaderLabelId;
+    public javax.swing.JLabel formDashboardHeaderLabelNik;
     private javax.swing.JLabel formDashboardHeaderLable;
     private javax.swing.JLabel formDashboardLabelFooter2;
     private javax.swing.JButton formDashboardMainAttendanceButtonSearch;
@@ -840,7 +1118,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel formDashboardPanelFooter;
     private javax.swing.JPanel formDashboardPanelHeader;
     private javax.swing.JPanel formDashboardPanelMain;
-    public javax.swing.JLabel formEmployeeHeaderLabelNik;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

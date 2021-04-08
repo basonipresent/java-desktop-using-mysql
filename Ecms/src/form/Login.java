@@ -250,6 +250,7 @@ public class Login extends javax.swing.JFrame {
                 dashboard.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
                 dashboard.setAccessMenu(users.getAccessMenu());
                 dashboard.loadDataAttendance();
+                dashboard.loadDataLeave();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED_LOGIN);
@@ -273,6 +274,7 @@ public class Login extends javax.swing.JFrame {
                 dashboard.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
                 dashboard.setAccessMenu(users.getAccessMenu());
                 dashboard.loadDataAttendance();
+                dashboard.loadDataLeave();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED_LOGIN);

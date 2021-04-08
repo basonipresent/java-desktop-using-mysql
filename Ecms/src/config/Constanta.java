@@ -55,6 +55,12 @@ public class Constanta {
     public class Default{
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
         public static final int DEFAULT_NUMERIC_VALUE = 0;
+        public static final String DEFAULT_LOCATION = "OFFICE";
+        public static final String DEFAULT_CHECKIN_STATUS = "CHECK IN";
+        public static final String DEFAULT_CHECKOUT_STATUS = "CHECK OUT";
+        public static final String DEFAULT_CHECKIN_INFORMATION = "Check In by %s at %s in %s";
+        public static final String DEFAULT_CHECKOUT_INFORMATION = "Check Out by %s at %s in %s with duration of working : %s";
+        
         public static final String BUTTON_ADD = "Save";
         public static final String BUTTON_UPDATE = "Update";
     }
