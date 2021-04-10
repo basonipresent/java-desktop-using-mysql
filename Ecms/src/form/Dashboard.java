@@ -279,6 +279,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         formDashboardMainAttendanceViewMore.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceViewMore.setText("View more");
+        formDashboardMainAttendanceViewMore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainAttendanceViewMoreActionPerformed(evt);
+            }
+        });
+        formDashboardMainAttendanceViewMore.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainAttendanceViewMoreKeyPressed(evt);
+            }
+        });
 
         formDashboardMainAttendanceButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceButtonSearch.setText("Search");
@@ -1073,6 +1083,38 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainLeaveButtonSearchKeyPressed
+
+    private void formDashboardMainAttendanceViewMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceViewMoreActionPerformed
+        // TODO add your handling code here:
+        try {
+            AttendanceDetail attendanceDetail = new AttendanceDetail();
+            attendanceDetail.show(true);
+            attendanceDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            attendanceDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            attendanceDetail.setFullName(getFullName());
+            attendanceDetail.setAccessMenu(getAccessMenu());
+            attendanceDetail.loadDataAttendance();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainAttendanceViewMoreActionPerformed
+
+    private void formDashboardMainAttendanceViewMoreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceViewMoreKeyPressed
+        // TODO add your handling code here:
+        try {
+            AttendanceDetail attendanceDetail = new AttendanceDetail();
+            attendanceDetail.show(true);
+            attendanceDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            attendanceDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            attendanceDetail.setFullName(getFullName());
+            attendanceDetail.setAccessMenu(getAccessMenu());
+            attendanceDetail.loadDataAttendance();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainAttendanceViewMoreKeyPressed
 
     /**
      * @param args the command line arguments

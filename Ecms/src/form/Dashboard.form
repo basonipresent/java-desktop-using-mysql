@@ -458,6 +458,10 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View more"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainAttendanceViewMoreActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainAttendanceViewMoreKeyPressed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="formDashboardMainAttendancePanel">
 
