@@ -14,10 +14,21 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attendance;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -372,6 +383,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    DateTimeFormatter DATETIME_PDF_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     private List<String> access_menu = new ArrayList<>();
     private String full_name;
 
@@ -382,10 +394,11 @@ public class AttendanceDetail extends javax.swing.JFrame {
     public void setLabelNik(String text) {
         formAttendanceHeaderLabelNik.setText(text);
     }
-    
-    public String getFullName(){
+
+    public String getFullName() {
         return full_name;
     }
+
     public void setFullName(String text) {
         this.full_name = text;
         formAttendanceMainLabelFullName.setText("Welcome " + text + ",");
@@ -394,14 +407,25 @@ public class AttendanceDetail extends javax.swing.JFrame {
     public List<String> getAccessMenu() {
         return access_menu;
     }
+
     public void setAccessMenu(List<String> value) {
         this.access_menu = value;
     }
-    
-    public void loadDataAttendance(){
+
+    private List<Attendance> list_attendance;
+
+    private void setListAttendance(List<Attendance> value) {
+        this.list_attendance = value;
+    }
+
+    private List<Attendance> getListAttendance() {
+        return list_attendance;
+    }
+
+    public void loadDataAttendance() {
         try {
             List<Attendance> listAttendance;
-            if (formAttendanceHeaderLabelNik.getText().equals("hrd") 
+            if (formAttendanceHeaderLabelNik.getText().equals("hrd")
                     || formAttendanceHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
                         .withUsername("")
@@ -415,15 +439,15 @@ public class AttendanceDetail extends javax.swing.JFrame {
                         .withDateTo(null)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formAttendanceMainAttendanceTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listAttendance.size(); i++){
+            for (int i = 0; i < listAttendance.size(); i++) {
                 TableColumnModel tableColumnModel = formAttendanceMainAttendanceTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listAttendance.get(i).getId();
                 rows[1] = listAttendance.get(i).getUsername();
                 rows[2] = listAttendance.get(i).getFullName();
@@ -437,12 +461,13 @@ public class AttendanceDetail extends javax.swing.JFrame {
                 defaultTableModel.addRow(rows);
             }
             formAttendanceMainAttendanceTable.setAutoCreateRowSorter(true);
+            setListAttendance(listAttendance);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    public void searchDataAttendance(){
+
+    public void searchDataAttendance() {
         try {
             Date dateFrom = formAttendanceMainAttendanceJDateChooseFrom.getDate();
             Date dateTo = formAttendanceMainAttendanceJDateChooseTo.getDate();
@@ -450,9 +475,9 @@ public class AttendanceDetail extends javax.swing.JFrame {
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date_from = simpleDateFormatFrom.format(dateFrom);
             String date_to = simpleDateFormatTo.format(dateTo);
-            
+
             List<Attendance> listAttendance;
-            if (formAttendanceHeaderLabelNik.getText().equals("hrd") 
+            if (formAttendanceHeaderLabelNik.getText().equals("hrd")
                     || formAttendanceHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
                         .withUsername("")
@@ -466,15 +491,15 @@ public class AttendanceDetail extends javax.swing.JFrame {
                         .withDateTo(date_to)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formAttendanceMainAttendanceTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listAttendance.size(); i++){
+            for (int i = 0; i < listAttendance.size(); i++) {
                 TableColumnModel tableColumnModel = formAttendanceMainAttendanceTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listAttendance.get(i).getId();
                 rows[1] = listAttendance.get(i).getUsername();
                 rows[2] = listAttendance.get(i).getFullName();
@@ -488,17 +513,84 @@ public class AttendanceDetail extends javax.swing.JFrame {
                 defaultTableModel.addRow(rows);
             }
             formAttendanceMainAttendanceTable.setAutoCreateRowSorter(true);
+            setListAttendance(listAttendance);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    private boolean generateReport(){
+
+    private boolean generateReport() {
         boolean result = false;
-        
+        Document document = new Document();
+        try {
+            //font setting
+            Font bfBold12 = new Font(FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(Color.BLACK));
+            Font bfNormal12 = new Font(FontFamily.TIMES_ROMAN, 12);
+
+            //document header attributes
+            document.addAuthor(Constanta.PdfDocument.DOCUMENT_AUTHOR);
+            document.addCreationDate();
+            document.addProducer();
+            document.addCreator(Constanta.PdfDocument.DOCUMENT_CREATOR);
+            document.addTitle(Constanta.PdfDocument.DOCUMENT_TITLE_ATTENDANCE);
+            document.setPageSize(PageSize.A4.rotate());
+            
+            PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(
+                    Constanta.PdfDocument.PATH + "Attendance" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
+            document.open();
+
+            PdfPTable pdfPTable = new PdfPTable(8);
+            pdfPTable.setWidthPercentage(Constanta.PdfDocument.WIDTH_PERCENTAGE);
+            pdfPTable.setSpacingBefore(Constanta.PdfDocument.SPACING_BEFORE);
+            pdfPTable.setSpacingAfter(Constanta.PdfDocument.SPACING_AFTER);
+
+            float[] columnWidth = {3f, 3f, 2f, 2f, 2f, 2f, 2f, 5f};
+            pdfPTable.setWidths(columnWidth);
+
+            insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Check In", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Check Out", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Location", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Duration", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Status", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Information", Element.ALIGN_CENTER, 1, bfBold12);
+            pdfPTable.setHeaderRows(1);
+
+            for (int i = 0; i < getListAttendance().size(); i++) {
+                insertCell(pdfPTable, getListAttendance().get(i).getUsername(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getFullName(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getCheckIn(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getCheckOut(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getLocation(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, String.format("%.0f", getListAttendance().get(i).getDuration()), Element.ALIGN_RIGHT, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getStatus(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListAttendance().get(i).getInformation(), Element.ALIGN_LEFT, 1, bfNormal12);
+            }
+
+            document.add(pdfPTable);
+            document.close();
+            pdfWriter.close();
+
+            result = true;
+        } catch (DocumentException | FileNotFoundException e) {
+            result = false;
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
         return result;
     }
-    
+
+    private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
+        PdfPCell cell = new PdfPCell(new Phrase(text.trim(), font));
+        cell.setHorizontalAlignment(align);
+        cell.setColspan(colspan);
+
+        if (text.trim().equalsIgnoreCase("")) {
+            cell.setMinimumHeight(10f);
+        }
+        table.addCell(cell);
+    }
+
     private void formAttendanceMainAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formAttendanceMainAttendanceTableMouseClicked
         // TODO add your handling code here:
 
@@ -593,13 +685,13 @@ public class AttendanceDetail extends javax.swing.JFrame {
     private void formDashboardMainAttendanceGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceGenerateActionPerformed
         // TODO add your handling code here:
         try {
-            boolean is_print = formAttendanceMainAttendanceTable.print();
-            if(is_print){
+            boolean is_print = generateReport();
+            if (is_print) {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException | PrinterException e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainAttendanceGenerateActionPerformed
@@ -607,13 +699,13 @@ public class AttendanceDetail extends javax.swing.JFrame {
     private void formDashboardMainAttendanceGenerateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceGenerateKeyPressed
         // TODO add your handling code here:
         try {
-            boolean is_print = formAttendanceMainAttendanceTable.print();
-            if(is_print){
+            boolean is_print = generateReport();
+            if (is_print) {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException | PrinterException e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainAttendanceGenerateKeyPressed

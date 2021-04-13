@@ -79,4 +79,16 @@ public class Constanta {
         public static final String APPROVED = "APPROVED";
         public static final String REJECTED = "REJECTED";
     }
+    
+    public class PdfDocument{
+        public static final int WIDTH_PERCENTAGE = 100;
+        public static final float SPACING_BEFORE = 10f;
+        public static final float SPACING_AFTER = 10f;
+        public static final String PATH = "D:\\dev\\.project\\ecms\\docs\\";
+        public static final String DOCUMENT_TITLE_ATTENDANCE = "Report Attendance";
+        public static final String DOCUMENT_TITLE_PAYSLIP = "Report Payslip";
+        public static final String DOCUMENT_TITLE_LEAVE = "Report Leave";
+        public static final String DOCUMENT_CREATOR = "Employee Content Management System";
+        public static final String DOCUMENT_AUTHOR = "Employee Content Management System";
+    }
 }
