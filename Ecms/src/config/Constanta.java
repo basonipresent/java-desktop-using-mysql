@@ -20,6 +20,7 @@ public class Constanta {
         public static final String MESSAGE_FAILED_LOGIN = "Username or Password is not match!";
         public static final String MESSAGE_ERROR = "Error : ";
         public static final String MESSAGE_INVALID = "Please fill all required data !";
+        public static final String MESSAGE_INVALID_REGISTER = "Username is not valid !\n Please, contact administrator";
         public static final String MESSAGE_CONFIRM_LOGOUT = "Are you sure to logout?";
         public static final String MESSAGE_CONFIRM_DELETE = "Are you sure to delete this records?";
         public static final String BANNER_CONFIRM = "Confirmation";
@@ -28,11 +29,13 @@ public class Constanta {
     }
     
     public static class Status {
+        public static final String ACTIVE = "ACTIVE";
+        public static final String INACTIVE = "INACTIVE";
         public HashMap<String, Integer> populateComboBox() {
             HashMap<String, Integer> result = new HashMap<>();
             
-            result.put("Active", 1);
-            result.put("Inactive", 2);
+            result.put(ACTIVE, 1);
+            result.put(INACTIVE, 2);
             
             return result;
         }
@@ -42,13 +45,10 @@ public class Constanta {
         public HashMap<String, Integer> populateComboBox() {
             HashMap<String, Integer> result = new HashMap<>();
             
-            result.put("Sekolah Dasar", 1);
-            result.put("Sekolah Menengah Pertama", 2);
-            result.put("Sekolah Menengah Atas", 3);
-            result.put("Diploma", 4);
-            result.put("Sarjana", 5);
-            result.put("Magister", 6);
-            result.put("Doktoral", 7);
+            result.put("Sekolah Menengah Pertama", 1);
+            result.put("Sekolah Menengah Atas", 2);
+            result.put("Diploma", 3);
+            result.put("Sarjana", 4);
             
             return result;
         }

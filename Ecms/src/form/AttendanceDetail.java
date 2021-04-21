@@ -3,7 +3,6 @@ package form;
 import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.HeadlessException;
-import java.awt.print.PrinterException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -21,7 +20,6 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -574,14 +572,16 @@ public class AttendanceDetail extends javax.swing.JFrame {
 
             result = true;
         } catch (DocumentException | FileNotFoundException e) {
-            result = false;
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+            result = false;
         }
         return result;
     }
 
     private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
-        PdfPCell cell = new PdfPCell(new Phrase(text.trim(), font));
+        PdfPCell cell;
+        text = text == null ? "" : text.trim();
+        cell = new PdfPCell(new Phrase(text, font));
         cell.setHorizontalAlignment(align);
         cell.setColspan(colspan);
 
@@ -661,6 +661,8 @@ public class AttendanceDetail extends javax.swing.JFrame {
             dashboard.setLabelNik(formAttendanceHeaderLabelNik.getText());
             dashboard.setFullName(getFullName());
             dashboard.setAccessMenu(getAccessMenu());
+            dashboard.loadDataAttendance();
+            dashboard.loadDataLeave();
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
@@ -676,6 +678,8 @@ public class AttendanceDetail extends javax.swing.JFrame {
             dashboard.setLabelNik(formAttendanceHeaderLabelNik.getText());
             dashboard.setFullName(getFullName());
             dashboard.setAccessMenu(getAccessMenu());
+            dashboard.loadDataAttendance();
+            dashboard.loadDataLeave();
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

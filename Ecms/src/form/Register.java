@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Employee;
+import model.Users;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,8 +33,7 @@ public class Register extends javax.swing.JFrame {
     String query;
 
     JFrame jFrameLogin = new Login();
-    int id_default = 3;
-
+    
     public Register() {
         initComponents();
         Connections dbConnections = new Connections();
@@ -289,56 +290,42 @@ public class Register extends javax.swing.JFrame {
         formRegisterMainTextFieldUsername.setText("");
         formRegisterMainPasswordFieldPassword.setText("");
     }
+    
+    int id_default = 3;
 
-    private boolean insertData(String username, String password, String first_name, String last_name) throws SQLException {
-        try {
-            boolean result = false;
-            int affected;
-            query = "INSERT INTO `e-cms`.`user`\n"
-                    + "(`id_role`,\n"
-                    + "`username`,\n"
-                    + "`password`,\n"
-                    + "`first_name`,\n"
-                    + "`last_name`,\n"
-                    + "`is_active`)\n"
-                    + "VALUES\n"
-                    + "(" + id_default + ",\n"
-                    + "'" + username + "',\n"
-                    + "'" + password + "',\n"
-                    + "'" + first_name + "',\n"
-                    + "'" + last_name + "',\n"
-                    + "" + 1 + ");";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            affected = preparedStatement.executeUpdate();
-            connection.close();
-
-            if (affected > 0) {
-                result = true;
-            }
-            return result;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
-            return false;
-        }
+    private boolean register() throws SQLException {
+        Users users = new Users();
+        
+        users.setIdRole(id_default);
+        users.setUsername(formRegisterMainTextFieldUsername.getText());
+        users.setPassword(formRegisterMainPasswordFieldPassword.getText());
+        users.setFirstName(formRegisterMainTextFieldFirstName.getText());
+        users.setLastName(formRegisterMainTextFieldLastName.getText());
+        boolean result = users.insertData(users);
+        
+        return result;
     }
-
+    
+    private Employee getEmployeeByNik() throws SQLException{
+        Employee employee = new Employee();
+        return employee.getByNik(formRegisterMainTextFieldUsername.getText());
+    }
+    
     private void formRegisterMainButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRegisterMainButtonRegisterActionPerformed
         // TODO add your handling code here:
         try {
-            boolean is_success;
-            
-            is_success = insertData(formRegisterMainTextFieldUsername.getText(), 
-                    formRegisterMainPasswordFieldPassword.getText(), 
-                    formRegisterMainTextFieldFirstName.getText(), 
-                    formRegisterMainTextFieldLastName.getText());
-            
-            if(is_success){
-                JOptionPane.showMessageDialog(this, Constanta.Messages.MEESAGE_REGISTER_SUCESS);
-                jFrameLogin.show(true);
-                this.dispose();
+            Employee employee = (Employee)getEmployeeByNik();
+            if (employee.getId() != null){
+                if (register()) {
+                    JOptionPane.showMessageDialog(this, Constanta.Messages.MEESAGE_REGISTER_SUCESS);
+                    jFrameLogin.show(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_FAILED);
+                    clearForm();
+                }
             } else {
-                JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_INVALID_REGISTER);
                 clearForm();
             }
         } catch (HeadlessException | SQLException e) {
@@ -349,19 +336,18 @@ public class Register extends javax.swing.JFrame {
     private void formRegisterMainButtonRegisterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRegisterMainButtonRegisterKeyPressed
         // TODO add your handling code here:
         try {
-            boolean is_success;
-            
-            is_success = insertData(formRegisterMainTextFieldUsername.getText(), 
-                    formRegisterMainPasswordFieldPassword.getText(), 
-                    formRegisterMainTextFieldFirstName.getText(), 
-                    formRegisterMainTextFieldLastName.getText());
-            
-            if(is_success){
-                JOptionPane.showMessageDialog(this, Constanta.Messages.MEESAGE_REGISTER_SUCESS);
-                jFrameLogin.show(true);
-                this.dispose();
+            Employee employee = (Employee)getEmployeeByNik();
+            if (employee.getId() != null){
+                if (register()) {
+                    JOptionPane.showMessageDialog(this, Constanta.Messages.MEESAGE_REGISTER_SUCESS);
+                    jFrameLogin.show(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_FAILED);
+                    clearForm();
+                }
             } else {
-                JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_FAILED);
+                JOptionPane.showMessageDialog(this, Constanta.Messages.MESSAGE_INVALID_REGISTER);
                 clearForm();
             }
         } catch (HeadlessException | SQLException e) {

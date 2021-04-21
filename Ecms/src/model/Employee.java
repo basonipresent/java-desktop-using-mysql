@@ -6,6 +6,7 @@
 package model;
 
 import config.Connections;
+import config.Constanta;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -226,6 +227,50 @@ public class Employee {
                 + "`e-cms`.employee as e \n"
                 + "INNER JOIN `e-cms`.position as p on p.`id` = e.`id_position`\n"
                 + "WHERE e.`id` = "+ id +"\n"
+                + "ORDER BY \n"
+                + "e.`first_name`,\n"
+                + "e.`last_name`;";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            result.setId(Integer.parseInt(resultSet.getString("id")));
+            result.setIdPosition(Integer.parseInt(resultSet.getString("id_position")));
+            result.setNik(resultSet.getString("nik"));
+            result.setFirstName(resultSet.getString("first_name"));
+            result.setLastName(resultSet.getString("last_name"));
+            result.setAddress(resultSet.getString("address"));
+            result.setCity(resultSet.getString("city"));
+            result.setNationality(resultSet.getString("nationality"));
+            result.setEducationDegree(resultSet.getString("education_degree"));
+            result.setStatus(resultSet.getString("status"));
+            result.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
+            result.setDaysOff(Integer.parseInt(resultSet.getString("days_off")));
+            result.setCreatedBy(resultSet.getString("created_by"));
+            result.setCreatedDate(resultSet.getString("created_date"));
+            result.setUpdatedBy(resultSet.getString("updated_by"));
+            result.setUpdatedDate(resultSet.getString("updated_date"));
+            result.setPositionName(resultSet.getString("position_name"));
+        }
+        
+        return result;
+    }
+    
+    public Employee getByNik(String nik) throws SQLException {
+        Employee result = new Employee();
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "SELECT \n"
+                + "e.*,\n"
+                + "concat(p.`level`, ' ', p.`position_name`) as position_name\n"
+                + "FROM \n"
+                + "`e-cms`.employee as e \n"
+                + "INNER JOIN `e-cms`.position as p on p.`id` = e.`id_position`\n"
+                + "WHERE e.`nik` = '" + nik + "'\n"
+                + "AND e.`status` = '" + Constanta.Status.ACTIVE + "'\n"
                 + "ORDER BY \n"
                 + "e.`first_name`,\n"
                 + "e.`last_name`;";

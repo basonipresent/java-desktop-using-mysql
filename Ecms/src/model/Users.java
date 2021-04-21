@@ -6,7 +6,9 @@
 package model;
 
 import config.Connections;
+import config.Constanta;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -126,11 +128,44 @@ public class Users {
             menus.add(resultSet.getString("access_menu"));
         }
         setAccessMenu(menus);
-        
+
         result = username.equals(getUsername())
                 && password.equals(getPassword());
 
         connection.close();
+        return result;
+    }
+
+    public boolean insertData(Users params) throws SQLException {
+        // local variables
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        boolean result = false;
+        int affected;
+        
+        query = "INSERT INTO `e-cms`.`user`\n"
+                + "(`id_role`,\n"
+                + "`username`,\n"
+                + "`password`,\n"
+                + "`first_name`,\n"
+                + "`last_name`,\n"
+                + "`is_active`)\n"
+                + "VALUES\n"
+                + "(" + params.getIdRole() + ",\n"
+                + "'" + params.getUsername()+ "',\n"
+                + "'" + params.getPassword() + "',\n"
+                + "'" + params.getFirstName() + "',\n"
+                + "'" + params.getLastName() + "',\n"
+                + "" + 1 + ");";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        affected = preparedStatement.executeUpdate();
+        connection.close();
+
+        if (affected > 0) {
+            result = true;
+        }
         return result;
     }
 }

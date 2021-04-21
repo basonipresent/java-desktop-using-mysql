@@ -151,7 +151,8 @@ public class Attendance {
                 + "inner join `e-cms`.user as u on u.username = a.username\n"
                 + "WHERE\n"
                 + "('" + params.username + "' = '' or a.username = '" + params.username + "')\n"
-                + "and (a.checkin >= '" + params.date_from + "' and a.checkin <= '" + params.date_to + "');";
+                + "and (a.checkin >= '" + params.date_from + "' and a.checkin <= '" + params.date_to + "')\n"
+                + "ORDER BY a.checkin DESC;";
 
         if(params.date_from == null
                 && params.date_to == null){
@@ -162,7 +163,8 @@ public class Attendance {
                     + "`e-cms`.attendance as a\n"
                     + "inner join `e-cms`.user as u on u.username = a.username\n"
                     + "WHERE\n"
-                    + "('" + params.username + "' = '' or a.username = '" + params.username + "');";
+                    + "('" + params.username + "' = '' or a.username = '" + params.username + "')"
+                    + "ORDER BY a.checkin DESC;";
         }
         
         PreparedStatement preparedStatement = connection.prepareStatement(query);
