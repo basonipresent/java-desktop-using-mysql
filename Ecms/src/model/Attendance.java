@@ -150,7 +150,7 @@ public class Attendance {
                 + "`e-cms`.attendance as a\n"
                 + "inner join `e-cms`.user as u on u.username = a.username\n"
                 + "WHERE\n"
-                + "('" + params.username + "' = '' or a.username = '" + params.username + "')\n"
+                + "('" + params.username + "' = '' or concat(u.first_name, ' ', u.last_name) LIKE '%" + params.username + "%')\n"
                 + "and (a.checkin >= '" + params.date_from + "' and a.checkin <= '" + params.date_to + "')\n"
                 + "ORDER BY a.checkin DESC;";
 
@@ -163,7 +163,7 @@ public class Attendance {
                     + "`e-cms`.attendance as a\n"
                     + "inner join `e-cms`.user as u on u.username = a.username\n"
                     + "WHERE\n"
-                    + "('" + params.username + "' = '' or a.username = '" + params.username + "')"
+                    + "('" + params.username + "' = '' or concat(u.first_name, ' ', u.last_name) LIKE '%" + params.username + "%')"
                     + "ORDER BY a.checkin DESC;";
         }
         

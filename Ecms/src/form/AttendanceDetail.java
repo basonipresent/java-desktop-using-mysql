@@ -471,14 +471,21 @@ public class AttendanceDetail extends javax.swing.JFrame {
             Date dateTo = formAttendanceMainAttendanceJDateChooseTo.getDate();
             SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String date_from = simpleDateFormatFrom.format(dateFrom);
-            String date_to = simpleDateFormatTo.format(dateTo);
+            
+            String keyword = formAttendanceMainAttendanceTextFieldFullName.getText();
+            String date_from = null;
+            String date_to = null;
+            
+            if(dateFrom != null && dateTo != null){
+                date_from = simpleDateFormatFrom.format(dateFrom);
+                date_to = simpleDateFormatTo.format(dateTo);
+            }
 
             List<Attendance> listAttendance;
             if (formAttendanceHeaderLabelNik.getText().equals("hrd")
                     || formAttendanceHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
-                        .withUsername("")
+                        .withUsername(keyword)
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();

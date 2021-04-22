@@ -49,8 +49,9 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameLogin"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
-        setSize(new java.awt.Dimension(1024, 768));
+        setSize(new java.awt.Dimension(1024, 720));
 
         formLoginPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
 
