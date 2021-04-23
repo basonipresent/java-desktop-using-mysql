@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author bason
+ *  
  */
 public class Attachment {
     private Integer id;

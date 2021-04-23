@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author bason
+ *  
  */
 public class Employee {
     // properties

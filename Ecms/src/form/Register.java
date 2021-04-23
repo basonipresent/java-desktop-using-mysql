@@ -20,7 +20,7 @@ import model.Users;
  */
 /**
  *
- * @author bason
+ *  
  */
 public class Register extends javax.swing.JFrame {
 

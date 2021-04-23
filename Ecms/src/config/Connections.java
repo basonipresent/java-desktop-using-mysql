@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bason
+ *  
  */
 public class Connections {
     public Connection connection;

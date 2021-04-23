@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author bason
+ *  
  */
 public class Nationality {
     private Integer id;

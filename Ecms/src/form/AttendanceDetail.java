@@ -35,7 +35,7 @@ import java.io.FileOutputStream;
  */
 /**
  *
- * @author bason
+ *  
  */
 public class AttendanceDetail extends javax.swing.JFrame {
 

@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author bason
+ *  
  */
 public class Position {
     private Integer id;
