@@ -42,7 +42,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
         bindDataPosition();
         bindDataStatus();
         bindDataEducation();
-        bindDataNationality();
         loadData();
     }
 
@@ -85,7 +84,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         formEmployeeMainTextAreaAddress = new javax.swing.JTextArea();
         formEmployeeMainTextFieldCity = new javax.swing.JTextField();
-        formEmployeeMainComboBoxNationality = new javax.swing.JComboBox<>();
+        formEmployeeMainTextFieldPhone = new javax.swing.JTextField();
         formEmployeeMainComboBoxStatus = new javax.swing.JComboBox<>();
         formEmployeeMainTextFieldDaysOff = new javax.swing.JTextField();
         formEmployeeMainPanelButton = new javax.swing.JPanel();
@@ -212,7 +211,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeMainLabelCity.setText("City*");
 
         formEmployeeMainLabelNationality.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formEmployeeMainLabelNationality.setText("Nationality");
+        formEmployeeMainLabelNationality.setText("Phone");
 
         formEmployeeMainLabelStatus.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeeMainLabelStatus.setText("Status");
@@ -243,7 +242,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         formEmployeeMainTextFieldCity.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
-        formEmployeeMainComboBoxNationality.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formEmployeeMainTextFieldPhone.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
         formEmployeeMainComboBoxStatus.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
@@ -432,10 +431,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
                                             .addComponent(formEmployeeMainLabelAddress))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(formEmployeePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formEmployeePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(formEmployeeMainComboBoxNationality, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(formEmployeeMainTextFieldCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(formEmployeeMainTextFieldCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(formEmployeeMainTextFieldPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formEmployeePanelMainLayout.createSequentialGroup()
                                         .addComponent(formEmployeeMainLabelDaysOff)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
@@ -478,7 +476,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                     .addComponent(formEmployeeMainLabelPosition)
                     .addComponent(formEmployeeMainComboBoxPosition)
                     .addComponent(formEmployeeMainLabelNationality)
-                    .addComponent(formEmployeeMainComboBoxNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(formEmployeeMainTextFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(formEmployeePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formEmployeeMainLabelEducation)
@@ -585,17 +583,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
         }
     }
 
-    private void bindDataNationality() {
-        try {
-            Nationality nationality = new Nationality();
-            HashMap<String, Integer> map = nationality.populateComboBox();
-            TreeMap<String, Integer> sortMap = new TreeMap<>(map);
-            sortMap.keySet().forEach((e) -> formEmployeeMainComboBoxNationality.addItem(e));
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
-        }
-    }
-
     private void loadData() {
         try {
             Employee employee = new Employee();
@@ -635,6 +622,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             formEmployeeMainTextFieldLastName.setText("");
             formEmployeeMainTextAreaAddress.setText("");
             formEmployeeMainTextFieldCity.setText("");
+            formEmployeeMainTextFieldPhone.setText("");
             formEmployeeMainTextFieldSalary.setText("");
             formEmployeeMainTextFieldDaysOff.setText("");
             formEmployeeHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
@@ -661,7 +649,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         employee.setLastName(formEmployeeMainTextFieldLastName.getText());
         employee.setAddress(formEmployeeMainTextAreaAddress.getText());
         employee.setCity(formEmployeeMainTextFieldCity.getText());
-        employee.setNationality(formEmployeeMainComboBoxNationality.getSelectedItem().toString());
+        employee.setPhone(formEmployeeMainTextFieldPhone.getText());
         employee.setEducationDegree(formEmployeeMainComboBoxEducation.getSelectedItem().toString());
         employee.setStatus(formEmployeeMainComboBoxStatus.getSelectedItem().toString());
         employee.setBasicSalary(Float.parseFloat(formEmployeeMainTextFieldSalary.getText()));
@@ -691,6 +679,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             formEmployeeMainTextFieldLastName.setText(employee.getLastName());
             formEmployeeMainTextAreaAddress.setText(employee.getAddress());
             formEmployeeMainTextFieldCity.setText(employee.getCity());
+            formEmployeeMainTextFieldPhone.setText(employee.getPhone());
             formEmployeeMainTextFieldSalary.setText(String.format("%.0f", employee.getBasicSalary()));
             formEmployeeMainTextFieldDaysOff.setText(employee.getDaysOff().toString());
             formEmployeeMainButtonSave.setText(Constanta.Default.BUTTON_UPDATE);
@@ -708,6 +697,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                     || formEmployeeMainTextFieldFirstName.getText().equals("")
                     || formEmployeeMainTextAreaAddress.getText().equals("")
                     || formEmployeeMainTextFieldCity.getText().equals("")
+                    || formEmployeeMainTextFieldPhone.getText().equals("")
                     || formEmployeeMainTextFieldSalary.getText().equals("")
                     || formEmployeeMainTextFieldDaysOff.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_INVALID);
@@ -953,7 +943,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JButton formEmployeeMainButtonLogout;
     private javax.swing.JButton formEmployeeMainButtonSave;
     private javax.swing.JComboBox<String> formEmployeeMainComboBoxEducation;
-    private javax.swing.JComboBox<String> formEmployeeMainComboBoxNationality;
     private javax.swing.JComboBox<String> formEmployeeMainComboBoxPosition;
     private javax.swing.JComboBox<String> formEmployeeMainComboBoxStatus;
     private javax.swing.JLabel formEmployeeMainLabelAddress;
@@ -977,6 +966,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JTextField formEmployeeMainTextFieldFirstName;
     private javax.swing.JTextField formEmployeeMainTextFieldLastName;
     private javax.swing.JTextField formEmployeeMainTextFieldNik;
+    private javax.swing.JTextField formEmployeeMainTextFieldPhone;
     private javax.swing.JTextField formEmployeeMainTextFieldSalary;
     private javax.swing.JPanel formEmployeePanelFooter;
     private javax.swing.JPanel formEmployeePanelHeader;

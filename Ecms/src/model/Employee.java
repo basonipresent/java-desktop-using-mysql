@@ -29,7 +29,7 @@ public class Employee {
     private String last_name;
     private String address;
     private String city;
-    private String nationality;
+    private String phone;
     private String education_degree;
     private String status;
     private Float basic_salary;
@@ -89,11 +89,11 @@ public class Employee {
         this.city = value;
     }
     
-    public String getNationaloty(){
-        return nationality;
+    public String getPhone(){
+        return phone;
     }
-    public void setNationality(String value){
-        this.nationality = value;
+    public void setPhone(String value){
+        this.phone = value;
     }
     
     public String getEducationDegree(){
@@ -196,7 +196,7 @@ public class Employee {
             employee.setLastName(resultSet.getString("last_name"));
             employee.setAddress(resultSet.getString("address"));
             employee.setCity(resultSet.getString("city"));
-            employee.setNationality(resultSet.getString("nationality"));
+            employee.setPhone(resultSet.getString("phone"));
             employee.setEducationDegree(resultSet.getString("education_degree"));
             employee.setStatus(resultSet.getString("status"));
             employee.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
@@ -241,7 +241,7 @@ public class Employee {
             result.setLastName(resultSet.getString("last_name"));
             result.setAddress(resultSet.getString("address"));
             result.setCity(resultSet.getString("city"));
-            result.setNationality(resultSet.getString("nationality"));
+            result.setPhone(resultSet.getString("phone"));
             result.setEducationDegree(resultSet.getString("education_degree"));
             result.setStatus(resultSet.getString("status"));
             result.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
@@ -285,7 +285,7 @@ public class Employee {
             result.setLastName(resultSet.getString("last_name"));
             result.setAddress(resultSet.getString("address"));
             result.setCity(resultSet.getString("city"));
-            result.setNationality(resultSet.getString("nationality"));
+            result.setPhone(resultSet.getString("phone"));
             result.setEducationDegree(resultSet.getString("education_degree"));
             result.setStatus(resultSet.getString("status"));
             result.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
@@ -315,7 +315,7 @@ public class Employee {
                 + "`last_name`,\n"
                 + "`address`,\n"
                 + "`city`,\n"
-                + "`nationality`,\n"
+                + "`phone`,\n"
                 + "`education_degree`,\n"
                 + "`status`,\n"
                 + "`basic_salary`,\n"
@@ -331,7 +331,7 @@ public class Employee {
                 + "'" + params.getLastName() + "',\n"
                 + "'" + params.getAddress() + "',\n"
                 + "'" + params.getCity() + "',\n"
-                + "'" + params.getNationaloty() + "',\n"
+                + "'" + params.getPhone()+ "',\n"
                 + "'" + params.getEducationDegree() + "',\n"
                 + "'" + params.getStatus() + "',\n"
                 + "" + params.getBasicSalary() + ",\n"
@@ -366,7 +366,7 @@ public class Employee {
                 + "`last_name` = '" + params.getLastName() + "',\n"
                 + "`address` = '" + params.getAddress() + "',\n"
                 + "`city` = '" + params.getCity() + "',\n"
-                + "`nationality` = '" + params.getNationaloty() + "',\n"
+                + "`phone` = '" + params.getPhone()+ "',\n"
                 + "`education_degree` = '" + params.getEducationDegree() + "',\n"
                 + "`status` = '" + params.getStatus() + "',\n"
                 + "`basic_salary` = " + params.getBasicSalary() + ",\n"

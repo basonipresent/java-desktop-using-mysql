@@ -273,11 +273,9 @@
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="formEmployeeMainComboBoxNationality" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane1" min="-2" pref="350" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jScrollPane1" alignment="1" min="-2" pref="350" max="-2" attributes="0"/>
                                               <Component id="formEmployeeMainTextFieldCity" alignment="1" min="-2" pref="350" max="-2" attributes="0"/>
+                                              <Component id="formEmployeeMainTextFieldPhone" alignment="1" min="-2" pref="350" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -337,7 +335,7 @@
                       <Component id="formEmployeeMainLabelPosition" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formEmployeeMainComboBoxPosition" alignment="3" max="32767" attributes="0"/>
                       <Component id="formEmployeeMainLabelNationality" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formEmployeeMainComboBoxNationality" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formEmployeeMainTextFieldPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -440,7 +438,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nationality"/>
+            <Property name="text" type="java.lang.String" value="Phone"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="formEmployeeMainLabelStatus">
@@ -545,18 +543,12 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="formEmployeeMainComboBoxNationality">
+        <Component class="javax.swing.JTextField" name="formEmployeeMainTextFieldPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
             </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="formEmployeeMainComboBoxStatus">
           <Properties>
