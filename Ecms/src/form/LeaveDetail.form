@@ -31,26 +31,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="formAttendancePanelHeader" pref="1280" max="32767" attributes="0"/>
-          <Component id="formAttendancePanelFooter" alignment="0" pref="1280" max="32767" attributes="0"/>
-          <Component id="formAttendancePanelMain" alignment="0" max="32767" attributes="0"/>
+          <Component id="formLeavePanelHeader" pref="1280" max="32767" attributes="0"/>
+          <Component id="formLeavePanelFooter" alignment="0" pref="1280" max="32767" attributes="0"/>
+          <Component id="formLeavePanelMain" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="formAttendancePanelHeader" min="-2" max="-2" attributes="0"/>
+              <Component id="formLeavePanelHeader" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="formAttendancePanelMain" max="32767" attributes="0"/>
+              <Component id="formLeavePanelMain" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="formAttendancePanelFooter" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="formLeavePanelFooter" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="formAttendancePanelHeader">
+    <Container class="javax.swing.JPanel" name="formLeavePanelHeader">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
@@ -70,11 +70,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="formAttendanceHeaderLable" alignment="0" pref="1260" max="32767" attributes="0"/>
+                      <Component id="formLeaveHeaderLable" alignment="0" pref="1260" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="formAttendanceHeaderLabelId" max="-2" attributes="0"/>
+                          <Component id="formLeaveHeaderLabelId" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceHeaderLabelNik" max="-2" attributes="0"/>
+                          <Component id="formLeaveHeaderLabelNik" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -86,30 +86,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formAttendanceHeaderLable" pref="73" max="32767" attributes="0"/>
+                  <Component id="formLeaveHeaderLable" pref="73" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formAttendanceHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formAttendanceHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formAttendanceHeaderLable">
+        <Component class="javax.swing.JLabel" name="formLeaveHeaderLable">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Medium" size="36" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Attendance Detail"/>
+            <Property name="text" type="java.lang.String" value="Leave Detail"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="formAttendanceHeaderLabelId">
+        <Component class="javax.swing.JLabel" name="formLeaveHeaderLabelId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -123,7 +123,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formAttendanceHeaderLabelNik">
+        <Component class="javax.swing.JLabel" name="formLeaveHeaderLabelNik">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -139,7 +139,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formAttendancePanelFooter">
+    <Container class="javax.swing.JPanel" name="formLeavePanelFooter">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1024, 75]"/>
@@ -151,7 +151,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formAttendanceLabelFooter2" pref="1260" max="32767" attributes="0"/>
+                  <Component id="formLeaveLabelFooter2" pref="1260" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -160,14 +160,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formAttendanceLabelFooter2" min="-2" max="-2" attributes="0"/>
+                  <Component id="formLeaveLabelFooter2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formAttendanceLabelFooter2">
+        <Component class="javax.swing.JLabel" name="formLeaveLabelFooter2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="14" style="0"/>
@@ -178,7 +178,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formAttendancePanelMain">
+    <Container class="javax.swing.JPanel" name="formLeavePanelMain">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -187,15 +187,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainLabelFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLabelFullName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="formAttendanceMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendancePanelTable" max="32767" attributes="0"/>
+                          <Component id="formLeaveMainLeavePanelTable" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -207,19 +207,19 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formAttendanceMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formAttendanceMainLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formAttendanceMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveMainLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formAttendanceMainAttendancePanelTable" max="32767" attributes="0"/>
+                  <Component id="formLeaveMainLeavePanelTable" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formAttendanceMainLabelFullName">
+        <Component class="javax.swing.JLabel" name="formLeaveMainLabelFullName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="1"/>
@@ -227,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="FullName"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="formAttendanceMainButtonLogout">
+        <Component class="javax.swing.JButton" name="formLeaveMainButtonLogout">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -235,11 +235,11 @@
             <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formAttendanceMainButtonLogoutActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formAttendanceMainButtonLogoutKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainButtonLogoutActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainButtonLogoutKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="formAttendanceMainButtonBack">
+        <Component class="javax.swing.JButton" name="formLeaveMainButtonBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -247,11 +247,11 @@
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formAttendanceMainButtonBackActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formAttendanceMainButtonBackKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainButtonBackActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainButtonBackKeyPressed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="formAttendanceMainAttendancePanelTable">
+        <Container class="javax.swing.JPanel" name="formLeaveMainLeavePanelTable">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -268,10 +268,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="formAttendanceMainAttendancePanel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="formLeaveMainLeavePanel" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="formDashboardMainAttendanceGenerate" max="32767" attributes="0"/>
+                                  <Component id="formLeaveMainLeaveGenerate" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -283,11 +283,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="formAttendanceMainAttendancePanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveMainLeavePanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="365" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="formDashboardMainAttendanceGenerate" min="-2" max="-2" attributes="0"/>
+                      <Component id="formLeaveMainLeaveGenerate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -301,7 +301,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="formAttendanceMainAttendanceTable">
+                <Component class="javax.swing.JTable" name="formLeaveMainLeaveTable">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="14" style="0"/>
@@ -377,12 +377,12 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formAttendanceMainAttendanceTableMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formLeaveMainLeaveTableMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="formDashboardMainAttendanceGenerate">
+            <Component class="javax.swing.JButton" name="formLeaveMainLeaveGenerate">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -390,30 +390,30 @@
                 <Property name="text" type="java.lang.String" value="Generate Attendance Report"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainAttendanceGenerateActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainAttendanceGenerateKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainLeaveGenerateActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainLeaveGenerateKeyPressed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JPanel" name="formAttendanceMainAttendancePanel">
+            <Container class="javax.swing.JPanel" name="formLeaveMainLeavePanel">
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceLebelFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveLebelFullName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceTextFieldFullName" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveTextFieldFullName" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceLebelFrom" min="-2" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveLebelFrom" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceJDateChooseFrom" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveJDateChooseFrom" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceLebelTo" min="-2" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveLebelTo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceJDateChooseTo" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveJDateChooseTo" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="formAttendanceMainAttendanceButtonSearch" min="-2" pref="207" max="-2" attributes="0"/>
+                          <Component id="formLeaveMainLeaveButtonSearch" min="-2" pref="207" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -423,15 +423,15 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="formAttendanceMainAttendanceLebelFrom" alignment="0" max="32767" attributes="0"/>
-                              <Component id="formAttendanceMainAttendanceButtonSearch" alignment="1" max="32767" attributes="0"/>
-                              <Component id="formAttendanceMainAttendanceJDateChooseTo" alignment="1" max="32767" attributes="0"/>
-                              <Component id="formAttendanceMainAttendanceJDateChooseFrom" alignment="1" max="32767" attributes="0"/>
+                              <Component id="formLeaveMainLeaveLebelFrom" alignment="0" max="32767" attributes="0"/>
+                              <Component id="formLeaveMainLeaveButtonSearch" alignment="1" max="32767" attributes="0"/>
+                              <Component id="formLeaveMainLeaveJDateChooseTo" alignment="1" max="32767" attributes="0"/>
+                              <Component id="formLeaveMainLeaveJDateChooseFrom" alignment="1" max="32767" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="formAttendanceMainAttendanceTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="formAttendanceMainAttendanceLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formLeaveMainLeaveTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formLeaveMainLeaveLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="formAttendanceMainAttendanceLebelTo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="formLeaveMainLeaveLebelTo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -439,7 +439,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="formAttendanceMainAttendanceLebelFullName">
+                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelFullName">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -447,7 +447,7 @@
                     <Property name="text" type="java.lang.String" value="Full Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="formAttendanceMainAttendanceLebelFrom">
+                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelFrom">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -455,7 +455,7 @@
                     <Property name="text" type="java.lang.String" value="From"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="formAttendanceMainAttendanceLebelTo">
+                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelTo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -463,28 +463,28 @@
                     <Property name="text" type="java.lang.String" value="To"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="formAttendanceMainAttendanceTextFieldFullName">
+                <Component class="javax.swing.JTextField" name="formLeaveMainLeaveTextFieldFullName">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="formAttendanceMainAttendanceJDateChooseFrom">
+                <Component class="com.toedter.calendar.JDateChooser" name="formLeaveMainLeaveJDateChooseFrom">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="formAttendanceMainAttendanceJDateChooseTo">
+                <Component class="com.toedter.calendar.JDateChooser" name="formLeaveMainLeaveJDateChooseTo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="formAttendanceMainAttendanceButtonSearch">
+                <Component class="javax.swing.JButton" name="formLeaveMainLeaveButtonSearch">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -492,8 +492,8 @@
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formAttendanceMainAttendanceButtonSearchActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formAttendanceMainAttendanceButtonSearchKeyPressed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainLeaveButtonSearchActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainLeaveButtonSearchKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>

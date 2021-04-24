@@ -57,24 +57,25 @@ public class Register extends javax.swing.JFrame {
         formRegisterLabelFooter = new javax.swing.JLabel();
         formRegisterLabelFooter2 = new javax.swing.JLabel();
         formRegisterPanelMain = new javax.swing.JPanel();
-        formRegisterMainLabelFirstName = new javax.swing.JLabel();
-        formRegisterMainLabelLastName = new javax.swing.JLabel();
-        formRegisterMainLabelUsername = new javax.swing.JLabel();
-        formRegisterMainLabelPassword = new javax.swing.JLabel();
-        formRegisterMainTextFieldFirstName = new javax.swing.JTextField();
-        formRegisterMainTextFieldLastName = new javax.swing.JTextField();
-        formRegisterMainTextFieldUsername = new javax.swing.JTextField();
-        formRegisterMainPasswordFieldPassword = new javax.swing.JPasswordField();
         formRegisterMainPanelButton = new javax.swing.JPanel();
         formRegisterMainButtonRegister = new javax.swing.JButton();
         formRegisterMainButtonClear = new javax.swing.JButton();
         formRegisterMainButtonLogin = new javax.swing.JButton();
+        formRegisterMainLabelPassword = new javax.swing.JLabel();
+        formRegisterMainLabelUsername = new javax.swing.JLabel();
+        formRegisterMainLabelLastName = new javax.swing.JLabel();
+        formRegisterMainLabelFirstName = new javax.swing.JLabel();
+        formRegisterMainPasswordFieldPassword = new javax.swing.JPasswordField();
+        formRegisterMainTextFieldUsername = new javax.swing.JTextField();
+        formRegisterMainTextFieldLastName = new javax.swing.JTextField();
+        formRegisterMainTextFieldFirstName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameRegister"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
-        setSize(new java.awt.Dimension(1024, 768));
+        setSize(new java.awt.Dimension(1280, 720));
 
         formRegisterPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
 
@@ -113,7 +114,7 @@ public class Register extends javax.swing.JFrame {
             .addGroup(formRegisterPanelFooterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formRegisterPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formRegisterLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+                    .addComponent(formRegisterLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
                     .addComponent(formRegisterLabelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -126,26 +127,6 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(formRegisterLabelFooter2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        formRegisterMainLabelFirstName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formRegisterMainLabelFirstName.setText("First Name");
-
-        formRegisterMainLabelLastName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formRegisterMainLabelLastName.setText("Last Name");
-
-        formRegisterMainLabelUsername.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formRegisterMainLabelUsername.setText("Username");
-
-        formRegisterMainLabelPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formRegisterMainLabelPassword.setText("Password");
-
-        formRegisterMainTextFieldFirstName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-
-        formRegisterMainTextFieldLastName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-
-        formRegisterMainTextFieldUsername.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-
-        formRegisterMainPasswordFieldPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
         formRegisterMainButtonRegister.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRegisterMainButtonRegister.setText("Register");
@@ -186,32 +167,86 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        formRegisterMainLabelPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRegisterMainLabelPassword.setText("Password");
+
+        formRegisterMainLabelUsername.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRegisterMainLabelUsername.setText("Username");
+
+        formRegisterMainLabelLastName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRegisterMainLabelLastName.setText("Last Name");
+
+        formRegisterMainLabelFirstName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRegisterMainLabelFirstName.setText("First Name");
+
+        formRegisterMainPasswordFieldPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formRegisterMainTextFieldUsername.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formRegisterMainTextFieldLastName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formRegisterMainTextFieldFirstName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout formRegisterMainPanelButtonLayout = new javax.swing.GroupLayout(formRegisterMainPanelButton);
         formRegisterMainPanelButton.setLayout(formRegisterMainPanelButtonLayout);
         formRegisterMainPanelButtonLayout.setHorizontalGroup(
             formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
-            .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                    .addGap(15, 15, 15)
-                    .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(formRegisterMainButtonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(formRegisterMainButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(formRegisterMainButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(15, Short.MAX_VALUE)))
+            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                        .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(formRegisterMainLabelLastName)
+                                    .addComponent(formRegisterMainLabelUsername)))
+                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(formRegisterMainLabelFirstName))
+                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(formRegisterMainLabelPassword)))
+                        .addGap(18, 18, 18)
+                        .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formRegisterMainTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formRegisterMainPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formRegisterMainTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formRegisterMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formRegisterMainButtonRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formRegisterMainButtonClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formRegisterMainButtonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         formRegisterMainPanelButtonLayout.setVerticalGroup(
             formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
-            .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(formRegisterMainButtonRegister)
-                    .addGap(18, 18, 18)
-                    .addComponent(formRegisterMainButtonClear)
-                    .addGap(18, 18, 18)
-                    .addComponent(formRegisterMainButtonLogin)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterMainPanelButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRegisterMainLabelFirstName)
+                    .addComponent(formRegisterMainTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRegisterMainTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formRegisterMainLabelLastName))
+                .addGap(18, 18, 18)
+                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRegisterMainLabelUsername)
+                    .addComponent(formRegisterMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRegisterMainLabelPassword)
+                    .addComponent(formRegisterMainPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(formRegisterMainButtonRegister)
+                .addGap(18, 18, 18)
+                .addComponent(formRegisterMainButtonClear)
+                .addGap(18, 18, 18)
+                .addComponent(formRegisterMainButtonLogin)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout formRegisterPanelMainLayout = new javax.swing.GroupLayout(formRegisterPanelMain);
@@ -220,51 +255,23 @@ public class Register extends javax.swing.JFrame {
             formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterPanelMainLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formRegisterMainLabelUsername)
-                    .addComponent(formRegisterMainLabelLastName)
-                    .addComponent(formRegisterMainLabelPassword)
-                    .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formRegisterMainLabelFirstName)
-                            .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formRegisterMainTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formRegisterMainPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formRegisterMainTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formRegisterMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(267, 267, 267))
+                .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(403, 403, 403))
         );
         formRegisterPanelMainLayout.setVerticalGroup(
             formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterPanelMainLayout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
-                .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formRegisterMainLabelFirstName)
-                    .addComponent(formRegisterMainTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formRegisterMainTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(formRegisterMainLabelLastName))
-                .addGap(18, 18, 18)
-                .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formRegisterMainLabelUsername)
-                    .addComponent(formRegisterMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formRegisterMainLabelPassword)
-                    .addComponent(formRegisterMainPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addGap(93, 93, 93))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formRegisterPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(formRegisterPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(formRegisterPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(formRegisterPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
             .addComponent(formRegisterPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

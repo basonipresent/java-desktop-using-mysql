@@ -5,14 +5,17 @@
  */
 package config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
- *  
+ *
  */
 public class Constanta {
-    public class Messages{
+
+    public class Messages {
 
         public static final String MEESAGE_REGISTER_SUCESS = "Register success!";
         public static final String MESSAGE_SUCCESS = "Success !";
@@ -27,34 +30,38 @@ public class Constanta {
         public static final String MESSAGE_ALREADY_CHECKIN = "Please check out your attendance before !";
         public static final String MESSAGE_ALREADY_CHECKOUT = "Please check in before your check out !";
     }
-    
+
     public static class Status {
+
         public static final String ACTIVE = "ACTIVE";
         public static final String INACTIVE = "INACTIVE";
+
         public HashMap<String, Integer> populateComboBox() {
             HashMap<String, Integer> result = new HashMap<>();
-            
+
             result.put(ACTIVE, 1);
             result.put(INACTIVE, 2);
-            
+
             return result;
         }
     }
-    
+
     public static class Education {
+
         public HashMap<String, Integer> populateComboBox() {
             HashMap<String, Integer> result = new HashMap<>();
-            
+
             result.put("Sekolah Menengah Pertama", 1);
             result.put("Sekolah Menengah Atas", 2);
             result.put("Diploma", 3);
             result.put("Sarjana", 4);
-            
+
             return result;
         }
     }
-    
-    public class Default{
+
+    public class Default {
+
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
         public static final int DEFAULT_NUMERIC_VALUE = 0;
         public static final String DEFAULT_LOCATION = "OFFICE";
@@ -62,25 +69,38 @@ public class Constanta {
         public static final String DEFAULT_CHECKOUT_STATUS = "CHECK OUT";
         public static final String DEFAULT_CHECKIN_INFORMATION = "Check In by %s at %s in %s";
         public static final String DEFAULT_CHECKOUT_INFORMATION = "Check Out by %s at %s in %s with duration of working : %s";
-        
+
         public static final String BUTTON_ADD = "Save";
         public static final String BUTTON_UPDATE = "Update";
     }
-    
-    public class Role{
+
+    public class Role {
+
         public static final int ADMINISTRATOR = 1;
         public static final int HRD = 2;
         public static final int GENERAL = 3;
     }
-    
-    public class Leave{
+
+    public class Leave {
         public static final String DRAF = "DRAF";
         public static final String SUBMIT = "SUBMIT";
         public static final String APPROVED = "APPROVED";
         public static final String REJECTED = "REJECTED";
+        
+        public final HashMap<Integer, String> getTypes() {
+            HashMap<Integer, String> types = new HashMap<>();
+            types.put(1, "Cuti Tahunan");
+            types.put(2, "Cuti Sakit");
+            types.put(3, "Cuti Hamil");
+            types.put(4, "Cuti Besar");
+            types.put(6, "Cuti Penting");
+            types.put(5, "Cuti Berbayar");
+            return types;
+        }
     }
-    
-    public class PdfDocument{
+
+    public class PdfDocument {
+
         public static final int WIDTH_PERCENTAGE = 100;
         public static final float SPACING_BEFORE = 10f;
         public static final float SPACING_AFTER = 10f;

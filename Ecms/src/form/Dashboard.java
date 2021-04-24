@@ -48,6 +48,8 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardHeaderLable = new javax.swing.JLabel();
         formDashboardHeaderLabelId = new javax.swing.JLabel();
         formDashboardHeaderLabelNik = new javax.swing.JLabel();
+        formDashboardPanelFooter = new javax.swing.JPanel();
+        formDashboardLabelFooter2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         formDashboardPanelMain = new javax.swing.JPanel();
         formDashboardMainLabelFullName = new javax.swing.JLabel();
@@ -82,15 +84,12 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         formDashboardMainPayslipTable = new javax.swing.JTable();
         formDashboardMainPayslipView = new javax.swing.JButton();
-        formDashboardPanelFooter = new javax.swing.JPanel();
-        formDashboardLabelFooter2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
-        setSize(new java.awt.Dimension(1024, 720));
+        setSize(new java.awt.Dimension(1280, 720));
 
         formDashboardPanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -113,7 +112,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formDashboardPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formDashboardHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
                     .addGroup(formDashboardPanelHeaderLayout.createSequentialGroup()
                         .addComponent(formDashboardHeaderLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,6 +132,29 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         formDashboardHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        formDashboardPanelFooter.setPreferredSize(new java.awt.Dimension(1260, 50));
+
+        formDashboardLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        formDashboardLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formDashboardLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+
+        javax.swing.GroupLayout formDashboardPanelFooterLayout = new javax.swing.GroupLayout(formDashboardPanelFooter);
+        formDashboardPanelFooter.setLayout(formDashboardPanelFooterLayout);
+        formDashboardPanelFooterLayout.setHorizontalGroup(
+            formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        formDashboardPanelFooterLayout.setVerticalGroup(
+            formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         formDashboardMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formDashboardMainLabelFullName.setText("FullName");
@@ -190,6 +212,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         formDashboardMainAttendancePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attendance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+        formDashboardMainAttendancePanelTable.setPreferredSize(new java.awt.Dimension(1231, 240));
 
         formDashboardMainAttendanceTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         formDashboardMainAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -332,9 +355,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
                         .addComponent(formDashboardMainAttendanceCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addComponent(formDashboardMainAttendanceCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGap(146, 146, 146)
                         .addComponent(formDashboardMainAttendanceViewMore, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(formDashboardMainAttendancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -342,10 +365,9 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardMainAttendancePanelTableLayout.setVerticalGroup(
             formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formDashboardMainAttendancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formDashboardMainAttendancePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardMainAttendanceCheckin)
@@ -355,6 +377,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         formDashboardMainLeavePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Leave Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+        formDashboardMainLeavePanelTable.setPreferredSize(new java.awt.Dimension(1231, 240));
 
         formDashboardMainLeaveTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         formDashboardMainLeaveTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -457,7 +480,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addGroup(formDashboardMainLeavePanelTableLayout.createSequentialGroup()
                         .addComponent(formDashboardMainLeaveRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(formDashboardMainLeaveView, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(formDashboardMainLeavePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -465,10 +488,9 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardMainLeavePanelTableLayout.setVerticalGroup(
             formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardMainLeavePanelTableLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formDashboardMainLeavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardMainLeaveRequest)
@@ -476,6 +498,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         formDashboardMainPayslipPanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payslip", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+        formDashboardMainPayslipPanelTable.setPreferredSize(new java.awt.Dimension(1231, 240));
 
         formDashboardMainPayslipTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         formDashboardMainPayslipTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -513,37 +536,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(formDashboardMainPayslipPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
-                    .addComponent(formDashboardMainPayslipView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(formDashboardMainPayslipView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         formDashboardMainPayslipPanelTableLayout.setVerticalGroup(
             formDashboardMainPayslipPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardMainPayslipPanelTableLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formDashboardMainPayslipView))
-        );
-
-        formDashboardLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formDashboardLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formDashboardLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
-
-        javax.swing.GroupLayout formDashboardPanelFooterLayout = new javax.swing.GroupLayout(formDashboardPanelFooter);
-        formDashboardPanelFooter.setLayout(formDashboardPanelFooterLayout);
-        formDashboardPanelFooterLayout.setHorizontalGroup(
-            formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formDashboardLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainPayslipView)
                 .addContainerGap())
-        );
-        formDashboardPanelFooterLayout.setVerticalGroup(
-            formDashboardPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formDashboardPanelFooterLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(formDashboardLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout formDashboardPanelMainLayout = new javax.swing.GroupLayout(formDashboardPanelMain);
@@ -551,26 +554,27 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardPanelMainLayout.setHorizontalGroup(
             formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
-                .addGroup(formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(formDashboardMainLabelFullName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(formDashboardMainButtonApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formDashboardMainButtonReport, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formDashboardMainButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formDashboardMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formDashboardPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(22, 22, 22)
+                .addComponent(formDashboardMainLabelFullName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formDashboardMainButtonApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainButtonReport, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
+                .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
+                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
+                .addContainerGap())
         );
         formDashboardPanelMainLayout.setVerticalGroup(
             formDashboardPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,13 +588,11 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(formDashboardMainButtonApproval))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(formDashboardPanelMain);
@@ -600,15 +602,22 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(formDashboardPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(formDashboardPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         formDashboardPanelHeader.getAccessibleContext().setAccessibleName("");
