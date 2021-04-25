@@ -212,8 +212,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="formDashboardMainLeavePanelTable" pref="1221" max="32767" attributes="0"/>
+                      <Component id="formDashboardMainLeavePanelTable" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -231,9 +230,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="formDashboardMainAttendancePanelTable" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="formDashboardMainLeavePanelTable" min="-2" pref="235" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="formDashboardMainLeavePanelTable" min="-2" pref="246" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="formDashboardMainPayslipPanelTable" min="-2" pref="192" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -601,6 +600,7 @@
                               <Component id="formDashboardMainLeaveRequest" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="formDashboardMainLeaveView" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -627,7 +627,7 @@
                             <Column editable="false" title="Date From" type="java.lang.Object"/>
                             <Column editable="false" title="Date To" type="java.lang.Object"/>
                             <Column editable="false" title="Reasons" type="java.lang.Object"/>
-                            <Column editable="false" title="Attachment" type="java.lang.Object"/>
+                            <Column editable="false" title="Type" type="java.lang.Object"/>
                             <Column editable="false" title="Status" type="java.lang.Object"/>
                           </Table>
                         </Property>
@@ -700,6 +700,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainLeaveRequestActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainLeaveRequestKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="formDashboardMainLeaveView">
@@ -709,6 +710,10 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="View more"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formDashboardMainLeaveViewActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formDashboardMainLeaveViewKeyPressed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="formDashboardMainLeavePanel">
 

@@ -17,10 +17,12 @@ import java.util.List;
 
 /**
  *
- *  
+ *
  */
 public class Leave {
+
     private Integer id;
+    private Integer id_type;
     private Integer id_attachment;
     private String username;
     private String request_date;
@@ -29,71 +31,97 @@ public class Leave {
     private String reasons;
     private String status;
     private String full_name;
+    private String type_name;
     private List<Attachment> list_attachment;
-    
-    public Integer getId(){
+
+    public Integer getId() {
         return id;
     }
-    public void setId(Integer value){
+
+    public void setId(Integer value) {
         this.id = value;
     }
-    
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String value) {
         this.username = value;
     }
-    
-    public String getRequestDate(){
+
+    public String getRequestDate() {
         return request_date;
     }
-    public void setRequestDate(String value){
+
+    public void setRequestDate(String value) {
         this.request_date = value;
     }
-    
-    public String getDateFrom(){
+
+    public String getDateFrom() {
         return date_from;
     }
-    public void setDateFrom(String value){
+
+    public void setDateFrom(String value) {
         this.date_from = value;
     }
-    
-    public String getDateTo(){
+
+    public String getDateTo() {
         return date_to;
     }
-    public void setDateTo(String value){
+
+    public void setDateTo(String value) {
         this.date_to = value;
     }
-    
-    public String getReasons(){
+
+    public String getReasons() {
         return reasons;
     }
-    public void setReasons(String value){
+
+    public void setReasons(String value) {
         this.reasons = value;
     }
-    
-    public String getStatus(){
+
+    public String getStatus() {
         return status;
     }
-    public void setStatus(String value){
+
+    public void setStatus(String value) {
         this.status = value;
     }
     
+    public Integer getIdType() {
+        return id_type;
+    }
+
+    public void setIdType(Integer value) {
+        this.id_type = value;
+    }
+
     public String getFullName() {
         return full_name;
     }
+
     public void setFullName(String value) {
         this.full_name = value;
     }
-    
+
+    public String getTypeName() {
+        return type_name;
+    }
+
+    public void setTypeName(String value) {
+        this.type_name = value;
+    }
+
     public List<Attachment> getListAttachment() {
         return list_attachment;
     }
+
     public void setListAttachment(List<Attachment> value) {
         this.list_attachment = value;
     }
-    
+
     // global variables
     Connection connection;
     Statement statement;
@@ -101,12 +129,13 @@ public class Leave {
     String query;
     Connections dbConnections = new Connections();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    
-    public static Params listParams(){
+
+    public static Params listParams() {
         return new Params();
     }
-    
+
     public static final class Params {
+
         private String username;
         private String date_from;
         private String date_to;
@@ -137,7 +166,7 @@ public class Leave {
 
     public List<Leave> list(Params params) throws SQLException {
         List<Leave> result = new ArrayList<>();
-        
+
         dbConnections.configuration();
         connection = dbConnections.connection;
         statement = dbConnections.statement;
@@ -145,33 +174,43 @@ public class Leave {
         query = "SELECT \n"
                 + "l.*,\n"
                 + "a.*,\n"
-                + "concat(e.first_name, ' ', e.last_name) as full_name\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
+                + "lt.type as type_name\n"
                 + "FROM \n"
                 + "`e-cms`.leave as l\n"
                 + "inner join `e-cms`.attachment as a on a.id_leave = l.id\n"
                 + "inner join `e-cms`.employee as e on e.nik = l.username\n"
+                + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
                 + "WHERE\n"
-                + "('" + params.username + "' = '' or l.username = '" + params.username + "')\n"
-                + "and (l.request_date >= '" + params.date_from + "' and l.request_date <= '" + params.date_to + "');";
+                + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
+                + "and (l.request_date >= '" + params.date_from + "' and l.request_date <= '" + params.date_to + "')\n"
+                + "ORDER BY"
+                + "l.request_date DESC;";
 
-        if(params.date_from == null
-                && params.date_to == null){
+        if (params.date_from == null
+                && params.date_to == null) {
             query = "SELECT \n"
                     + "l.*,\n"
-                    + "concat(e.first_name, ' ', e.last_name) as full_name\n"
+                    + "a.*,\n"
+                    + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
+                    + "lt.type as type_name\n"
                     + "FROM \n"
                     + "`e-cms`.leave as l\n"
+                    + "inner join `e-cms`.attachment as a on a.id_leave = l.id\n"
                     + "inner join `e-cms`.employee as e on e.nik = l.username\n"
+                    + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
                     + "WHERE\n"
-                    + "('" + params.username + "' = '' or l.username = '" + params.username + "');";
+                    + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
+                    + "ORDER BY\n"
+                    + "l.request_date DESC;";
         }
-        
+
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Leave leave = new Leave();
             Attachment attachment = new Attachment();
-            
+
             leave.setId(Integer.parseInt(resultSet.getString("id")));
             leave.setUsername(resultSet.getString("username"));
             leave.setRequestDate(resultSet.getString("request_date"));
@@ -180,12 +219,13 @@ public class Leave {
             leave.setReasons(resultSet.getString("reasons"));
             leave.setStatus(resultSet.getString("status"));
             leave.setFullName(resultSet.getString("full_name"));
-            
+            leave.setTypeName(resultSet.getString("type_name"));
+
             leave.setListAttachment(attachment.getByIdLeave(getId()));
-            
+
             result.add(leave);
         }
-        
+
         return result;
     }
 }

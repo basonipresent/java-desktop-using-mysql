@@ -145,12 +145,12 @@ public class Attendance {
 
         query = "SELECT \n"
                 + "a.*,\n"
-                + "concat(u.first_name, ' ', u.last_name) as full_name\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name\n"
                 + "FROM \n"
                 + "`e-cms`.attendance as a\n"
-                + "inner join `e-cms`.user as u on u.username = a.username\n"
+                + "inner join `e-cms`.employee as e on e.nik = a.username\n"
                 + "WHERE\n"
-                + "('" + params.username + "' = '' or concat(u.first_name, ' ', u.last_name) LIKE '%" + params.username + "%')\n"
+                + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
                 + "and (a.checkin >= '" + params.date_from + "' and a.checkin <= '" + params.date_to + "')\n"
                 + "ORDER BY a.checkin DESC;";
 
@@ -158,12 +158,12 @@ public class Attendance {
                 && params.date_to == null){
             query = "SELECT \n"
                     + "a.*,\n"
-                    + "concat(u.first_name, ' ', u.last_name) as full_name\n"
+                    + "concat(e.first_name, ' ', e.last_name) as full_name\n"
                     + "FROM \n"
                     + "`e-cms`.attendance as a\n"
-                    + "inner join `e-cms`.user as u on u.username = a.username\n"
+                    + "inner join `e-cms`.employee as e on e.nik = a.username\n"
                     + "WHERE\n"
-                    + "('" + params.username + "' = '' or concat(u.first_name, ' ', u.last_name) LIKE '%" + params.username + "%')"
+                    + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')"
                     + "ORDER BY a.checkin DESC;";
         }
         

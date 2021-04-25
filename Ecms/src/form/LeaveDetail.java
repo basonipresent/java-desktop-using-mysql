@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import model.Attendance;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -27,6 +26,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import model.Leave;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -189,7 +189,7 @@ public class LeaveDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nik", "Full Name", "Check In", "Check Out", "Location", "Duration", "Status", "Information"
+                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Resons", "Type", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -209,17 +209,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(formLeaveMainLeaveTable);
         formLeaveMainLeaveTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (formLeaveMainLeaveTable.getColumnModel().getColumnCount() > 0) {
-            formLeaveMainLeaveTable.getColumnModel().getColumn(0).setHeaderValue("Id");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(1).setHeaderValue("Nik");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(2).setHeaderValue("Full Name");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(3).setHeaderValue("Check In");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(4).setHeaderValue("Check Out");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(5).setHeaderValue("Location");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(6).setHeaderValue("Duration");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(7).setHeaderValue("Status");
-            formLeaveMainLeaveTable.getColumnModel().getColumn(8).setHeaderValue("Information");
-        }
 
         formLeaveMainLeaveGenerate.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveGenerate.setText("Generate Attendance Report");
@@ -412,28 +401,28 @@ public class LeaveDetail extends javax.swing.JFrame {
         this.access_menu = value;
     }
 
-    private List<Attendance> list_attendance;
+    private List<Leave> list_leave;
 
-    private void setListAttendance(List<Attendance> value) {
-        this.list_attendance = value;
+    private void setListLeave(List<Leave> value) {
+        this.list_leave = value;
     }
 
-    private List<Attendance> getListAttendance() {
-        return list_attendance;
+    private List<Leave> getListLeave() {
+        return list_leave;
     }
 
-    public void loadDataAttendance() {
+    public void loadDataLeave() {
         try {
-            List<Attendance> listAttendance;
+            List<Leave> listLeave;
             if (formLeaveHeaderLabelNik.getText().equals("hrd")
                     || formLeaveHeaderLabelNik.getText().equals("admin")) {
-                listAttendance = Attendance.listParams()
+                listLeave = Leave.listParams()
                         .withUsername("")
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
             } else {
-                listAttendance = Attendance.listParams()
+                listLeave = Leave.listParams()
                         .withUsername(formLeaveHeaderLabelNik.getText())
                         .withDateFrom(null)
                         .withDateTo(null)
@@ -443,31 +432,31 @@ public class LeaveDetail extends javax.swing.JFrame {
             DefaultTableModel defaultTableModel = (DefaultTableModel) formLeaveMainLeaveTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for (int i = 0; i < listAttendance.size(); i++) {
+            for (int i = 0; i < listLeave.size(); i++) {
                 TableColumnModel tableColumnModel = formLeaveMainLeaveTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
 
-                rows[0] = listAttendance.get(i).getId();
-                rows[1] = listAttendance.get(i).getUsername();
-                rows[2] = listAttendance.get(i).getFullName();
-                rows[3] = listAttendance.get(i).getCheckIn();
-                rows[4] = listAttendance.get(i).getCheckOut();
-                rows[5] = listAttendance.get(i).getLocation();
-                rows[6] = String.format("%.0f", listAttendance.get(i).getDuration());
-                rows[7] = listAttendance.get(i).getStatus();
-                rows[8] = listAttendance.get(i).getInformation();
+                rows[0] = listLeave.get(i).getId();
+                rows[1] = listLeave.get(i).getUsername();
+                rows[2] = listLeave.get(i).getFullName();
+                rows[3] = listLeave.get(i).getRequestDate();
+                rows[4] = listLeave.get(i).getDateFrom();
+                rows[5] = listLeave.get(i).getDateTo();
+                rows[6] = listLeave.get(i).getReasons();
+                rows[7] = listLeave.get(i).getTypeName();
+                rows[8] = listLeave.get(i).getStatus();
 
                 defaultTableModel.addRow(rows);
             }
             formLeaveMainLeaveTable.setAutoCreateRowSorter(true);
-            setListAttendance(listAttendance);
+            setListLeave(listLeave);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
 
-    public void searchDataAttendance() {
+    public void searchDataLeave() {
         try {
             Date dateFrom = formLeaveMainLeaveJDateChooseFrom.getDate();
             Date dateTo = formLeaveMainLeaveJDateChooseTo.getDate();
@@ -483,16 +472,16 @@ public class LeaveDetail extends javax.swing.JFrame {
                 date_to = simpleDateFormatTo.format(dateTo);
             }
 
-            List<Attendance> listAttendance;
+            List<Leave> listLeave;
             if (formLeaveHeaderLabelNik.getText().equals("hrd")
                     || formLeaveHeaderLabelNik.getText().equals("admin")) {
-                listAttendance = Attendance.listParams()
+                listLeave = Leave.listParams()
                         .withUsername(keyword)
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();
             } else {
-                listAttendance = Attendance.listParams()
+                listLeave = Leave.listParams()
                         .withUsername(formLeaveHeaderLabelNik.getText())
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
@@ -502,25 +491,25 @@ public class LeaveDetail extends javax.swing.JFrame {
             DefaultTableModel defaultTableModel = (DefaultTableModel) formLeaveMainLeaveTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for (int i = 0; i < listAttendance.size(); i++) {
+            for (int i = 0; i < listLeave.size(); i++) {
                 TableColumnModel tableColumnModel = formLeaveMainLeaveTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
 
-                rows[0] = listAttendance.get(i).getId();
-                rows[1] = listAttendance.get(i).getUsername();
-                rows[2] = listAttendance.get(i).getFullName();
-                rows[3] = listAttendance.get(i).getCheckIn();
-                rows[4] = listAttendance.get(i).getCheckOut();
-                rows[5] = listAttendance.get(i).getLocation();
-                rows[6] = String.format("%.0f", listAttendance.get(i).getDuration());
-                rows[7] = listAttendance.get(i).getStatus();
-                rows[8] = listAttendance.get(i).getInformation();
+                rows[0] = listLeave.get(i).getId();
+                rows[1] = listLeave.get(i).getUsername();
+                rows[2] = listLeave.get(i).getFullName();
+                rows[3] = listLeave.get(i).getRequestDate();
+                rows[4] = listLeave.get(i).getDateFrom();
+                rows[5] = listLeave.get(i).getDateTo();
+                rows[6] = listLeave.get(i).getReasons();
+                rows[7] = listLeave.get(i).getTypeName();
+                rows[8] = listLeave.get(i).getStatus();
 
                 defaultTableModel.addRow(rows);
             }
             formLeaveMainLeaveTable.setAutoCreateRowSorter(true);
-            setListAttendance(listAttendance);
+            setListLeave(listLeave);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -543,7 +532,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             document.setPageSize(PageSize.A4.rotate());
             
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(
-                    Constanta.PdfDocument.PATH + "Attendance" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
+                    Constanta.PdfDocument.PATH + "Leave" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
             document.open();
 
             PdfPTable pdfPTable = new PdfPTable(8);
@@ -556,23 +545,23 @@ public class LeaveDetail extends javax.swing.JFrame {
 
             insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, bfBold12);
             insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Check In", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Check Out", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Location", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Duration", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Request Date", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Date From", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Date To", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Reasons", Element.ALIGN_CENTER, 1, bfBold12);
+            insertCell(pdfPTable, "Type", Element.ALIGN_CENTER, 1, bfBold12);
             insertCell(pdfPTable, "Status", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Information", Element.ALIGN_CENTER, 1, bfBold12);
             pdfPTable.setHeaderRows(1);
 
-            for (int i = 0; i < getListAttendance().size(); i++) {
-                insertCell(pdfPTable, getListAttendance().get(i).getUsername(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getFullName(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getCheckIn(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getCheckOut(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getLocation(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, String.format("%.0f", getListAttendance().get(i).getDuration()), Element.ALIGN_RIGHT, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getStatus(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, getListAttendance().get(i).getInformation(), Element.ALIGN_LEFT, 1, bfNormal12);
+            for (int i = 0; i < getListLeave().size(); i++) {
+                insertCell(pdfPTable, getListLeave().get(i).getUsername(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getFullName(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getRequestDate(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getDateFrom(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getDateTo(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getReasons(), Element.ALIGN_RIGHT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getTypeName(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getStatus(), Element.ALIGN_LEFT, 1, bfNormal12);
             }
 
             document.add(pdfPTable);
@@ -646,7 +635,7 @@ public class LeaveDetail extends javax.swing.JFrame {
     private void formLeaveMainLeaveButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formLeaveMainLeaveButtonSearchActionPerformed
         // TODO add your handling code here:
         try {
-            searchDataAttendance();
+            searchDataLeave();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -655,7 +644,7 @@ public class LeaveDetail extends javax.swing.JFrame {
     private void formLeaveMainLeaveButtonSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formLeaveMainLeaveButtonSearchKeyPressed
         // TODO add your handling code here:
         try {
-            searchDataAttendance();
+            searchDataLeave();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }

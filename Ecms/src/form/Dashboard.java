@@ -385,7 +385,7 @@ public class Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Reasons", "Attachment", "Status"
+                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Reasons", "Type", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -412,9 +412,24 @@ public class Dashboard extends javax.swing.JFrame {
                 formDashboardMainLeaveRequestActionPerformed(evt);
             }
         });
+        formDashboardMainLeaveRequest.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainLeaveRequestKeyPressed(evt);
+            }
+        });
 
         formDashboardMainLeaveView.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainLeaveView.setText("View more");
+        formDashboardMainLeaveView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainLeaveViewActionPerformed(evt);
+            }
+        });
+        formDashboardMainLeaveView.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainLeaveViewKeyPressed(evt);
+            }
+        });
 
         formDashboardMainLeaveButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainLeaveButtonSearch.setText("Search");
@@ -494,7 +509,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formDashboardMainLeavePanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formDashboardMainLeaveRequest)
-                    .addComponent(formDashboardMainLeaveView)))
+                    .addComponent(formDashboardMainLeaveView))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         formDashboardMainPayslipPanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Payslip", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
@@ -572,8 +588,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         formDashboardPanelMainLayout.setVerticalGroup(
@@ -588,9 +603,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(formDashboardMainButtonApproval))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -789,7 +804,7 @@ public class Dashboard extends javax.swing.JFrame {
                 rows[4] = listLeave.get(i).getDateFrom();
                 rows[5] = listLeave.get(i).getDateTo();
                 rows[6] = listLeave.get(i).getReasons();
-                rows[7] = listLeave.get(i).getListAttachment().get(0).getFileName();
+                rows[7] = listLeave.get(i).getTypeName();
                 rows[8] = listLeave.get(i).getStatus();
 
                 defaultTableModel.addRow(rows);
@@ -840,7 +855,7 @@ public class Dashboard extends javax.swing.JFrame {
                 rows[4] = listLeave.get(i).getDateFrom();
                 rows[5] = listLeave.get(i).getDateTo();
                 rows[6] = listLeave.get(i).getReasons();
-                rows[7] = listLeave.get(i).getListAttachment().get(0).getFileName();
+                rows[7] = listLeave.get(i).getTypeName();
                 rows[8] = listLeave.get(i).getStatus();
 
                 defaultTableModel.addRow(rows);
@@ -974,10 +989,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void formDashboardMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveTableMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_formDashboardMainLeaveTableMouseClicked
-
-    private void formDashboardMainLeaveRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveRequestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formDashboardMainLeaveRequestActionPerformed
 
     private void formDashboardMainPayslipTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainPayslipTableMouseClicked
         // TODO add your handling code here:
@@ -1130,6 +1141,68 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formDashboardMainAttendanceViewMoreKeyPressed
+
+    private void formDashboardMainLeaveViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveViewActionPerformed
+        // TODO add your handling code here:
+        try {
+            LeaveDetail leaveDetail = new LeaveDetail();
+            leaveDetail.show(true);
+            leaveDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            leaveDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            leaveDetail.setFullName(getFullName());
+            leaveDetail.setAccessMenu(getAccessMenu());
+            leaveDetail.loadDataLeave();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveViewActionPerformed
+
+    private void formDashboardMainLeaveViewKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveViewKeyPressed
+        // TODO add your handling code here:
+        try {
+            LeaveDetail leaveDetail = new LeaveDetail();
+            leaveDetail.show(true);
+            leaveDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            leaveDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            leaveDetail.setFullName(getFullName());
+            leaveDetail.setAccessMenu(getAccessMenu());
+            leaveDetail.loadDataLeave();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveViewKeyPressed
+
+    private void formDashboardMainLeaveRequestKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveRequestKeyPressed
+        // TODO add your handling code here:
+        try {
+            LeaveRequest leaveRequest = new LeaveRequest();
+            leaveRequest.show(true);
+            leaveRequest.setLabelId(formDashboardHeaderLabelId.getText());
+            leaveRequest.setLabelNik(formDashboardHeaderLabelNik.getText());
+            leaveRequest.setFullName(getFullName());
+            leaveRequest.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveRequestKeyPressed
+
+    private void formDashboardMainLeaveRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveRequestActionPerformed
+        // TODO add your handling code here:
+        try {
+            LeaveRequest leaveRequest = new LeaveRequest();
+            leaveRequest.show(true);
+            leaveRequest.setLabelId(formDashboardHeaderLabelId.getText());
+            leaveRequest.setLabelNik(formDashboardHeaderLabelNik.getText());
+            leaveRequest.setFullName(getFullName());
+            leaveRequest.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainLeaveRequestActionPerformed
 
     /**
      * @param args the command line arguments
