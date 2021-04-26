@@ -2,19 +2,20 @@ package form;
 
 import javax.swing.JOptionPane;
 import config.Constanta;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
-import java.sql.SQLException;
+import java.io.File;
+import java.io.FileFilter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import model.Employee;
-import model.Nationality;
-import model.Position;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Attachment;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +39,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLabelIdEmployee.setVisible(false);
         formRequestLeaveHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
         formRequestLeaveHeaderLabelIdEmployee.setText(Constanta.Default.DEFAULT_VALUE);
+        bindDataStatusLeave();
     }
 
     /**
@@ -57,15 +59,29 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLabelNik = new javax.swing.JLabel();
         formRequestLeavePanelFooter = new javax.swing.JPanel();
         formRequestLeaveLabelFooter2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        formRequestLeavePanelMain = new javax.swing.JPanel();
         formRequestLeaveMainLabelFullName = new javax.swing.JLabel();
         formRequestLeaveMainButtonBack = new javax.swing.JButton();
         formRequestLeaveMainButtonLogout = new javax.swing.JButton();
+        formRequestLeaveMainPanelButton1 = new javax.swing.JPanel();
+        formRequestLeaveMainLabelType = new javax.swing.JLabel();
+        formRequestLeaveMainLabelFrom = new javax.swing.JLabel();
+        formRequestLeaveMainLabelReasons = new javax.swing.JLabel();
+        formRequestLeaveMainLabelFile = new javax.swing.JLabel();
+        formRequestLeaveMainLabelTo = new javax.swing.JLabel();
+        formRequestLeaveMainComboBoxType = new javax.swing.JComboBox<>();
+        formRequestLeaveMainButtonChooseFile = new javax.swing.JButton();
+        formRequestLeaveMainDateChooserFrom = new com.toedter.calendar.JDateChooser();
+        formRequestLeaveMainDateChooserTo = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        formRequestLeaveMainTextAreaReasons = new javax.swing.JTextArea();
+        formRequestLeaveMainPanelButton = new javax.swing.JPanel();
+        formRequestLeaveMainButtonSave = new javax.swing.JButton();
+        formRequestLeaveMainButtonSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -149,6 +165,8 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        formRequestLeavePanelMain.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
         formRequestLeaveMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formRequestLeaveMainLabelFullName.setText("FullName");
 
@@ -178,28 +196,196 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        formRequestLeaveMainPanelButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        formRequestLeaveMainLabelType.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainLabelType.setText("Type*");
+
+        formRequestLeaveMainLabelFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainLabelFrom.setText("From*");
+
+        formRequestLeaveMainLabelReasons.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainLabelReasons.setText("Reasons*");
+
+        formRequestLeaveMainLabelFile.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainLabelFile.setText("File*");
+
+        formRequestLeaveMainLabelTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainLabelTo.setText("To*");
+
+        formRequestLeaveMainComboBoxType.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+
+        formRequestLeaveMainButtonChooseFile.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainButtonChooseFile.setText("Choose File");
+        formRequestLeaveMainButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formRequestLeaveMainButtonChooseFileActionPerformed(evt);
+            }
+        });
+        formRequestLeaveMainButtonChooseFile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formRequestLeaveMainButtonChooseFileKeyPressed(evt);
+            }
+        });
+
+        formRequestLeaveMainDateChooserFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainDateChooserFrom.setMinimumSize(new java.awt.Dimension(400, 28));
+        formRequestLeaveMainDateChooserFrom.setPreferredSize(new java.awt.Dimension(400, 28));
+
+        formRequestLeaveMainDateChooserTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainDateChooserTo.setMinimumSize(new java.awt.Dimension(400, 28));
+        formRequestLeaveMainDateChooserTo.setPreferredSize(new java.awt.Dimension(400, 28));
+
+        formRequestLeaveMainTextAreaReasons.setColumns(20);
+        formRequestLeaveMainTextAreaReasons.setRows(5);
+        jScrollPane1.setViewportView(formRequestLeaveMainTextAreaReasons);
+
+        javax.swing.GroupLayout formRequestLeaveMainPanelButton1Layout = new javax.swing.GroupLayout(formRequestLeaveMainPanelButton1);
+        formRequestLeaveMainPanelButton1.setLayout(formRequestLeaveMainPanelButton1Layout);
+        formRequestLeaveMainPanelButton1Layout.setHorizontalGroup(
+            formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formRequestLeaveMainLabelFullName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formRequestLeaveMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formRequestLeaveMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                        .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                                .addComponent(formRequestLeaveMainLabelType)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                                .addComponent(formRequestLeaveMainLabelFrom)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(69, 69, 69))
+                    .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                        .addComponent(formRequestLeaveMainLabelReasons)
+                        .addGap(72, 72, 72)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                        .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(formRequestLeaveMainDateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formRequestLeaveMainComboBoxType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formRequestLeaveMainLabelTo)
+                            .addComponent(formRequestLeaveMainLabelFile))
+                        .addGap(140, 140, 140)
+                        .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(formRequestLeaveMainButtonChooseFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formRequestLeaveMainDateChooserTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        formRequestLeaveMainPanelButton1Layout.setVerticalGroup(
+            formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRequestLeaveMainLabelType)
+                    .addComponent(formRequestLeaveMainLabelFile)
+                    .addComponent(formRequestLeaveMainComboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formRequestLeaveMainButtonChooseFile))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(formRequestLeaveMainPanelButton1Layout.createSequentialGroup()
+                            .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(formRequestLeaveMainLabelTo)
+                                .addComponent(formRequestLeaveMainLabelFrom))
+                            .addGap(6, 6, 6))
+                        .addComponent(formRequestLeaveMainDateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(formRequestLeaveMainDateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(formRequestLeaveMainPanelButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formRequestLeaveMainLabelReasons))
+                .addContainerGap())
+        );
+
+        formRequestLeaveMainButtonSave.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainButtonSave.setText("Save Draf");
+        formRequestLeaveMainButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formRequestLeaveMainButtonSaveActionPerformed(evt);
+            }
+        });
+        formRequestLeaveMainButtonSave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formRequestLeaveMainButtonSaveKeyPressed(evt);
+            }
+        });
+
+        formRequestLeaveMainButtonSubmit.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainButtonSubmit.setText("Submit");
+        formRequestLeaveMainButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formRequestLeaveMainButtonSubmitActionPerformed(evt);
+            }
+        });
+        formRequestLeaveMainButtonSubmit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formRequestLeaveMainButtonSubmitKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout formRequestLeaveMainPanelButtonLayout = new javax.swing.GroupLayout(formRequestLeaveMainPanelButton);
+        formRequestLeaveMainPanelButton.setLayout(formRequestLeaveMainPanelButtonLayout);
+        formRequestLeaveMainPanelButtonLayout.setHorizontalGroup(
+            formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRequestLeaveMainPanelButtonLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formRequestLeaveMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(formRequestLeaveMainButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(342, 342, 342))
+        );
+        formRequestLeaveMainPanelButtonLayout.setVerticalGroup(
+            formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formRequestLeaveMainPanelButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formRequestLeaveMainButtonSubmit)
+                    .addComponent(formRequestLeaveMainButtonSave))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout formRequestLeavePanelMainLayout = new javax.swing.GroupLayout(formRequestLeavePanelMain);
+        formRequestLeavePanelMain.setLayout(formRequestLeavePanelMainLayout);
+        formRequestLeavePanelMainLayout.setHorizontalGroup(
+            formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
+                        .addComponent(formRequestLeaveMainLabelFullName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 890, Short.MAX_VALUE)
+                        .addComponent(formRequestLeaveMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formRequestLeaveMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(formRequestLeaveMainPanelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(formRequestLeaveMainPanelButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        formRequestLeavePanelMainLayout.setVerticalGroup(
+            formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formRequestLeaveMainButtonLogout)
                     .addComponent(formRequestLeaveMainLabelFullName)
                     .addComponent(formRequestLeaveMainButtonBack))
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                .addComponent(formRequestLeaveMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
+            .addGroup(formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
+                    .addGap(95, 95, 95)
+                    .addComponent(formRequestLeaveMainPanelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(175, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,7 +396,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formRequestLeavePanelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(formRequestLeavePanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -219,7 +405,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(formRequestLeavePanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(formRequestLeavePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formRequestLeavePanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -232,6 +418,79 @@ public class LeaveRequest extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    LocalDateTime localDateTimeNow = LocalDateTime.now();
+    DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private List<String> access_menu = new ArrayList<>();
+    private String full_name;
+    public List<Attachment> list_attachments = new ArrayList<>();
+    
+    public void setLabelId(String text) {
+        formRequestLeaveHeaderLabelId.setText(text);
+    }
+
+    public void setLabelNik(String text) {
+        formRequestLeaveHeaderLabelNik.setText(text);
+    }
+    
+    public String getFullName(){
+        return full_name;
+    }
+    public void setFullName(String text) {
+        this.full_name = text;
+        formRequestLeaveMainLabelFullName.setText("Welcome " + text + ",");
+    }
+    
+    public List<String> getAccessMenu(){
+        return access_menu;
+    }
+    public void setAccessMenu(List<String> value){
+        this.access_menu = value;
+    }
+    
+    public void setListAttachment(List<Attachment> value){
+        this.list_attachments = value;
+    }
+    
+    private void bindDataStatusLeave() {
+        try {
+            Constanta.Leave constantaLeave = new Constanta.Leave();
+            HashMap<String, Integer> map = constantaLeave.getTypes();
+            TreeMap<String, Integer> sortMap = new TreeMap<>(map);
+            sortMap.keySet().forEach((e) -> formRequestLeaveMainComboBoxType.addItem(e));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
+    private void uploadFiles(){
+        JFrame parentFrame = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select file");
+        fileChooser.setMultiSelectionEnabled(true);
+        
+        fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
+        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Image files", "jpg","bmp","png","gif","tiff","jpeg","tif");
+        fileChooser.setFileFilter(fileFilter);
+        Dimension dimension = new Dimension();
+        dimension.height = 480;
+        dimension.width = 720;
+        fileChooser.setPreferredSize(dimension);
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File[] files = fileChooser.getSelectedFiles();
+            for(File file : files){
+                Attachment attachment = new Attachment();
+                attachment.setFilePath(file.getAbsolutePath());
+                attachment.setFileName(file.getName());
+                list_attachments.add(attachment);
+            }
+        }
+        setListAttachment(list_attachments);
+    }
+    
     private void formRequestLeaveMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonBackActionPerformed
         // TODO add your handling code here:
         try {
@@ -304,35 +563,55 @@ public class LeaveRequest extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formRequestLeaveMainButtonLogoutKeyPressed
 
-    LocalDateTime localDateTimeNow = LocalDateTime.now();
-    DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private List<String> access_menu = new ArrayList<>();
-    private String full_name;
-    
-    public void setLabelId(String text) {
-        formRequestLeaveHeaderLabelId.setText(text);
-    }
+    private void formRequestLeaveMainButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSaveActionPerformed
+        // TODO add your handling code here:
+        try {
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonSaveActionPerformed
 
-    public void setLabelNik(String text) {
-        formRequestLeaveHeaderLabelNik.setText(text);
-    }
-    
-    public String getFullName(){
-        return full_name;
-    }
-    
-    public void setFullName(String text) {
-        this.full_name = text;
-        formRequestLeaveMainLabelFullName.setText("Welcome " + text + ",");
-    }
-    
-    public List<String> getAccessMenu(){
-        return access_menu;
-    }
-    
-    public void setAccessMenu(List<String> value){
-        this.access_menu = value;
-    }
+    private void formRequestLeaveMainButtonSaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSaveKeyPressed
+        // TODO add your handling code here:
+        try {
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonSaveKeyPressed
+
+    private void formRequestLeaveMainButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSubmitActionPerformed
+        // TODO add your handling code here:
+        try {
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonSubmitActionPerformed
+
+    private void formRequestLeaveMainButtonSubmitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSubmitKeyPressed
+        // TODO add your handling code here:
+        try {
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonSubmitKeyPressed
+
+    private void formRequestLeaveMainButtonChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonChooseFileActionPerformed
+        // TODO add your handling code here:
+        try {
+            uploadFiles();
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonChooseFileActionPerformed
+
+    private void formRequestLeaveMainButtonChooseFileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonChooseFileKeyPressed
+        // TODO add your handling code here:
+        try {
+            uploadFiles();
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonChooseFileKeyPressed
     
     /**
      * @param args the command line arguments
@@ -385,10 +664,25 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JLabel formRequestLeaveHeaderLable;
     private javax.swing.JLabel formRequestLeaveLabelFooter2;
     private javax.swing.JButton formRequestLeaveMainButtonBack;
+    private javax.swing.JButton formRequestLeaveMainButtonChooseFile;
     private javax.swing.JButton formRequestLeaveMainButtonLogout;
+    private javax.swing.JButton formRequestLeaveMainButtonSave;
+    private javax.swing.JButton formRequestLeaveMainButtonSubmit;
+    private javax.swing.JComboBox<String> formRequestLeaveMainComboBoxType;
+    private com.toedter.calendar.JDateChooser formRequestLeaveMainDateChooserFrom;
+    private com.toedter.calendar.JDateChooser formRequestLeaveMainDateChooserTo;
+    private javax.swing.JLabel formRequestLeaveMainLabelFile;
+    private javax.swing.JLabel formRequestLeaveMainLabelFrom;
     private javax.swing.JLabel formRequestLeaveMainLabelFullName;
+    private javax.swing.JLabel formRequestLeaveMainLabelReasons;
+    private javax.swing.JLabel formRequestLeaveMainLabelTo;
+    private javax.swing.JLabel formRequestLeaveMainLabelType;
+    private javax.swing.JPanel formRequestLeaveMainPanelButton;
+    private javax.swing.JPanel formRequestLeaveMainPanelButton1;
+    private javax.swing.JTextArea formRequestLeaveMainTextAreaReasons;
     private javax.swing.JPanel formRequestLeavePanelFooter;
     private javax.swing.JPanel formRequestLeavePanelHeader;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel formRequestLeavePanelMain;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

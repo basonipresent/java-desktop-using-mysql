@@ -81,20 +81,20 @@ public class Constanta {
         public static final int GENERAL = 3;
     }
 
-    public class Leave {
+    public static class Leave {
         public static final String DRAF = "DRAF";
         public static final String SUBMIT = "SUBMIT";
         public static final String APPROVED = "APPROVED";
         public static final String REJECTED = "REJECTED";
         
-        public final HashMap<Integer, String> getTypes() {
-            HashMap<Integer, String> types = new HashMap<>();
-            types.put(1, "Cuti Tahunan");
-            types.put(2, "Cuti Sakit");
-            types.put(3, "Cuti Hamil");
-            types.put(4, "Cuti Besar");
-            types.put(6, "Cuti Penting");
-            types.put(5, "Cuti Berbayar");
+        public final HashMap<String, Integer> getTypes() {
+            HashMap<String, Integer> types = new HashMap<>();
+            types.put("Cuti Tahunan", 1);
+            types.put("Cuti Sakit", 2);
+            types.put("Cuti Hamil", 3);
+            types.put("Cuti Besar", 4);
+            types.put("Cuti Penting", 5);
+            types.put("Cuti Berbayar", 6);
             return types;
         }
     }
