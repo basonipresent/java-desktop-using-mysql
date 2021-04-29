@@ -89,7 +89,7 @@ public class Leave {
     public void setStatus(String value) {
         this.status = value;
     }
-    
+
     public Integer getIdType() {
         return id_type;
     }
@@ -173,30 +173,26 @@ public class Leave {
 
         query = "SELECT \n"
                 + "l.*,\n"
-                + "a.*,\n"
                 + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
                 + "lt.type as type_name\n"
                 + "FROM \n"
                 + "`e-cms`.leave as l\n"
-                + "inner join `e-cms`.attachment as a on a.id_leave = l.id\n"
                 + "inner join `e-cms`.employee as e on e.nik = l.username\n"
                 + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
                 + "WHERE\n"
                 + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
                 + "and (l.request_date >= '" + params.date_from + "' and l.request_date <= '" + params.date_to + "')\n"
-                + "ORDER BY"
+                + "ORDER BY\n"
                 + "l.request_date DESC;";
 
-        if (params.date_from == null
-                && params.date_to == null) {
+        if(params.date_from == null
+                && params.date_to == null){
             query = "SELECT \n"
                     + "l.*,\n"
-                    + "a.*,\n"
                     + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
                     + "lt.type as type_name\n"
                     + "FROM \n"
                     + "`e-cms`.leave as l\n"
-                    + "inner join `e-cms`.attachment as a on a.id_leave = l.id\n"
                     + "inner join `e-cms`.employee as e on e.nik = l.username\n"
                     + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
                     + "WHERE\n"
@@ -212,20 +208,66 @@ public class Leave {
             Attachment attachment = new Attachment();
 
             leave.setId(Integer.parseInt(resultSet.getString("id")));
+            leave.setIdType(Integer.parseInt(resultSet.getString("id_type")));
             leave.setUsername(resultSet.getString("username"));
             leave.setRequestDate(resultSet.getString("request_date"));
             leave.setDateFrom(resultSet.getString("date_from"));
             leave.setDateTo(resultSet.getString("date_to"));
-            leave.setReasons(resultSet.getString("reasons"));
+            leave.setReasons(resultSet.getString("reason"));
             leave.setStatus(resultSet.getString("status"));
             leave.setFullName(resultSet.getString("full_name"));
             leave.setTypeName(resultSet.getString("type_name"));
 
-            leave.setListAttachment(attachment.getByIdLeave(getId()));
+            leave.setListAttachment(attachment.getByIdLeave(leave.getId()));
 
             result.add(leave);
         }
 
+        return result;
+    }
+
+    public Boolean create(Leave params) throws SQLException {
+        // local variables
+        boolean result = true;
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "INSERT INTO `e-cms`.`leave`\n"
+                + "(`username`,\n"
+                + "`request_date`,\n"
+                + "`date_from`,\n"
+                + "`date_to`,\n"
+                + "`reason`,\n"
+                + "`id_type`,\n"
+                + "`status`)\n"
+                + "VALUES\n"
+                + "('" + params.getUsername() + "',\n"
+                + "'" + params.getRequestDate() + "',\n"
+                + "'" + params.getDateFrom() + "',\n"
+                + "'" + params.getDateTo() + "',\n"
+                + "'" + params.getReasons() + "',\n"
+                + "" + params.getIdType() + ",\n"
+                + "'" + params.getStatus() + "');";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.executeUpdate();
+        resultSet = preparedStatement.getGeneratedKeys();
+        
+        if (resultSet.next()) {
+            int new_id = resultSet.getInt(1);
+            for(Attachment attachmentParams : params.getListAttachment()){
+                attachmentParams.setIdLeave(new_id);
+                Attachment attachment = new Attachment();
+                if(!attachment.create(attachmentParams)){
+                    result = false;
+                    break;
+                }
+            }
+        } else{
+            result = false;
+        }
+        connection.close();
         return result;
     }
 }

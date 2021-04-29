@@ -682,7 +682,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .build();
             } else {
                 listAttendance = Attendance.listParams()
-                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
@@ -739,7 +739,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .build();
             } else {
                 listAttendance = Attendance.listParams()
-                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();
@@ -783,7 +783,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .build();
             } else {
                 listLeave = Leave.listParams()
-                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
@@ -821,20 +821,26 @@ public class Dashboard extends javax.swing.JFrame {
             Date dateTo = formDashboardMainLeaveJDateChooseTo.getDate();
             SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String date_from = simpleDateFormatFrom.format(dateFrom);
-            String date_to = simpleDateFormatTo.format(dateTo);
+            
+            String date_from = null;
+            String date_to = null;
+            
+            if(dateFrom != null && dateTo != null){
+                date_from = simpleDateFormatFrom.format(dateFrom);
+                date_to = simpleDateFormatTo.format(dateTo);
+            }
             
             List<Leave> listLeave;
             if (formDashboardHeaderLabelNik.getText().equals("hrd") 
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listLeave = Leave.listParams()
                         .withUsername("")
-                        .withDateFrom(null)
-                        .withDateTo(null)
+                        .withDateFrom(date_from)
+                        .withDateTo(date_to)
                         .build();
             } else {
                 listLeave = Leave.listParams()
-                        .withUsername(formDashboardHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();

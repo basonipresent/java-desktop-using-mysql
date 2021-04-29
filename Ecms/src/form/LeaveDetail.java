@@ -423,7 +423,7 @@ public class LeaveDetail extends javax.swing.JFrame {
                         .build();
             } else {
                 listLeave = Leave.listParams()
-                        .withUsername(formLeaveHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
@@ -482,7 +482,7 @@ public class LeaveDetail extends javax.swing.JFrame {
                         .build();
             } else {
                 listLeave = Leave.listParams()
-                        .withUsername(formLeaveHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();

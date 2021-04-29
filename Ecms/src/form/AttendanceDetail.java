@@ -434,7 +434,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
                         .build();
             } else {
                 listAttendance = Attendance.listParams()
-                        .withUsername(formAttendanceHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(null)
                         .withDateTo(null)
                         .build();
@@ -493,7 +493,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
                         .build();
             } else {
                 listAttendance = Attendance.listParams()
-                        .withUsername(formAttendanceHeaderLabelNik.getText())
+                        .withUsername(getFullName())
                         .withDateFrom(date_from)
                         .withDateTo(date_to)
                         .build();
