@@ -218,7 +218,7 @@ public class Leave {
             leave.setFullName(resultSet.getString("full_name"));
             leave.setTypeName(resultSet.getString("type_name"));
 
-            leave.setListAttachment(attachment.getByIdLeave(leave.getId()));
+            leave.setListAttachment(attachment.getByHeader(leave.getId()));
 
             result.add(leave);
         }
@@ -268,6 +268,86 @@ public class Leave {
             result = false;
         }
         connection.close();
+        return result;
+    }
+    
+    public Boolean update(Leave params) throws SQLException {
+        // local variables
+        boolean result = true;
+        int affected;
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "UPDATE `e-cms`.`leave`\n"
+                + "SET\n"
+                + "`id_type` = " + params.getIdType() + ",\n"
+                + "`date_from` = '" + params.getDateFrom() + "',\n"
+                + "`date_to` = '" + params.getDateTo() + "',\n"
+                + "`reason` = '" + params.getReasons() + "',\n"
+                + "`status` = '" + params.getStatus() + "'\n"
+                + "WHERE `id` = " + params.getId() + ";";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        affected = preparedStatement.executeUpdate();
+        connection.close();
+        
+        if (affected > 0) {
+            for(Attachment attachmentParams : params.getListAttachment()){
+                attachmentParams.setIdLeave(params.getId());
+                // delete file before.
+                Attachment attachment = new Attachment();
+                attachment.deleteByHeader(params.getId());
+                if(!attachment.create(attachmentParams)){
+                    result = false;
+                    break;
+                }
+            }
+        } else{
+            result = false;
+        }
+        return result;
+    }
+    
+    public Leave get(int id) throws SQLException {
+        Leave result = new Leave();
+
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT \n"
+                + "l.*,\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
+                + "lt.type as type_name\n"
+                + "FROM \n"
+                + "`e-cms`.leave as l\n"
+                + "inner join `e-cms`.employee as e on e.nik = l.username\n"
+                + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
+                + "WHERE\n"
+                + "l.id = " + id + "\n"
+                + "ORDER BY\n"
+                + "l.request_date DESC;";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Attachment attachment = new Attachment();
+
+            result.setId(Integer.parseInt(resultSet.getString("id")));
+            result.setIdType(Integer.parseInt(resultSet.getString("id_type")));
+            result.setUsername(resultSet.getString("username"));
+            result.setRequestDate(resultSet.getString("request_date"));
+            result.setDateFrom(resultSet.getString("date_from"));
+            result.setDateTo(resultSet.getString("date_to"));
+            result.setReasons(resultSet.getString("reason"));
+            result.setStatus(resultSet.getString("status"));
+            result.setFullName(resultSet.getString("full_name"));
+            result.setTypeName(resultSet.getString("type_name"));
+
+            result.setListAttachment(attachment.getByHeader(result.getId()));
+        }
+
         return result;
     }
 }

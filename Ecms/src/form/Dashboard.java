@@ -376,7 +376,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        formDashboardMainLeavePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Leave Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+        formDashboardMainLeavePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Leave", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
         formDashboardMainLeavePanelTable.setPreferredSize(new java.awt.Dimension(1231, 240));
 
         formDashboardMainLeaveTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
@@ -994,6 +994,23 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void formDashboardMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveTableMouseClicked
         // TODO add your handling code here:
+        try {
+            Leave leave = new Leave();
+            LeaveRequest leaveRequest = new LeaveRequest();
+            int rowSelected = formDashboardMainLeaveTable.getSelectedRow();
+            int selectedId = Integer.parseInt(formDashboardMainLeaveTable.getValueAt(rowSelected, 0).toString());
+            
+            leave = leave.get(selectedId);
+            leaveRequest.show(true);
+            leaveRequest.assignValue(leave);
+            leaveRequest.setLabelId(formDashboardHeaderLabelId.getText());
+            leaveRequest.setLabelNik(formDashboardHeaderLabelNik.getText());
+            leaveRequest.setFullName(getFullName());
+            leaveRequest.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (NumberFormatException | SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainLeaveTableMouseClicked
 
     private void formDashboardMainPayslipTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainPayslipTableMouseClicked

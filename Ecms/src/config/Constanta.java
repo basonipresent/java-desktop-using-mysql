@@ -26,6 +26,7 @@ public class Constanta {
         public static final String MESSAGE_INVALID_REGISTER = "Username is not valid !\n Please, contact administrator";
         public static final String MESSAGE_CONFIRM_LOGOUT = "Are you sure to logout?";
         public static final String MESSAGE_CONFIRM_DELETE = "Are you sure to delete this records?";
+        public static final String MESSAGE_CONFIRM_SUBMIT = "Are you sure to submit this records?";
         public static final String BANNER_CONFIRM = "Confirmation";
         public static final String MESSAGE_ALREADY_CHECKIN = "Please check out your attendance before !";
         public static final String MESSAGE_ALREADY_CHECKOUT = "Please check in before your check out !";

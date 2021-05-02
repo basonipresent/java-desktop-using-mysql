@@ -82,7 +82,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="formRequestLeaveHeaderLabelIsUpdate" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveHeaderLabelIdEmployee" max="-2" attributes="0"/>
+                          <Component id="formRequestLeaveHeaderLabelIdLeave" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="formRequestLeaveHeaderLabelNik" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -101,7 +101,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="formRequestLeaveHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formRequestLeaveHeaderLabelIsUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveHeaderLabelIdEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formRequestLeaveHeaderLabelIdLeave" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formRequestLeaveHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -149,7 +149,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelIdEmployee">
+        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelIdLeave">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>

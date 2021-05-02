@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,9 +40,9 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLabelId.setVisible(false);
         formRequestLeaveHeaderLabelNik.setVisible(false);
         formRequestLeaveHeaderLabelIsUpdate.setVisible(false);
-        formRequestLeaveHeaderLabelIdEmployee.setVisible(false);
+        formRequestLeaveHeaderLabelIdLeave.setVisible(false);
         formRequestLeaveHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
-        formRequestLeaveHeaderLabelIdEmployee.setText(Constanta.Default.DEFAULT_VALUE);
+        formRequestLeaveHeaderLabelIdLeave.setText(Constanta.Default.DEFAULT_VALUE);
         bindDataStatusLeave();
     }
 
@@ -58,7 +59,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLable = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelId = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelIsUpdate = new javax.swing.JLabel();
-        formRequestLeaveHeaderLabelIdEmployee = new javax.swing.JLabel();
+        formRequestLeaveHeaderLabelIdLeave = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelNik = new javax.swing.JLabel();
         formRequestLeavePanelFooter = new javax.swing.JPanel();
         formRequestLeaveLabelFooter2 = new javax.swing.JLabel();
@@ -103,9 +104,9 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLabelIsUpdate.setText("IsUpdate");
         formRequestLeaveHeaderLabelIsUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        formRequestLeaveHeaderLabelIdEmployee.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
-        formRequestLeaveHeaderLabelIdEmployee.setText("IdEmployee");
-        formRequestLeaveHeaderLabelIdEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        formRequestLeaveHeaderLabelIdLeave.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
+        formRequestLeaveHeaderLabelIdLeave.setText("IdEmployee");
+        formRequestLeaveHeaderLabelIdLeave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         formRequestLeaveHeaderLabelNik.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formRequestLeaveHeaderLabelNik.setText("Nik");
@@ -124,7 +125,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formRequestLeaveHeaderLabelIsUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formRequestLeaveHeaderLabelIdEmployee)
+                        .addComponent(formRequestLeaveHeaderLabelIdLeave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formRequestLeaveHeaderLabelNik)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -139,7 +140,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGroup(formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formRequestLeaveHeaderLabelId)
                     .addComponent(formRequestLeaveHeaderLabelIsUpdate)
-                    .addComponent(formRequestLeaveHeaderLabelIdEmployee)
+                    .addComponent(formRequestLeaveHeaderLabelIdLeave)
                     .addComponent(formRequestLeaveHeaderLabelNik)))
         );
 
@@ -522,11 +523,55 @@ public class LeaveRequest extends javax.swing.JFrame {
         leave.setStatus(action);
         leave.setListAttachment(getListAttachment());
 
-        result = leave.create(leave);
+        if (formRequestLeaveHeaderLabelIsUpdate.getText().equals("1")) {
+            leave.setId(Integer.parseInt(formRequestLeaveHeaderLabelIdLeave.getText()));
+            result = leave.update(leave);
+        } else {
+            result = leave.create(leave);
+        }
 
         return result;
     }
-
+    
+    public void clear(){
+        formRequestLeaveMainTextAreaReasons.setText("");
+        formRequestLeaveMainDateChooserFrom.setDate(null);
+        formRequestLeaveMainDateChooserTo.setDate(null);
+        setListAttachment(list_attachments = new ArrayList<>());
+    }
+    
+    private boolean validation(){
+        
+        boolean result;
+        
+        result = !(
+                formRequestLeaveMainDateChooserTo.getDate() == null
+                || formRequestLeaveMainDateChooserFrom.getDate() == null
+                || formRequestLeaveMainTextAreaReasons.getText().equals(""));
+        
+        return result;
+    }
+    
+    public void assignValue(Leave leave) {
+        try {
+            SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd");
+            
+            Date dateFrom = simpleDateFormatFrom.parse(leave.getDateFrom());
+            Date dateTo = simpleDateFormatTo.parse(leave.getDateTo());
+            
+            formRequestLeaveMainComboBoxType.setSelectedItem(leave.getTypeName());
+            formRequestLeaveMainDateChooserFrom.setDate(dateFrom);
+            formRequestLeaveMainDateChooserTo.setDate(dateTo);
+            formRequestLeaveMainTextAreaReasons.setText(leave.getReasons());
+            formRequestLeaveHeaderLabelIsUpdate.setText("1");
+            formRequestLeaveHeaderLabelIdLeave.setText(leave.getId().toString());
+            setListAttachment(leave.getListAttachment());
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
     private void formRequestLeaveMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonBackActionPerformed
         // TODO add your handling code here:
         try {
@@ -602,10 +647,13 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void formRequestLeaveMainButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSaveActionPerformed
         // TODO add your handling code here:
         try {
-            if (submit(Constanta.Leave.DRAF)) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-            } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            if (validation()) {
+                if (submit(Constanta.Leave.DRAF)) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                    clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
@@ -615,10 +663,13 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void formRequestLeaveMainButtonSaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSaveKeyPressed
         // TODO add your handling code here:
         try {
-            if (submit(Constanta.Leave.DRAF)) {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-            } else {
-                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            if (validation()) {
+                if (submit(Constanta.Leave.DRAF)) {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                    clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
@@ -628,7 +679,22 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void formRequestLeaveMainButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSubmitActionPerformed
         // TODO add your handling code here:
         try {
-        } catch (HeadlessException e) {
+            int action = JOptionPane.showConfirmDialog(null,
+                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
+                    Constanta.Messages.BANNER_CONFIRM,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (action == JOptionPane.YES_OPTION) {
+                if (validation()) {
+                    if (submit(Constanta.Leave.SUBMIT)) {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                    } else {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                    }
+                }
+            }
+            clear();
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formRequestLeaveMainButtonSubmitActionPerformed
@@ -636,7 +702,22 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void formRequestLeaveMainButtonSubmitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonSubmitKeyPressed
         // TODO add your handling code here:
         try {
-        } catch (HeadlessException e) {
+            int action = JOptionPane.showConfirmDialog(null,
+                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
+                    Constanta.Messages.BANNER_CONFIRM,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (action == JOptionPane.YES_OPTION) {
+                if (validation()) {
+                    if (submit(Constanta.Leave.SUBMIT)) {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                    } else {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                    }
+                }
+            }
+            clear();
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formRequestLeaveMainButtonSubmitKeyPressed
@@ -703,7 +784,7 @@ public class LeaveRequest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel formRequestLeaveHeaderLabelId;
-    public javax.swing.JLabel formRequestLeaveHeaderLabelIdEmployee;
+    public javax.swing.JLabel formRequestLeaveHeaderLabelIdLeave;
     public javax.swing.JLabel formRequestLeaveHeaderLabelIsUpdate;
     public javax.swing.JLabel formRequestLeaveHeaderLabelNik;
     private javax.swing.JLabel formRequestLeaveHeaderLable;
