@@ -59,6 +59,29 @@ public class Attachment {
     String query;
     Connections dbConnections = new Connections();
     
+    public Attachment get(int id) throws SQLException{
+        Attachment result = new Attachment();
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "SELECT * FROM `e-cms`.attachment where id_leave = " + id +";";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Attachment attachment = new Attachment();
+            
+            attachment.setId(Integer.parseInt(resultSet.getString("id")));
+            attachment.setIdLeave(Integer.parseInt(resultSet.getString("id_leave")));
+            attachment.setFileName(resultSet.getString("file_name"));
+            attachment.setFilePath(resultSet.getString("file_path"));
+        }
+        
+        return result;
+    }
+    
     public List<Attachment> getByHeader(int id_leave) throws SQLException{
         List<Attachment> result = new ArrayList();
         

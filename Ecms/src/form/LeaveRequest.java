@@ -82,6 +82,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveMainPanelButton = new javax.swing.JPanel();
         formRequestLeaveMainButtonSave = new javax.swing.JButton();
         formRequestLeaveMainButtonSubmit = new javax.swing.JButton();
+        formRequestLeaveMainButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -291,7 +292,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                             .addGap(6, 6, 6))
                         .addComponent(formRequestLeaveMainDateChooserFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(formRequestLeaveMainDateChooserTo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addGroup(formRequestLeaveMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formRequestLeaveMainLabelReasons))
@@ -324,16 +325,31 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainButtonDelete.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainButtonDelete.setText("Delete");
+        formRequestLeaveMainButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formRequestLeaveMainButtonDeleteActionPerformed(evt);
+            }
+        });
+        formRequestLeaveMainButtonDelete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formRequestLeaveMainButtonDeleteKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formRequestLeaveMainPanelButtonLayout = new javax.swing.GroupLayout(formRequestLeaveMainPanelButton);
         formRequestLeaveMainPanelButton.setLayout(formRequestLeaveMainPanelButtonLayout);
         formRequestLeaveMainPanelButtonLayout.setHorizontalGroup(
             formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRequestLeaveMainPanelButtonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(formRequestLeaveMainPanelButtonLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
                 .addComponent(formRequestLeaveMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(formRequestLeaveMainButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(342, 342, 342))
+                .addGap(64, 64, 64)
+                .addComponent(formRequestLeaveMainButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         formRequestLeaveMainPanelButtonLayout.setVerticalGroup(
             formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +357,8 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formRequestLeaveMainButtonSubmit)
-                    .addComponent(formRequestLeaveMainButtonSave))
+                    .addComponent(formRequestLeaveMainButtonSave)
+                    .addComponent(formRequestLeaveMainButtonDelete))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -484,7 +501,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             File[] files = fileChooser.getSelectedFiles();
             for (File file : files) {
                 Attachment attachment = new Attachment();
-                attachment.setFilePath(file.getAbsolutePath());
+                attachment.setFilePath(file.getAbsolutePath().replace("\\", "\\\\"));
                 attachment.setFileName(file.getName());
                 list_attachments.add(attachment);
             }
@@ -533,6 +550,16 @@ public class LeaveRequest extends javax.swing.JFrame {
         return result;
     }
     
+    private boolean delete() throws SQLException {
+        boolean result = true;
+        
+        Leave leave = new Leave();
+        leave.setId(Integer.parseInt(formRequestLeaveHeaderLabelIdLeave.getText()));
+        result = leave.delete(leave.getId());
+
+        return result;
+    }
+    
     public void clear(){
         formRequestLeaveMainTextAreaReasons.setText("");
         formRequestLeaveMainDateChooserFrom.setDate(null);
@@ -566,7 +593,6 @@ public class LeaveRequest extends javax.swing.JFrame {
             formRequestLeaveMainTextAreaReasons.setText(leave.getReasons());
             formRequestLeaveHeaderLabelIsUpdate.setText("1");
             formRequestLeaveHeaderLabelIdLeave.setText(leave.getId().toString());
-            setListAttachment(leave.getListAttachment());
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -651,6 +677,15 @@ public class LeaveRequest extends javax.swing.JFrame {
                 if (submit(Constanta.Leave.DRAF)) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                     clear();
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.show();
+                    dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                    dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                    dashboard.setFullName(getFullName());
+                    dashboard.setAccessMenu(getAccessMenu());
+                    dashboard.loadDataAttendance();
+                    dashboard.loadDataLeave();
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                 }
@@ -667,6 +702,15 @@ public class LeaveRequest extends javax.swing.JFrame {
                 if (submit(Constanta.Leave.DRAF)) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                     clear();
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.show();
+                    dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                    dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                    dashboard.setFullName(getFullName());
+                    dashboard.setAccessMenu(getAccessMenu());
+                    dashboard.loadDataAttendance();
+                    dashboard.loadDataLeave();
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                 }
@@ -740,6 +784,52 @@ public class LeaveRequest extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formRequestLeaveMainButtonChooseFileKeyPressed
 
+    private void formRequestLeaveMainButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (delete()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                clear();
+                Dashboard dashboard = new Dashboard();
+                dashboard.show();
+                dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                dashboard.setFullName(getFullName());
+                dashboard.setAccessMenu(getAccessMenu());
+                dashboard.loadDataAttendance();
+                dashboard.loadDataLeave();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonDeleteActionPerformed
+
+    private void formRequestLeaveMainButtonDeleteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonDeleteKeyPressed
+        // TODO add your handling code here:
+        try {
+            if (delete()) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                clear();
+                Dashboard dashboard = new Dashboard();
+                dashboard.show();
+                dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                dashboard.setFullName(getFullName());
+                dashboard.setAccessMenu(getAccessMenu());
+                dashboard.loadDataAttendance();
+                dashboard.loadDataLeave();
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonDeleteKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -791,6 +881,7 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JLabel formRequestLeaveLabelFooter2;
     private javax.swing.JButton formRequestLeaveMainButtonBack;
     private javax.swing.JButton formRequestLeaveMainButtonChooseFile;
+    private javax.swing.JButton formRequestLeaveMainButtonDelete;
     private javax.swing.JButton formRequestLeaveMainButtonLogout;
     private javax.swing.JButton formRequestLeaveMainButtonSave;
     private javax.swing.JButton formRequestLeaveMainButtonSubmit;

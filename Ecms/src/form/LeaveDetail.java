@@ -23,9 +23,23 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.ScrollPane;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import model.Attachment;
 import model.Leave;
 
 /*
@@ -588,10 +602,42 @@ public class LeaveDetail extends javax.swing.JFrame {
         }
         table.addCell(cell);
     }
+    
+    private void displayImage(Leave leave) {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(1024, panel.getHeight()));
+        panel.setLayout(new FlowLayout());
+        for(Attachment attachment : leave.getListAttachment()){
+            ImageIcon imageIcon = new ImageIcon(attachment.getFilePath());
+
+            JLabel lable = new JLabel();
+            JLabel image = new JLabel();
+
+            lable.setText(attachment.getFileName());
+            image.setIcon(imageIcon);
+
+            panel.add(image);
+            panel.add(lable);
+        }
+        JScrollPane scrollBar = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JFrame frame = new JFrame("Leave Detail " + leave.getFullName());
+        frame.getContentPane().add(scrollBar);
+        frame.setSize(1280, 720);
+        frame.setResizable(false);
+        frame.setVisible(true);
+    }
 
     private void formLeaveMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formLeaveMainLeaveTableMouseClicked
         // TODO add your handling code here:
-
+        try {
+            Leave leave = new Leave();
+            int rowSelected = formLeaveMainLeaveTable.getSelectedRow();
+            int selectedId = Integer.parseInt(formLeaveMainLeaveTable.getValueAt(rowSelected, 0).toString());
+            leave = leave.get(selectedId);
+            displayImage(leave);
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formLeaveMainLeaveTableMouseClicked
 
     private void formLeaveMainButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formLeaveMainButtonLogoutActionPerformed

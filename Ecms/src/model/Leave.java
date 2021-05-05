@@ -293,14 +293,16 @@ public class Leave {
         connection.close();
         
         if (affected > 0) {
-            for(Attachment attachmentParams : params.getListAttachment()){
-                attachmentParams.setIdLeave(params.getId());
+            if(params.getListAttachment().size() > 0){
                 // delete file before.
                 Attachment attachment = new Attachment();
                 attachment.deleteByHeader(params.getId());
-                if(!attachment.create(attachmentParams)){
-                    result = false;
-                    break;
+                for (Attachment attachmentParams : params.getListAttachment()) {
+                    attachmentParams.setIdLeave(params.getId());
+                    if (!attachment.create(attachmentParams)) {
+                        result = false;
+                        break;
+                    }
                 }
             }
         } else{
@@ -348,6 +350,30 @@ public class Leave {
             result.setListAttachment(attachment.getByHeader(result.getId()));
         }
 
+        return result;
+    }
+    
+    public Boolean delete(int id) throws SQLException{
+        // local variables
+        boolean result = false;
+        int affected;
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "DELETE FROM `e-cms`.`leave`\n"
+                + "WHERE `id` = " + id + ";";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        affected = preparedStatement.executeUpdate();
+        connection.close();
+        
+        if(affected > 0){
+            Attachment attachment = new Attachment();
+            attachment.deleteByHeader(id);
+            result = true;
+        }
+        
         return result;
     }
 }
