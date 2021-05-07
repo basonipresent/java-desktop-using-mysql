@@ -300,6 +300,33 @@ public class Employee {
         return result;
     }
     
+    public String generateNik() throws SQLException {
+        String result = "";
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "SELECT concat(YEAR(NOW()), \n"
+                + "	(CASE \n"
+                + "		WHEN LENGTH(MONTH(NOW())) = 1 THEN concat('0', MONTH(NOW()))\n"
+                + "        ELSE MONTH(NOW())\n"
+                + "	END),\n"
+                + "    (CASE\n"
+                + "		WHEN LENGTH((SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)) = 1 THEN concat('00', (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1))\n"
+                + "        WHEN LENGTH((SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)) = 2 THEN concat('0', (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1))\n"
+                + "        ELSE (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)\n"
+                + "	END)) AS generate_nik;";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            result = resultSet.getString("generate_nik");
+        }
+        
+        return result;
+    }
+    
     public Boolean create(Employee params) throws SQLException{
         // local variables
         boolean result = false;

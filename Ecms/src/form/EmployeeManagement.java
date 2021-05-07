@@ -13,7 +13,6 @@ import java.util.TreeMap;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Employee;
-import model.Nationality;
 import model.Position;
 
 /*
@@ -43,6 +42,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         bindDataStatus();
         bindDataEducation();
         loadData();
+        generate();
     }
 
     /**
@@ -221,6 +221,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeMainLabelDaysOff.setText("Days off*");
 
         formEmployeeMainTextFieldNik.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formEmployeeMainTextFieldNik.setEnabled(false);
 
         formEmployeeMainTextFieldFirstName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
@@ -558,6 +559,16 @@ public class EmployeeManagement extends javax.swing.JFrame {
         this.access_menu = value;
     }
     
+    public void generate(){
+        try {
+            Employee employee = new Employee();
+            String generateNik = employee.generateNik();
+            formEmployeeMainTextFieldNik.setText(generateNik);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+    
     private void bindDataPosition() {
         try {
             Position position = new Position();
@@ -637,6 +648,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             formEmployeeHeaderLabelIdEmployee.setText(Constanta.Default.DEFAULT_VALUE);
             formEmployeeMainButtonSave.setText(Constanta.Default.BUTTON_ADD);
             formEmployeeMainButtonDelete.setVisible(false);
+            generate();
             loadData();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

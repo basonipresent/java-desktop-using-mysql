@@ -55,7 +55,7 @@ public class Dashboard extends javax.swing.JFrame {
         formDashboardMainLabelFullName = new javax.swing.JLabel();
         formDashboardMainButtonLogout = new javax.swing.JButton();
         formDashboardMainButtonEmployee = new javax.swing.JButton();
-        formDashboardMainButtonReport = new javax.swing.JButton();
+        formDashboardMainButtonPayslip = new javax.swing.JButton();
         formDashboardMainButtonApproval = new javax.swing.JButton();
         formDashboardMainAttendancePanelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -185,16 +185,16 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        formDashboardMainButtonReport.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formDashboardMainButtonReport.setText("Report");
-        formDashboardMainButtonReport.addActionListener(new java.awt.event.ActionListener() {
+        formDashboardMainButtonPayslip.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainButtonPayslip.setText("Payslip");
+        formDashboardMainButtonPayslip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formDashboardMainButtonReportActionPerformed(evt);
+                formDashboardMainButtonPayslipActionPerformed(evt);
             }
         });
-        formDashboardMainButtonReport.addKeyListener(new java.awt.event.KeyAdapter() {
+        formDashboardMainButtonPayslip.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                formDashboardMainButtonReportKeyPressed(evt);
+                formDashboardMainButtonPayslipKeyPressed(evt);
             }
         });
 
@@ -575,7 +575,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formDashboardMainButtonApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formDashboardMainButtonReport, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formDashboardMainButtonPayslip, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -599,7 +599,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(formDashboardMainButtonLogout)
                     .addComponent(formDashboardMainLabelFullName)
                     .addComponent(formDashboardMainButtonEmployee)
-                    .addComponent(formDashboardMainButtonReport)
+                    .addComponent(formDashboardMainButtonPayslip)
                     .addComponent(formDashboardMainButtonApproval))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -976,13 +976,13 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formDashboardMainButtonEmployeeKeyPressed
 
-    private void formDashboardMainButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonReportActionPerformed
+    private void formDashboardMainButtonPayslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonPayslipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_formDashboardMainButtonReportActionPerformed
+    }//GEN-LAST:event_formDashboardMainButtonPayslipActionPerformed
 
-    private void formDashboardMainButtonReportKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonReportKeyPressed
+    private void formDashboardMainButtonPayslipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonPayslipKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_formDashboardMainButtonReportKeyPressed
+    }//GEN-LAST:event_formDashboardMainButtonPayslipKeyPressed
 
     private void formDashboardMainButtonApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonApprovalActionPerformed
         // TODO add your handling code here:
@@ -1288,7 +1288,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton formDashboardMainButtonApproval;
     private javax.swing.JButton formDashboardMainButtonEmployee;
     private javax.swing.JButton formDashboardMainButtonLogout;
-    private javax.swing.JButton formDashboardMainButtonReport;
+    private javax.swing.JButton formDashboardMainButtonPayslip;
     private javax.swing.JLabel formDashboardMainLabelFullName;
     private javax.swing.JButton formDashboardMainLeaveButtonSearch;
     private com.toedter.calendar.JDateChooser formDashboardMainLeaveJDateChooseFrom;
