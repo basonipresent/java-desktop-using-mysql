@@ -3,7 +3,6 @@ package form;
 import config.Constanta;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Users;
 

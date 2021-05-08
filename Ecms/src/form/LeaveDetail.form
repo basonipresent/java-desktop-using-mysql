@@ -314,7 +314,7 @@
                         <Column editable="false" title="Request Date" type="java.lang.Object"/>
                         <Column editable="false" title="Date From" type="java.lang.Object"/>
                         <Column editable="false" title="Date To" type="java.lang.Object"/>
-                        <Column editable="false" title="Resons" type="java.lang.Object"/>
+                        <Column editable="false" title="Reasons" type="java.lang.Object"/>
                         <Column editable="false" title="Type" type="java.lang.Object"/>
                         <Column editable="false" title="Status" type="java.lang.Object"/>
                       </Table>

@@ -23,30 +23,16 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Label;
-import java.awt.ScrollPane;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.AbstractList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import model.Attachment;
 import model.Leave;
 
@@ -211,7 +197,7 @@ public class LeaveDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Resons", "Type", "Status"
+                "Id", "Nik", "Full Name", "Request Date", "Date From", "Date To", "Reasons", "Type", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attendance;
 import model.Leave;
+import model.Users;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,9 +23,9 @@ import model.Leave;
  */
 /**
  *
- *  
+ *
  */
-public class Dashboard extends javax.swing.JFrame {
+public final class Dashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -649,15 +650,21 @@ public class Dashboard extends javax.swing.JFrame {
 
     public void setLabelId(String text) {
         formDashboardHeaderLabelId.setText(text);
+        setMenuAccess();
+    }
+
+    public String getLabelId() {
+        return formDashboardHeaderLabelId.getText();
     }
 
     public void setLabelNik(String text) {
         formDashboardHeaderLabelNik.setText(text);
     }
-    
-    public String getFullName(){
+
+    public String getFullName() {
         return full_name;
     }
+
     public void setFullName(String text) {
         this.full_name = text;
         formDashboardMainLabelFullName.setText("Welcome " + text + ",");
@@ -666,14 +673,41 @@ public class Dashboard extends javax.swing.JFrame {
     public List<String> getAccessMenu() {
         return access_menu;
     }
+
     public void setAccessMenu(List<String> value) {
         this.access_menu = value;
     }
-    
-    public void loadDataAttendance(){
+
+    public void setMenuAccess() {
+        try {
+            Users users = new Users();
+            users = users.get(getLabelId());
+            switch (users.getIdRole()) {
+                case Constanta.Role.ADMINISTRATOR:
+                    formDashboardMainButtonApproval.setEnabled(false);
+                    formDashboardMainButtonPayslip.setEnabled(false);
+                    formDashboardMainButtonEmployee.setEnabled(true);
+                    break;
+                case Constanta.Role.HRD:
+                    formDashboardMainButtonApproval.setEnabled(true);
+                    formDashboardMainButtonPayslip.setEnabled(true);
+                    formDashboardMainButtonEmployee.setEnabled(false);
+                    break;
+                default:
+                    formDashboardMainButtonApproval.setEnabled(false);
+                    formDashboardMainButtonPayslip.setEnabled(false);
+                    formDashboardMainButtonEmployee.setEnabled(false);
+                    break;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
+
+    public void loadDataAttendance() {
         try {
             List<Attendance> listAttendance;
-            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+            if (formDashboardHeaderLabelNik.getText().equals("hrd")
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
                         .withUsername("")
@@ -687,15 +721,15 @@ public class Dashboard extends javax.swing.JFrame {
                         .withDateTo(null)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainAttendanceTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listAttendance.size(); i++){
+            for (int i = 0; i < listAttendance.size(); i++) {
                 TableColumnModel tableColumnModel = formDashboardMainAttendanceTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listAttendance.get(i).getId();
                 rows[1] = listAttendance.get(i).getUsername();
                 rows[2] = listAttendance.get(i).getFullName();
@@ -713,24 +747,24 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    public void searchDataAttendance(){
+
+    public void searchDataAttendance() {
         try {
             Date dateFrom = formDashboardMainAttendanceJDateChooseFrom.getDate();
             Date dateTo = formDashboardMainAttendanceJDateChooseTo.getDate();
             SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             String date_from = null;
             String date_to = null;
-            
-            if(dateFrom != null && dateTo != null){
+
+            if (dateFrom != null && dateTo != null) {
                 date_from = simpleDateFormatFrom.format(dateFrom);
                 date_to = simpleDateFormatTo.format(dateTo);
             }
-            
+
             List<Attendance> listAttendance;
-            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+            if (formDashboardHeaderLabelNik.getText().equals("hrd")
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listAttendance = Attendance.listParams()
                         .withUsername("")
@@ -744,15 +778,15 @@ public class Dashboard extends javax.swing.JFrame {
                         .withDateTo(date_to)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainAttendanceTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listAttendance.size(); i++){
+            for (int i = 0; i < listAttendance.size(); i++) {
                 TableColumnModel tableColumnModel = formDashboardMainAttendanceTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listAttendance.get(i).getId();
                 rows[1] = listAttendance.get(i).getUsername();
                 rows[2] = listAttendance.get(i).getFullName();
@@ -770,11 +804,11 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    public void loadDataLeave(){
+
+    public void loadDataLeave() {
         try {
             List<Leave> listLeave;
-            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+            if (formDashboardHeaderLabelNik.getText().equals("hrd")
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listLeave = Leave.listParams()
                         .withUsername("")
@@ -788,15 +822,15 @@ public class Dashboard extends javax.swing.JFrame {
                         .withDateTo(null)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainLeaveTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listLeave.size(); i++){
+            for (int i = 0; i < listLeave.size(); i++) {
                 TableColumnModel tableColumnModel = formDashboardMainLeaveTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listLeave.get(i).getId();
                 rows[1] = listLeave.get(i).getUsername();
                 rows[2] = listLeave.get(i).getFullName();
@@ -814,24 +848,24 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    public void searchDataLeave(){
+
+    public void searchDataLeave() {
         try {
             Date dateFrom = formDashboardMainLeaveJDateChooseFrom.getDate();
             Date dateTo = formDashboardMainLeaveJDateChooseTo.getDate();
             SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            
+
             String date_from = null;
             String date_to = null;
-            
-            if(dateFrom != null && dateTo != null){
+
+            if (dateFrom != null && dateTo != null) {
                 date_from = simpleDateFormatFrom.format(dateFrom);
                 date_to = simpleDateFormatTo.format(dateTo);
             }
-            
+
             List<Leave> listLeave;
-            if (formDashboardHeaderLabelNik.getText().equals("hrd") 
+            if (formDashboardHeaderLabelNik.getText().equals("hrd")
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listLeave = Leave.listParams()
                         .withUsername("")
@@ -845,15 +879,15 @@ public class Dashboard extends javax.swing.JFrame {
                         .withDateTo(date_to)
                         .build();
             }
-            
+
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainLeaveTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
-            for(int i = 0; i < listLeave.size(); i++){
+            for (int i = 0; i < listLeave.size(); i++) {
                 TableColumnModel tableColumnModel = formDashboardMainLeaveTable.getColumnModel();
                 tableColumnModel.getColumn(0).setMaxWidth(0);
                 tableColumnModel.getColumn(0).setMinWidth(0);
-                
+
                 rows[0] = listLeave.get(i).getId();
                 rows[1] = listLeave.get(i).getUsername();
                 rows[2] = listLeave.get(i).getFullName();
@@ -871,38 +905,38 @@ public class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
-    private boolean checkIn() throws SQLException{
+
+    private boolean checkIn() throws SQLException {
         boolean result;
-        
+
         Attendance attendance = new Attendance();
         attendance.setUsername(formDashboardHeaderLabelNik.getText());
         attendance.setCheckIn(localDateTimeNow.format(DATETIME_FORMATTER));
         attendance.setLocation(Constanta.Default.DEFAULT_LOCATION);
         attendance.setStatus(Constanta.Default.DEFAULT_CHECKIN_STATUS);
-        attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKIN_INFORMATION, 
-                getFullName(), 
+        attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKIN_INFORMATION,
+                getFullName(),
                 localDateTimeNow.format(DATETIME_FORMATTER),
                 Constanta.Default.DEFAULT_LOCATION));
         result = attendance.checkIn(attendance);
-        
+
         return result;
     }
-    
-    private boolean checkOut(Attendance attendance) throws SQLException{
+
+    private boolean checkOut(Attendance attendance) throws SQLException {
         boolean result;
-        
+
         attendance.setId(attendance.getId());
         attendance.setInformation(String.format(Constanta.Default.DEFAULT_CHECKOUT_INFORMATION,
-                getFullName(), 
+                getFullName(),
                 localDateTimeNow.format(DATETIME_FORMATTER),
                 Constanta.Default.DEFAULT_LOCATION,
                 "0"));
         result = attendance.checkOut(attendance);
-        
+
         return result;
     }
-    
+
     private void formDashboardMainAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainAttendanceTableMouseClicked
         // TODO add your handling code here:
 
@@ -985,11 +1019,35 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formDashboardMainButtonPayslipKeyPressed
 
     private void formDashboardMainButtonApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonApprovalActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        try {
+            ApprovalDetail approvalDetail = new ApprovalDetail();
+            approvalDetail.show(true);
+            approvalDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            approvalDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            approvalDetail.setFullName(getFullName());
+            approvalDetail.setAccessMenu(getAccessMenu());
+            approvalDetail.loadDataApproval();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonApprovalActionPerformed
 
     private void formDashboardMainButtonApprovalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonApprovalKeyPressed
         // TODO add your handling code here:
+        try {
+            ApprovalDetail approvalDetail = new ApprovalDetail();
+            approvalDetail.show(true);
+            approvalDetail.setLabelId(formDashboardHeaderLabelId.getText());
+            approvalDetail.setLabelNik(formDashboardHeaderLabelNik.getText());
+            approvalDetail.setFullName(getFullName());
+            approvalDetail.setAccessMenu(getAccessMenu());
+            approvalDetail.loadDataApproval();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonApprovalKeyPressed
 
     private void formDashboardMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formDashboardMainLeaveTableMouseClicked
@@ -999,7 +1057,7 @@ public class Dashboard extends javax.swing.JFrame {
             LeaveRequest leaveRequest = new LeaveRequest();
             int rowSelected = formDashboardMainLeaveTable.getSelectedRow();
             int selectedId = Integer.parseInt(formDashboardMainLeaveTable.getValueAt(rowSelected, 0).toString());
-            
+
             leave = leave.get(selectedId);
             leaveRequest.show(true);
             leaveRequest.assignValue(leave);
@@ -1022,7 +1080,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             Attendance attendance = new Attendance();
             Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
-            if(result.getId() == null){
+            if (result.getId() == null) {
                 if (checkIn()) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                 } else {
@@ -1042,7 +1100,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             Attendance attendance = new Attendance();
             Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
-            if(result.getId() == null){
+            if (result.getId() == null) {
                 if (checkIn()) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                 } else {
@@ -1062,7 +1120,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             Attendance attendance = new Attendance();
             Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
-            if(result.getId() != null){
+            if (result.getId() != null) {
                 if (checkOut(result)) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                 } else {
@@ -1082,7 +1140,7 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             Attendance attendance = new Attendance();
             Attendance result = attendance.getCurrentCheckIn(formDashboardHeaderLabelNik.getText());
-            if(result.getId() != null){
+            if (result.getId() != null) {
                 if (checkOut(result)) {
                     JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
                 } else {

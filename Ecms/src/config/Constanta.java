@@ -87,6 +87,7 @@ public class Constanta {
         public static final String SUBMIT = "SUBMIT";
         public static final String APPROVED = "APPROVED";
         public static final String REJECTED = "REJECTED";
+        public static final String ALL = "ALL";
         
         public final HashMap<String, Integer> getTypes() {
             HashMap<String, Integer> types = new HashMap<>();
@@ -96,6 +97,15 @@ public class Constanta {
             types.put("Cuti Besar", 4);
             types.put("Cuti Penting", 5);
             types.put("Cuti Berbayar", 6);
+            return types;
+        }
+        
+        public final HashMap<String, Integer> getStatus() {
+            HashMap<String, Integer> types = new HashMap<>();
+            types.put(ALL, 0);
+            types.put(SUBMIT, 1);
+            types.put(APPROVED, 2);
+            types.put(REJECTED, 3);
             return types;
         }
     }

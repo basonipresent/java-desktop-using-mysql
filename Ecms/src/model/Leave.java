@@ -5,7 +5,9 @@
  */
 package model;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 import config.Connections;
+import config.Constanta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -137,6 +139,7 @@ public class Leave {
     public static final class Params {
 
         private String username;
+        private String status;
         private String date_from;
         private String date_to;
 
@@ -145,6 +148,11 @@ public class Leave {
 
         public Params withUsername(String val) {
             username = val;
+            return this;
+        }
+        
+        public Params withStatus(String val) {
+            status = val;
             return this;
         }
 
@@ -161,6 +169,11 @@ public class Leave {
         public List<Leave> build() throws SQLException {
             Leave leave = new Leave();
             return leave.list(this);
+        }
+        
+        public List<Leave> buildApproval() throws SQLException {
+            Leave leave = new Leave();
+            return leave.listApproval(this);
         }
     }
 
@@ -226,6 +239,73 @@ public class Leave {
         return result;
     }
 
+
+    public List<Leave> listApproval(Params params) throws SQLException {
+        List<Leave> result = new ArrayList<>();
+
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT \n"
+                + "l.*,\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
+                + "lt.type as type_name\n"
+                + "FROM \n"
+                + "`e-cms`.leave as l\n"
+                + "inner join `e-cms`.employee as e on e.nik = l.username\n"
+                + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
+                + "WHERE\n"
+                + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
+                + "and (l.request_date >= '" + params.date_from + "' and l.request_date <= '" + params.date_to + "')\n"
+                + "and l.status <> '" + Constanta.Leave.DRAF + "'\n"
+                + (params.status.equals(Constanta.Leave.ALL) ? "\n" : "and l.status = '" + params.status + "'\n")
+                + "ORDER BY\n"
+                + "l.request_date DESC;";
+
+        if((params.date_from == null
+                && params.date_to == null)){
+            query = "SELECT \n"
+                    + "l.*,\n"
+                    + "concat(e.first_name, ' ', e.last_name) as full_name,\n"
+                    + "lt.type as type_name\n"
+                    + "FROM \n"
+                    + "`e-cms`.leave as l\n"
+                    + "inner join `e-cms`.employee as e on e.nik = l.username\n"
+                    + "left join `e-cms`.leave_type as lt on lt.id = l.id_type\n"
+                    + "WHERE\n"
+                    + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
+                    + "and l.status <> '" + Constanta.Leave.DRAF + "'\n"
+                    + (params.status.equals(Constanta.Leave.ALL) ? "\n" : "and l.status = '" + params.status + "'\n")
+                    + "ORDER BY\n"
+                    + "l.request_date DESC;";
+        }
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Leave leave = new Leave();
+            Attachment attachment = new Attachment();
+
+            leave.setId(Integer.parseInt(resultSet.getString("id")));
+            leave.setIdType(Integer.parseInt(resultSet.getString("id_type")));
+            leave.setUsername(resultSet.getString("username"));
+            leave.setRequestDate(resultSet.getString("request_date"));
+            leave.setDateFrom(resultSet.getString("date_from"));
+            leave.setDateTo(resultSet.getString("date_to"));
+            leave.setReasons(resultSet.getString("reason"));
+            leave.setStatus(resultSet.getString("status"));
+            leave.setFullName(resultSet.getString("full_name"));
+            leave.setTypeName(resultSet.getString("type_name"));
+
+            leave.setListAttachment(attachment.getByHeader(leave.getId()));
+
+            result.add(leave);
+        }
+
+        return result;
+    }
+    
     public Boolean create(Leave params) throws SQLException {
         // local variables
         boolean result = true;

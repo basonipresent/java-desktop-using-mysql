@@ -135,6 +135,38 @@ public class Users {
         connection.close();
         return result;
     }
+    
+    public Users get(String id) throws SQLException {
+        // local variables
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        // set result
+        Users result = new Users();
+        List<String> menus = new ArrayList<>();
+        query = "SELECT * FROM \n"
+                + "`e-cms`.user as u\n"
+                + "inner join `e-cms`.role as r on r.id = u.id_role\n"
+                + "inner join `e-cms`.access_menu as am on am.id_role = r.id\n"
+                + "WHERE \n"
+                + "u.id = " + id + ";";
+        resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+            result.setId(resultSet.getInt("id"));
+            result.setIdRole(resultSet.getInt("id_role"));
+            result.setUsername(resultSet.getString("username"));
+            result.setPassword(resultSet.getString("password"));
+            result.setFirstName(resultSet.getString("first_name"));
+            result.setLastName(resultSet.getString("last_name"));
+            result.setIsActive(resultSet.getBoolean("is_active"));
+            menus.add(resultSet.getString("access_menu"));
+        }
+        result.setAccessMenu(menus);
+
+        connection.close();
+        return result;
+    }
 
     public boolean insertData(Users params) throws SQLException {
         // local variables
