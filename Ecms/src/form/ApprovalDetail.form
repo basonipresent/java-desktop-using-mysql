@@ -428,13 +428,13 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="formApprovalMainApprovalTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formLeaveMainLeaveLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="formApprovalMainApprovalJComboBoxStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="formApprovalMainApprovalLebelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="formApprovalMainApprovalLebelFrom" alignment="3" max="32767" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                      <Component id="formApprovalMainApprovalTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="formLeaveMainLeaveLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                               <Component id="formApprovalMainApprovalButtonSearch" alignment="1" max="32767" attributes="0"/>
                               <Component id="formApprovalMainApprovalJDateChooseTo" alignment="1" max="32767" attributes="0"/>

@@ -292,12 +292,12 @@ public class ApprovalDetail extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(formApprovalMainApprovalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(formApprovalMainApprovalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formApprovalMainApprovalTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(formLeaveMainLeaveLebelFullName))
+                    .addGroup(formApprovalMainApprovalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(formApprovalMainApprovalJComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(formApprovalMainApprovalLebelStatus)
-                        .addComponent(formApprovalMainApprovalLebelFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(formApprovalMainApprovalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(formApprovalMainApprovalTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formLeaveMainLeaveLebelFullName)))
+                        .addComponent(formApprovalMainApprovalLebelFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(formApprovalMainApprovalButtonSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(formApprovalMainApprovalJDateChooseTo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(formApprovalMainApprovalJDateChooseFrom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -604,7 +604,23 @@ public class ApprovalDetail extends javax.swing.JFrame {
 
     private void formApprovalMainApprovalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formApprovalMainApprovalTableMouseClicked
         // TODO add your handling code here:
+        try {
+            Leave leave = new Leave();
+            ApprovalProcess approvalProcess = new ApprovalProcess();
+            int rowSelected = formApprovalMainApprovalTable.getSelectedRow();
+            int selectedId = Integer.parseInt(formApprovalMainApprovalTable.getValueAt(rowSelected, 0).toString());
 
+            leave = leave.get(selectedId);
+            approvalProcess.show(true);
+            approvalProcess.assignValue(leave);
+            approvalProcess.setLabelId(formApprovalHeaderLabelId.getText());
+            approvalProcess.setLabelNik(formApprovalHeaderLabelNik.getText());
+            approvalProcess.setFullName(getFullName());
+            approvalProcess.setAccessMenu(getAccessMenu());
+            this.dispose();
+        } catch (NumberFormatException | SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formApprovalMainApprovalTableMouseClicked
 
     private void formApprovalMainButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalMainButtonLogoutActionPerformed

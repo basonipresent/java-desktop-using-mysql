@@ -210,11 +210,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         });
         formLeaveMainLeaveTable.setColumnSelectionAllowed(true);
         formLeaveMainLeaveTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formLeaveMainLeaveTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formLeaveMainLeaveTableMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(formLeaveMainLeaveTable);
         formLeaveMainLeaveTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -624,19 +619,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         frame.setResizable(false);
         frame.setVisible(true);
     }
-
-    private void formLeaveMainLeaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formLeaveMainLeaveTableMouseClicked
-        // TODO add your handling code here:
-        try {
-            Leave leave = new Leave();
-            int rowSelected = formLeaveMainLeaveTable.getSelectedRow();
-            int selectedId = Integer.parseInt(formLeaveMainLeaveTable.getValueAt(rowSelected, 0).toString());
-            leave = leave.get(selectedId);
-            displayImage(leave);
-        } catch (SQLException | HeadlessException | IOException e) {
-            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
-        }
-    }//GEN-LAST:event_formLeaveMainLeaveTableMouseClicked
 
     private void formLeaveMainButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formLeaveMainButtonLogoutActionPerformed
         // TODO add your handling code here:

@@ -1065,6 +1065,7 @@ public final class Dashboard extends javax.swing.JFrame {
             leaveRequest.setLabelNik(formDashboardHeaderLabelNik.getText());
             leaveRequest.setFullName(getFullName());
             leaveRequest.setAccessMenu(getAccessMenu());
+            leaveRequest.loadDataAttachment(leave.getListAttachment());
             this.dispose();
         } catch (NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

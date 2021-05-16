@@ -7,6 +7,9 @@
       <Color id="Default Cursor"/>
     </Property>
     <Property name="name" type="java.lang.String" value="frameEmployee" noResource="true"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1280, 720]"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
@@ -31,12 +34,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="formRequestLeavePanelHeader" max="32767" attributes="0"/>
+          <Component id="formApprovalProcessPanelHeader" pref="1298" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="formRequestLeavePanelMain" alignment="1" max="32767" attributes="0"/>
-                  <Component id="formRequestLeavePanelFooter" alignment="0" pref="1260" max="32767" attributes="0"/>
+                  <Component id="formApprovalProcessPanelMain" alignment="1" max="32767" attributes="0"/>
+                  <Component id="formApprovalProcessPanelFooter" alignment="0" pref="1278" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -45,18 +48,18 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="formRequestLeavePanelHeader" min="-2" max="-2" attributes="0"/>
+              <Component id="formApprovalProcessPanelHeader" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="formRequestLeavePanelMain" max="32767" attributes="0"/>
+              <Component id="formApprovalProcessPanelMain" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="formRequestLeavePanelFooter" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="formApprovalProcessPanelFooter" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="formRequestLeavePanelHeader">
+    <Container class="javax.swing.JPanel" name="formApprovalProcessPanelHeader">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
@@ -76,15 +79,15 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="formRequestLeaveHeaderLable" alignment="0" max="32767" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLable" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="formRequestLeaveHeaderLabelId" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessHeaderLabelId" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveHeaderLabelIsUpdate" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessHeaderLabelIsUpdate" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveHeaderLabelIdLeave" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessHeaderLabelIdLeave" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveHeaderLabelNik" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessHeaderLabelNik" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -96,32 +99,32 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formRequestLeaveHeaderLable" max="32767" attributes="0"/>
+                  <Component id="formApprovalProcessHeaderLable" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formRequestLeaveHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveHeaderLabelIsUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveHeaderLabelIdLeave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLabelIsUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLabelIdLeave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLable">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLable">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Medium" size="36" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Request Leave"/>
+            <Property name="text" type="java.lang.String" value="Approval Process"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelId">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -135,7 +138,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelIsUpdate">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelIsUpdate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -149,7 +152,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelIdLeave">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelIdLeave">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -163,7 +166,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveHeaderLabelNik">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelNik">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -179,7 +182,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formRequestLeavePanelFooter">
+    <Container class="javax.swing.JPanel" name="formApprovalProcessPanelFooter">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1024, 75]"/>
@@ -191,7 +194,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formRequestLeaveLabelFooter2" pref="1240" max="32767" attributes="0"/>
+                  <Component id="formApprovalProcessLabelFooter2" pref="1258" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -200,14 +203,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formRequestLeaveLabelFooter2" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="formApprovalProcessLabelFooter2" min="-2" pref="28" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveLabelFooter2">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessLabelFooter2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="14" style="0"/>
@@ -218,7 +221,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formRequestLeavePanelMain">
+    <Container class="javax.swing.JPanel" name="formApprovalProcessPanelMain">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Roboto Light" size="18" style="0"/>
@@ -232,17 +235,23 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="formRequestLeaveMainLabelFullName" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="890" max="32767" attributes="0"/>
-                          <Component id="formRequestLeaveMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainLabelFullNameUser" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="908" max="32767" attributes="0"/>
+                          <Component id="formApprovalProcessMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="formRequestLeaveMainPanelButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="formRequestLeaveMainPanelForm" alignment="0" max="32767" attributes="0"/>
-                      <Component id="formRequestLeaveMainPanelFiles" alignment="1" max="32767" attributes="0"/>
+                      <Component id="formApprovalProcessMainPanelButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="formApprovalProcessMainPanelFiles" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainPanelForm" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -251,23 +260,28 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formRequestLeaveMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveMainLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainLabelFullNameUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="formRequestLeaveMainPanelForm" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="8" max="32767" attributes="0"/>
-                  <Component id="formRequestLeaveMainPanelFiles" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="274" max="32767" attributes="0"/>
+                  <Component id="formApprovalProcessMainPanelFiles" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formRequestLeaveMainPanelButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Component id="formApprovalProcessMainPanelButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainPanelForm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="230" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelFullName">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelFullNameUser">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="1"/>
@@ -275,7 +289,7 @@
             <Property name="text" type="java.lang.String" value="FullName"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonBack">
+        <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -283,11 +297,11 @@
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonBackActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonBackKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonBackActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonBackKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonLogout">
+        <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonLogout">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -295,11 +309,11 @@
             <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonLogoutActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonLogoutKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonLogoutActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonLogoutKeyPressed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="formRequestLeaveMainPanelForm">
+        <Container class="javax.swing.JPanel" name="formApprovalProcessMainPanelForm">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -314,29 +328,29 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="formRequestLeaveMainLabelType" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainLabelFrom" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainLabelReasons" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainLabelFrom" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainLabelReasons" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainLabelFullName" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="104" max="32767" attributes="0"/>
+                      <EmptySpace pref="114" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="formRequestLeaveMainDateChooserFrom" max="32767" attributes="0"/>
-                                  <Component id="formRequestLeaveMainComboBoxType" max="32767" attributes="0"/>
+                                  <Component id="formApprovalProcessMainDateChooserFrom" max="32767" attributes="0"/>
+                                  <Component id="formApprovalProcessMainTextFieldFullName" pref="400" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="formRequestLeaveMainLabelTo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="formRequestLeaveMainLabelFile" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formApprovalProcessMainLabelTo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formApprovalProcessMainLabelFile" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="formRequestLeaveMainButtonChooseFile" max="32767" attributes="0"/>
-                                  <Component id="formRequestLeaveMainDateChooserTo" max="32767" attributes="0"/>
+                                  <Component id="formApprovalProcessMainDateChooserTo" max="32767" attributes="0"/>
+                                  <Component id="formApprovalProcessMainComboBoxType" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -345,79 +359,91 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="formRequestLeaveMainLabelType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainLabelFile" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainComboBoxType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainButtonChooseFile" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="formApprovalProcessMainLabelFullName" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="formApprovalProcessMainComboBoxType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="formApprovalProcessMainLabelFile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="formApprovalProcessMainTextFieldFullName" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="formRequestLeaveMainLabelTo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="formRequestLeaveMainLabelFrom" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="formApprovalProcessMainLabelTo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="formApprovalProcessMainLabelFrom" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="formRequestLeaveMainDateChooserFrom" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="formApprovalProcessMainDateChooserFrom" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="formRequestLeaveMainDateChooserTo" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainDateChooserTo" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainLabelReasons" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainLabelReasons" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelType">
+            <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelFullName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Type*"/>
+                <Property name="text" type="java.lang.String" value="Full Name"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelFrom">
+            <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelFrom">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="From*"/>
+                <Property name="text" type="java.lang.String" value="From"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelReasons">
+            <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelReasons">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Reasons*"/>
+                <Property name="text" type="java.lang.String" value="Reasons"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelFile">
+            <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelFile">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="File*"/>
+                <Property name="text" type="java.lang.String" value="Type"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="formRequestLeaveMainLabelTo">
+            <Component class="javax.swing.JLabel" name="formApprovalProcessMainLabelTo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="To*"/>
+                <Property name="text" type="java.lang.String" value="To"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="formRequestLeaveMainComboBoxType">
+            <Component class="javax.swing.JTextField" name="formApprovalProcessMainTextFieldFullName">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Roboto" size="18" style="0"/>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Text Cursor"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="formApprovalProcessMainComboBoxType">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -430,19 +456,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonChooseFile">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Roboto Light" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Choose File"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonChooseFileActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonChooseFileKeyPressed"/>
-              </Events>
-            </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="formRequestLeaveMainDateChooserFrom">
+            <Component class="com.toedter.calendar.JDateChooser" name="formApprovalProcessMainDateChooserFrom">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -455,7 +469,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="formRequestLeaveMainDateChooserTo">
+            <Component class="com.toedter.calendar.JDateChooser" name="formApprovalProcessMainDateChooserTo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -475,7 +489,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="formRequestLeaveMainTextAreaReasons">
+                <Component class="javax.swing.JTextArea" name="formApprovalProcessMainTextAreaReasons">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -488,76 +502,61 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="formRequestLeaveMainPanelButton">
+        <Container class="javax.swing.JPanel" name="formApprovalProcessMainPanelButton">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveMainButtonSave" min="-2" pref="250" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveMainButtonSubmit" min="-2" pref="250" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="formRequestLeaveMainButtonDelete" min="-2" pref="250" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonSave" min="-2" pref="250" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonSubmit" min="-2" pref="250" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="formRequestLeaveMainButtonSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainButtonSave" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formRequestLeaveMainButtonDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="formApprovalProcessMainButtonSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainButtonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonSave">
+            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonSave">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Save Draf"/>
+                <Property name="text" type="java.lang.String" value="Approved"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonSaveActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonSaveKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonSaveActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonSaveKeyPressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonSubmit">
+            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonSubmit">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Submit"/>
+                <Property name="text" type="java.lang.String" value="Rejected"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonSubmitActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonSubmitKeyPressed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="formRequestLeaveMainButtonDelete">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Roboto Light" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Delete"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formRequestLeaveMainButtonDeleteActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formRequestLeaveMainButtonDeleteKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonSubmitActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonSubmitKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="formRequestLeaveMainPanelFiles">
+        <Container class="javax.swing.JPanel" name="formApprovalProcessMainPanelFiles">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -593,7 +592,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="formRequestLeaveMainTableAttachment">
+                <Component class="javax.swing.JTable" name="formApprovalProcessMainTableAttachment">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="14" style="0"/>
@@ -606,12 +605,36 @@
                         <Column editable="true" title="File Path" type="java.lang.Object"/>
                       </Table>
                     </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formRequestLeaveMainTableAttachmentMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formApprovalProcessMainTableAttachmentMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
