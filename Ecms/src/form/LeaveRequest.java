@@ -657,6 +657,16 @@ public class LeaveRequest extends javax.swing.JFrame {
             formRequestLeaveMainTextAreaReasons.setText(leave.getReasons());
             formRequestLeaveHeaderLabelIsUpdate.setText("1");
             formRequestLeaveHeaderLabelIdLeave.setText(leave.getId().toString());
+            
+            if(!leave.getStatus().equals(Constanta.Leave.DRAF)){
+                formRequestLeaveMainButtonSave.setEnabled(false);
+                formRequestLeaveMainButtonSubmit.setEnabled(false);
+                formRequestLeaveMainButtonDelete.setEnabled(false);
+            } else {
+                formRequestLeaveMainButtonSave.setEnabled(true);
+                formRequestLeaveMainButtonSubmit.setEnabled(true);
+                formRequestLeaveMainButtonDelete.setEnabled(true);
+            }
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
