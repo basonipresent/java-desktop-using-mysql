@@ -592,34 +592,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         table.addCell(cell);
     }
     
-    private void displayImage(Leave leave) throws IOException {
-        String[] columnNames = {"Picture"};
-        Object[][] data = new Object[leave.getListAttachment().size()][1];
-        int row = 0;
-        for(Attachment attachment : leave.getListAttachment()){
-            File file = new File(attachment.getFilePath());
-            BufferedImage image = ImageIO.read(file);
-            data[row][0] = image;
-            row++;
-        }
-        DefaultTableModel defaultTableModel = new DefaultTableModel(data, columnNames);
-        JTable table = new JTable(defaultTableModel){
-            @Override
-            public Class<?> getColumnClass(int column) {
-                return super.getColumnClass(column); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        table.setPreferredScrollableViewportSize(table.getPreferredSize());
-        JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        getContentPane().add( scrollPane );
-        
-        JFrame frame = new JFrame("Leave Detail " + leave.getFullName());
-        frame.getContentPane().add(scrollPane);
-        frame.setSize(1280, 720);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-
     private void formLeaveMainButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formLeaveMainButtonLogoutActionPerformed
         // TODO add your handling code here:
         try {

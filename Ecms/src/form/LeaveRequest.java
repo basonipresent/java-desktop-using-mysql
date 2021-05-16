@@ -4,7 +4,9 @@ import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,8 +17,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -500,6 +506,7 @@ public class LeaveRequest extends javax.swing.JFrame {
     public void setListAttachment(List<Attachment> value) {
         this.list_attachments = value;
     }
+
     public List<Attachment> getListAttachment() {
         return list_attachments;
     }
@@ -523,20 +530,20 @@ public class LeaveRequest extends javax.swing.JFrame {
             TableColumnModel tableColumnModel = formRequestLeaveMainTableAttachment.getColumnModel();
             tableColumnModel.getColumn(0).setMaxWidth(0);
             tableColumnModel.getColumn(0).setMinWidth(0);
-            
+
             tableColumnModel.getColumn(1).setMaxWidth(0);
             tableColumnModel.getColumn(1).setMinWidth(0);
-            
+
             rows[0] = list.get(i).getId();
             rows[1] = list.get(i).getIdLeave();
             rows[2] = list.get(i).getFileName();
             rows[3] = list.get(i).getFilePath();
-            
+
             defaultTableModel.addRow(rows);
         }
         formRequestLeaveMainTableAttachment.setAutoCreateRowSorter(true);
     }
-    
+
     private void uploadFiles() {
         JFrame parentFrame = new JFrame();
 
@@ -607,44 +614,43 @@ public class LeaveRequest extends javax.swing.JFrame {
 
         return result;
     }
-    
+
     private boolean delete() throws SQLException {
         boolean result = true;
-        
+
         Leave leave = new Leave();
         leave.setId(Integer.parseInt(formRequestLeaveHeaderLabelIdLeave.getText()));
         result = leave.delete(leave.getId());
 
         return result;
     }
-    
-    public void clear(){
+
+    public void clear() {
         formRequestLeaveMainTextAreaReasons.setText("");
         formRequestLeaveMainDateChooserFrom.setDate(null);
         formRequestLeaveMainDateChooserTo.setDate(null);
         setListAttachment(list_attachments = new ArrayList<>());
     }
-    
-    private boolean validation(){
-        
+
+    private boolean validation() {
+
         boolean result;
-        
-        result = !(
-                formRequestLeaveMainDateChooserTo.getDate() == null
+
+        result = !(formRequestLeaveMainDateChooserTo.getDate() == null
                 || formRequestLeaveMainDateChooserFrom.getDate() == null
                 || formRequestLeaveMainTextAreaReasons.getText().equals(""));
-        
+
         return result;
     }
-    
+
     public void assignValue(Leave leave) {
         try {
             SimpleDateFormat simpleDateFormatFrom = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat simpleDateFormatTo = new SimpleDateFormat("yyyy-MM-dd");
-            
+
             Date dateFrom = simpleDateFormatFrom.parse(leave.getDateFrom());
             Date dateTo = simpleDateFormatTo.parse(leave.getDateTo());
-            
+
             formRequestLeaveMainComboBoxType.setSelectedItem(leave.getTypeName());
             formRequestLeaveMainDateChooserFrom.setDate(dateFrom);
             formRequestLeaveMainDateChooserTo.setDate(dateTo);
@@ -655,7 +661,22 @@ public class LeaveRequest extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
+
+    private void displayImage(String path, String name) throws IOException {
+        JPanel panel = new JPanel();
+
+        BufferedImage image = ImageIO.read(new File(path));
+        JLabel label = new JLabel(new ImageIcon(image));
+        panel.add(label);
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame frame = new JFrame(name);
+
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
     private void formRequestLeaveMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonBackActionPerformed
         // TODO add your handling code here:
         try {
@@ -790,6 +811,16 @@ public class LeaveRequest extends javax.swing.JFrame {
                 if (validation()) {
                     if (submit(Constanta.Leave.SUBMIT)) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        clear();
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.show();
+                        dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                        dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                        dashboard.setFullName(getFullName());
+                        dashboard.setAccessMenu(getAccessMenu());
+                        dashboard.loadDataAttendance();
+                        dashboard.loadDataLeave();
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
@@ -813,6 +844,16 @@ public class LeaveRequest extends javax.swing.JFrame {
                 if (validation()) {
                     if (submit(Constanta.Leave.SUBMIT)) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        clear();
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.show();
+                        dashboard.setLabelId(formRequestLeaveHeaderLabelId.getText());
+                        dashboard.setLabelNik(formRequestLeaveHeaderLabelNik.getText());
+                        dashboard.setFullName(getFullName());
+                        dashboard.setAccessMenu(getAccessMenu());
+                        dashboard.loadDataAttendance();
+                        dashboard.loadDataLeave();
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
@@ -859,7 +900,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
-                }
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -882,7 +923,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
-                }
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -890,6 +931,14 @@ public class LeaveRequest extends javax.swing.JFrame {
 
     private void formRequestLeaveMainTableAttachmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formRequestLeaveMainTableAttachmentMouseClicked
         // TODO add your handling code here:
+        try {
+            int rowSelected = formRequestLeaveMainTableAttachment.getSelectedRow();
+            String selectedFileName = formRequestLeaveMainTableAttachment.getValueAt(rowSelected, 2).toString();
+            String selectedFilePath = formRequestLeaveMainTableAttachment.getValueAt(rowSelected, 3).toString();
+            displayImage(selectedFilePath, selectedFileName);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formRequestLeaveMainTableAttachmentMouseClicked
 
     /**

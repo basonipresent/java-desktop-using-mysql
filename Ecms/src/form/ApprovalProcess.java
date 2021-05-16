@@ -3,20 +3,30 @@ package form;
 import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.HeadlessException;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attachment;
-import model.Attendance;
+import model.Employee;
 import model.Leave;
 
 /*
@@ -37,9 +47,9 @@ public class ApprovalProcess extends javax.swing.JFrame {
         initComponents();
         formApprovalProcessHeaderLabelId.setVisible(false);
         formApprovalProcessHeaderLabelNik.setVisible(false);
-        formApprovalProcessHeaderLabelIsUpdate.setVisible(false);
+        formApprovalProcessHeaderLabelNikLeave.setVisible(false);
         formApprovalProcessHeaderLabelIdLeave.setVisible(false);
-        formApprovalProcessHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
+        formApprovalProcessHeaderLabelNikLeave.setText(Constanta.Default.DEFAULT_VALUE);
         formApprovalProcessHeaderLabelIdLeave.setText(Constanta.Default.DEFAULT_VALUE);
         bindDataStatusLeave();
         
@@ -62,7 +72,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
         formApprovalProcessPanelHeader = new javax.swing.JPanel();
         formApprovalProcessHeaderLable = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelId = new javax.swing.JLabel();
-        formApprovalProcessHeaderLabelIsUpdate = new javax.swing.JLabel();
+        formApprovalProcessHeaderLabelNikLeave = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelIdLeave = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelNik = new javax.swing.JLabel();
         formApprovalProcessPanelFooter = new javax.swing.JPanel();
@@ -84,8 +94,8 @@ public class ApprovalProcess extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         formApprovalProcessMainTextAreaReasons = new javax.swing.JTextArea();
         formApprovalProcessMainPanelButton = new javax.swing.JPanel();
-        formApprovalProcessMainButtonSave = new javax.swing.JButton();
-        formApprovalProcessMainButtonSubmit = new javax.swing.JButton();
+        formApprovalProcessMainButtonApproved = new javax.swing.JButton();
+        formApprovalProcessMainButtonRejected = new javax.swing.JButton();
         formApprovalProcessMainPanelFiles = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         formApprovalProcessMainTableAttachment = new javax.swing.JTable();
@@ -93,7 +103,6 @@ public class ApprovalProcess extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -108,9 +117,9 @@ public class ApprovalProcess extends javax.swing.JFrame {
         formApprovalProcessHeaderLabelId.setText("Id");
         formApprovalProcessHeaderLabelId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        formApprovalProcessHeaderLabelIsUpdate.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
-        formApprovalProcessHeaderLabelIsUpdate.setText("IsUpdate");
-        formApprovalProcessHeaderLabelIsUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        formApprovalProcessHeaderLabelNikLeave.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
+        formApprovalProcessHeaderLabelNikLeave.setText("IsUpdate");
+        formApprovalProcessHeaderLabelNikLeave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         formApprovalProcessHeaderLabelIdLeave.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formApprovalProcessHeaderLabelIdLeave.setText("IdEmployee");
@@ -131,7 +140,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
                     .addGroup(formApprovalProcessPanelHeaderLayout.createSequentialGroup()
                         .addComponent(formApprovalProcessHeaderLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formApprovalProcessHeaderLabelIsUpdate)
+                        .addComponent(formApprovalProcessHeaderLabelNikLeave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formApprovalProcessHeaderLabelIdLeave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,7 +156,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formApprovalProcessHeaderLabelId)
-                    .addComponent(formApprovalProcessHeaderLabelIsUpdate)
+                    .addComponent(formApprovalProcessHeaderLabelNikLeave)
                     .addComponent(formApprovalProcessHeaderLabelIdLeave)
                     .addComponent(formApprovalProcessHeaderLabelNik)))
         );
@@ -297,29 +306,29 @@ public class ApprovalProcess extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        formApprovalProcessMainButtonSave.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formApprovalProcessMainButtonSave.setText("Approved");
-        formApprovalProcessMainButtonSave.addActionListener(new java.awt.event.ActionListener() {
+        formApprovalProcessMainButtonApproved.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formApprovalProcessMainButtonApproved.setText("Approved");
+        formApprovalProcessMainButtonApproved.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formApprovalProcessMainButtonSaveActionPerformed(evt);
+                formApprovalProcessMainButtonApprovedActionPerformed(evt);
             }
         });
-        formApprovalProcessMainButtonSave.addKeyListener(new java.awt.event.KeyAdapter() {
+        formApprovalProcessMainButtonApproved.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                formApprovalProcessMainButtonSaveKeyPressed(evt);
+                formApprovalProcessMainButtonApprovedKeyPressed(evt);
             }
         });
 
-        formApprovalProcessMainButtonSubmit.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formApprovalProcessMainButtonSubmit.setText("Rejected");
-        formApprovalProcessMainButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
+        formApprovalProcessMainButtonRejected.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formApprovalProcessMainButtonRejected.setText("Rejected");
+        formApprovalProcessMainButtonRejected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formApprovalProcessMainButtonSubmitActionPerformed(evt);
+                formApprovalProcessMainButtonRejectedActionPerformed(evt);
             }
         });
-        formApprovalProcessMainButtonSubmit.addKeyListener(new java.awt.event.KeyAdapter() {
+        formApprovalProcessMainButtonRejected.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                formApprovalProcessMainButtonSubmitKeyPressed(evt);
+                formApprovalProcessMainButtonRejectedKeyPressed(evt);
             }
         });
 
@@ -329,9 +338,9 @@ public class ApprovalProcess extends javax.swing.JFrame {
             formApprovalProcessMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formApprovalProcessMainPanelButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formApprovalProcessMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formApprovalProcessMainButtonApproved, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(formApprovalProcessMainButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formApprovalProcessMainButtonRejected, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(337, 337, 337))
         );
         formApprovalProcessMainPanelButtonLayout.setVerticalGroup(
@@ -339,8 +348,8 @@ public class ApprovalProcess extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formApprovalProcessMainPanelButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(formApprovalProcessMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formApprovalProcessMainButtonSubmit)
-                    .addComponent(formApprovalProcessMainButtonSave))
+                    .addComponent(formApprovalProcessMainButtonRejected)
+                    .addComponent(formApprovalProcessMainButtonApproved))
                 .addContainerGap())
         );
 
@@ -523,6 +532,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
     }
 
 
+    @SuppressWarnings("empty-statement")
     private boolean submit(String action) throws SQLException {
         boolean result = true;
         Date dateFrom = formApprovalProcessMainDateChooserFrom.getDate();
@@ -545,20 +555,25 @@ public class ApprovalProcess extends javax.swing.JFrame {
         Constanta.Leave constantaLeave = new Constanta.Leave();
         HashMap<String, Integer> map = constantaLeave.getTypes();
         int type_id = Integer.parseInt(map.get(formApprovalProcessMainComboBoxType.getSelectedItem().toString()).toString());
+        leave.setId(Integer.parseInt(formApprovalProcessHeaderLabelIdLeave.getText()));
         leave.setIdType(type_id);
-        leave.setUsername(formApprovalProcessHeaderLabelNik.getText());
+        leave.setUsername(formApprovalProcessHeaderLabelNikLeave.getText());
         leave.setRequestDate(localDateTimeNow.format(DATETIME_FORMATTER));
         leave.setDateFrom(date_from);
         leave.setDateTo(date_to);
         leave.setReasons(formApprovalProcessMainTextAreaReasons.getText());
         leave.setStatus(action);
         leave.setListAttachment(getListAttachment());
-
-        if (formApprovalProcessHeaderLabelIsUpdate.getText().equals("1")) {
-            leave.setId(Integer.parseInt(formApprovalProcessHeaderLabelIdLeave.getText()));
-            result = leave.update(leave);
+        if (action.equals(Constanta.Leave.APPROVED)) {
+            Employee employee = new Employee();
+            employee = employee.getByNik(leave.getUsername());
+            int daysOffRemaining = employee.getDaysOff();
+            int daysOffRequest = (int) ChronoUnit.DAYS.between(LocalDate.of(dateFrom.getYear(), dateFrom.getMonth(), dateFrom.getDay()), 
+                LocalDate.of(dateTo.getYear(), dateTo.getMonth(), dateTo.getDay()));
+            employee.setDaysOff(daysOffRemaining - daysOffRequest);
+            result = leave.update(leave) && employee.update(employee);
         } else {
-            result = leave.create(leave);
+            result = leave.update(leave);
         }
 
         return result;
@@ -596,12 +611,35 @@ public class ApprovalProcess extends javax.swing.JFrame {
             formApprovalProcessMainDateChooserFrom.setDate(dateFrom);
             formApprovalProcessMainDateChooserTo.setDate(dateTo);
             formApprovalProcessMainTextAreaReasons.setText(leave.getReasons());
-            formApprovalProcessHeaderLabelIsUpdate.setText("1");
+            formApprovalProcessHeaderLabelNikLeave.setText(leave.getUsername());
             formApprovalProcessHeaderLabelIdLeave.setText(leave.getId().toString());
             loadDataAttachment(leave);
+            
+            if(!leave.getStatus().equals(Constanta.Leave.SUBMIT)){
+                formApprovalProcessMainButtonApproved.setEnabled(false);
+                formApprovalProcessMainButtonRejected.setEnabled(false);
+            } else {
+                formApprovalProcessMainButtonApproved.setEnabled(true);
+                formApprovalProcessMainButtonRejected.setEnabled(true);
+            }
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
+    }
+    
+    private void displayImage(String path, String name) throws IOException{
+        JPanel panel = new JPanel();
+
+        BufferedImage image = ImageIO.read(new File(path));
+        JLabel label = new JLabel(new ImageIcon(image));
+        panel.add(label);
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame frame = new JFrame(name);
+
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
     }
     
     private void formApprovalProcessMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonBackActionPerformed
@@ -674,68 +712,26 @@ public class ApprovalProcess extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formApprovalProcessMainButtonLogoutKeyPressed
 
-    private void formApprovalProcessMainButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonSaveActionPerformed
-        // TODO add your handling code here:
-        try {
-            if (validation()) {
-                if (submit(Constanta.Leave.DRAF)) {
-                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-                    clear();
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.show();
-                    dashboard.setLabelId(formApprovalProcessHeaderLabelId.getText());
-                    dashboard.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
-                    dashboard.setFullName(getFullName());
-                    dashboard.setAccessMenu(getAccessMenu());
-                    dashboard.loadDataAttendance();
-                    dashboard.loadDataLeave();
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
-        }
-    }//GEN-LAST:event_formApprovalProcessMainButtonSaveActionPerformed
-
-    private void formApprovalProcessMainButtonSaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonSaveKeyPressed
-        // TODO add your handling code here:
-        try {
-            if (validation()) {
-                if (submit(Constanta.Leave.DRAF)) {
-                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-                    clear();
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.show();
-                    dashboard.setLabelId(formApprovalProcessHeaderLabelId.getText());
-                    dashboard.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
-                    dashboard.setFullName(getFullName());
-                    dashboard.setAccessMenu(getAccessMenu());
-                    dashboard.loadDataAttendance();
-                    dashboard.loadDataLeave();
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
-        }
-    }//GEN-LAST:event_formApprovalProcessMainButtonSaveKeyPressed
-
-    private void formApprovalProcessMainButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonSubmitActionPerformed
+    private void formApprovalProcessMainButtonApprovedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonApprovedActionPerformed
         // TODO add your handling code here:
         try {
             int action = JOptionPane.showConfirmDialog(null,
-                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
+                    Constanta.Messages.MESSAGE_CONFIRM_APPROVED,
                     Constanta.Messages.BANNER_CONFIRM,
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
             if (action == JOptionPane.YES_OPTION) {
                 if (validation()) {
-                    if (submit(Constanta.Leave.SUBMIT)) {
+                    if (submit(Constanta.Leave.APPROVED)) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        ApprovalDetail approvalDetail = new ApprovalDetail();
+                        approvalDetail.show(true);
+                        approvalDetail.setLabelId(formApprovalProcessHeaderLabelId.getText());
+                        approvalDetail.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
+                        approvalDetail.setFullName(getFullName());
+                        approvalDetail.setAccessMenu(getAccessMenu());
+                        approvalDetail.loadDataApproval();
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
@@ -745,20 +741,28 @@ public class ApprovalProcess extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
-    }//GEN-LAST:event_formApprovalProcessMainButtonSubmitActionPerformed
+    }//GEN-LAST:event_formApprovalProcessMainButtonApprovedActionPerformed
 
-    private void formApprovalProcessMainButtonSubmitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonSubmitKeyPressed
+    private void formApprovalProcessMainButtonApprovedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonApprovedKeyPressed
         // TODO add your handling code here:
         try {
             int action = JOptionPane.showConfirmDialog(null,
-                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
+                    Constanta.Messages.MESSAGE_CONFIRM_APPROVED,
                     Constanta.Messages.BANNER_CONFIRM,
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
             if (action == JOptionPane.YES_OPTION) {
                 if (validation()) {
-                    if (submit(Constanta.Leave.SUBMIT)) {
+                    if (submit(Constanta.Leave.APPROVED)) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        ApprovalDetail approvalDetail = new ApprovalDetail();
+                        approvalDetail.show(true);
+                        approvalDetail.setLabelId(formApprovalProcessHeaderLabelId.getText());
+                        approvalDetail.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
+                        approvalDetail.setFullName(getFullName());
+                        approvalDetail.setAccessMenu(getAccessMenu());
+                        approvalDetail.loadDataApproval();
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
@@ -768,10 +772,80 @@ public class ApprovalProcess extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
-    }//GEN-LAST:event_formApprovalProcessMainButtonSubmitKeyPressed
+    }//GEN-LAST:event_formApprovalProcessMainButtonApprovedKeyPressed
+
+    private void formApprovalProcessMainButtonRejectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonRejectedActionPerformed
+        // TODO add your handling code here:
+        try {
+            int action = JOptionPane.showConfirmDialog(null,
+                    Constanta.Messages.MESSAGE_CONFIRM_REJECTED,
+                    Constanta.Messages.BANNER_CONFIRM,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (action == JOptionPane.YES_OPTION) {
+                if (validation()) {
+                    if (submit(Constanta.Leave.REJECTED)) {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        ApprovalDetail approvalDetail = new ApprovalDetail();
+                        approvalDetail.show(true);
+                        approvalDetail.setLabelId(formApprovalProcessHeaderLabelId.getText());
+                        approvalDetail.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
+                        approvalDetail.setFullName(getFullName());
+                        approvalDetail.setAccessMenu(getAccessMenu());
+                        approvalDetail.loadDataApproval();
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                    }
+                }
+            }
+            clear();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formApprovalProcessMainButtonRejectedActionPerformed
+
+    private void formApprovalProcessMainButtonRejectedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formApprovalProcessMainButtonRejectedKeyPressed
+        // TODO add your handling code here:
+        try {
+            int action = JOptionPane.showConfirmDialog(null,
+                    Constanta.Messages.MESSAGE_CONFIRM_REJECTED,
+                    Constanta.Messages.BANNER_CONFIRM,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (action == JOptionPane.YES_OPTION) {
+                if (validation()) {
+                    if (submit(Constanta.Leave.REJECTED)) {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+                        ApprovalDetail approvalDetail = new ApprovalDetail();
+                        approvalDetail.show(true);
+                        approvalDetail.setLabelId(formApprovalProcessHeaderLabelId.getText());
+                        approvalDetail.setLabelNik(formApprovalProcessHeaderLabelNik.getText());
+                        approvalDetail.setFullName(getFullName());
+                        approvalDetail.setAccessMenu(getAccessMenu());
+                        approvalDetail.loadDataApproval();
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+                    }
+                }
+            }
+            clear();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formApprovalProcessMainButtonRejectedKeyPressed
 
     private void formApprovalProcessMainTableAttachmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formApprovalProcessMainTableAttachmentMouseClicked
         // TODO add your handling code here:
+        try {
+            int rowSelected = formApprovalProcessMainTableAttachment.getSelectedRow();
+            String selectedFileName = formApprovalProcessMainTableAttachment.getValueAt(rowSelected, 2).toString();
+            String selectedFilePath = formApprovalProcessMainTableAttachment.getValueAt(rowSelected, 3).toString();
+            displayImage(selectedFilePath, selectedFileName);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formApprovalProcessMainTableAttachmentMouseClicked
 
     /**
@@ -827,14 +901,14 @@ public class ApprovalProcess extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel formApprovalProcessHeaderLabelId;
     public javax.swing.JLabel formApprovalProcessHeaderLabelIdLeave;
-    public javax.swing.JLabel formApprovalProcessHeaderLabelIsUpdate;
     public javax.swing.JLabel formApprovalProcessHeaderLabelNik;
+    public javax.swing.JLabel formApprovalProcessHeaderLabelNikLeave;
     private javax.swing.JLabel formApprovalProcessHeaderLable;
     private javax.swing.JLabel formApprovalProcessLabelFooter2;
+    private javax.swing.JButton formApprovalProcessMainButtonApproved;
     private javax.swing.JButton formApprovalProcessMainButtonBack;
     private javax.swing.JButton formApprovalProcessMainButtonLogout;
-    private javax.swing.JButton formApprovalProcessMainButtonSave;
-    private javax.swing.JButton formApprovalProcessMainButtonSubmit;
+    private javax.swing.JButton formApprovalProcessMainButtonRejected;
     private javax.swing.JComboBox<String> formApprovalProcessMainComboBoxType;
     private com.toedter.calendar.JDateChooser formApprovalProcessMainDateChooserFrom;
     private com.toedter.calendar.JDateChooser formApprovalProcessMainDateChooserTo;

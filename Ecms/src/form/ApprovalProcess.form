@@ -7,9 +7,6 @@
       <Color id="Default Cursor"/>
     </Property>
     <Property name="name" type="java.lang.String" value="frameEmployee" noResource="true"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
@@ -83,7 +80,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="formApprovalProcessHeaderLabelId" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formApprovalProcessHeaderLabelIsUpdate" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessHeaderLabelNikLeave" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="formApprovalProcessHeaderLabelIdLeave" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -103,7 +100,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="formApprovalProcessHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formApprovalProcessHeaderLabelIsUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessHeaderLabelNikLeave" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formApprovalProcessHeaderLabelIdLeave" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formApprovalProcessHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -138,7 +135,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelIsUpdate">
+        <Component class="javax.swing.JLabel" name="formApprovalProcessHeaderLabelNikLeave">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -509,9 +506,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="formApprovalProcessMainButtonSave" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonApproved" min="-2" pref="250" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="formApprovalProcessMainButtonSubmit" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="formApprovalProcessMainButtonRejected" min="-2" pref="250" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -521,8 +518,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="formApprovalProcessMainButtonSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="formApprovalProcessMainButtonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainButtonRejected" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="formApprovalProcessMainButtonApproved" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -530,7 +527,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonSave">
+            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonApproved">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -538,11 +535,11 @@
                 <Property name="text" type="java.lang.String" value="Approved"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonSaveActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonSaveKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonApprovedActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonApprovedKeyPressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonSubmit">
+            <Component class="javax.swing.JButton" name="formApprovalProcessMainButtonRejected">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
@@ -550,8 +547,8 @@
                 <Property name="text" type="java.lang.String" value="Rejected"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonSubmitActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonSubmitKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formApprovalProcessMainButtonRejectedActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formApprovalProcessMainButtonRejectedKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>
