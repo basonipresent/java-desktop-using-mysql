@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attendance;
 import model.Leave;
+import model.Payslip;
 import model.Users;
 
 /*
@@ -241,17 +242,6 @@ public final class Dashboard extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(formDashboardMainAttendanceTable);
         formDashboardMainAttendanceTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (formDashboardMainAttendanceTable.getColumnModel().getColumnCount() > 0) {
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(0).setHeaderValue("Id");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(1).setHeaderValue("Nik");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(2).setHeaderValue("Full Name");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(3).setHeaderValue("Check In");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(4).setHeaderValue("Check Out");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(5).setHeaderValue("Location");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(6).setHeaderValue("Duration");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(7).setHeaderValue("Status");
-            formDashboardMainAttendanceTable.getColumnModel().getColumn(8).setHeaderValue("Information");
-        }
 
         formDashboardMainAttendanceCheckin.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceCheckin.setText("Check In");
@@ -523,17 +513,18 @@ public final class Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nik", "First Name", "Last Name", "Position", "Address", "Salary", "Days Off", "Status"
+                "Id", "Nik", "Full Name", "Periode", "Net Salary", "Total Working"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        formDashboardMainPayslipTable.setColumnSelectionAllowed(true);
         formDashboardMainPayslipTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formDashboardMainPayslipTableMouseClicked(evt);
@@ -905,6 +896,45 @@ public final class Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
+    
+    public void loadDataPayslip() {
+        try {
+            List<Payslip> listPayslip;
+            if (formDashboardHeaderLabelNik.getText().equals("hrd")
+                    || formDashboardHeaderLabelNik.getText().equals("admin")) {
+                listPayslip = Payslip.listParams()
+                        .withUsername("")
+                        .withPeriode(null)
+                        .build();
+            } else {
+                listPayslip = Payslip.listParams()
+                        .withUsername(getFullName())
+                        .withPeriode(null)
+                        .build();
+            }
+
+            DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainPayslipTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] rows = new Object[6];
+            for (int i = 0; i < listPayslip.size(); i++) {
+                TableColumnModel tableColumnModel = formDashboardMainPayslipTable.getColumnModel();
+                tableColumnModel.getColumn(0).setMaxWidth(0);
+                tableColumnModel.getColumn(0).setMinWidth(0);
+
+                rows[0] = listPayslip.get(i).getId();
+                rows[1] = listPayslip.get(i).getUsername();
+                rows[2] = listPayslip.get(i).getFullName();
+                rows[2] = listPayslip.get(i).getPeriode();
+                rows[4] = String.format("%.0f", listPayslip.get(i).getNetSalary());
+                rows[5] = String.format("%.0f", listPayslip.get(i).getWorkingHour() + listPayslip.get(i).getOvertimeHour());
+
+                defaultTableModel.addRow(rows);
+            }
+            formDashboardMainPayslipTable.setAutoCreateRowSorter(true);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }
 
     private boolean checkIn() throws SQLException {
         boolean result;
@@ -1012,10 +1042,34 @@ public final class Dashboard extends javax.swing.JFrame {
 
     private void formDashboardMainButtonPayslipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonPayslipActionPerformed
         // TODO add your handling code here:
+        try {
+            EmployeePayslipList employeePayslipList = new EmployeePayslipList();
+            employeePayslipList.show(true);
+            employeePayslipList.setLabelId(formDashboardHeaderLabelId.getText());
+            employeePayslipList.setLabelNik(formDashboardHeaderLabelNik.getText());
+            employeePayslipList.setFullName(getFullName());
+            employeePayslipList.setAccessMenu(getAccessMenu());
+            employeePayslipList.loadData();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonPayslipActionPerformed
 
     private void formDashboardMainButtonPayslipKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonPayslipKeyPressed
         // TODO add your handling code here:
+        try {
+            EmployeePayslipList employeePayslipList = new EmployeePayslipList();
+            employeePayslipList.show(true);
+            employeePayslipList.setLabelId(formDashboardHeaderLabelId.getText());
+            employeePayslipList.setLabelNik(formDashboardHeaderLabelNik.getText());
+            employeePayslipList.setFullName(getFullName());
+            employeePayslipList.setAccessMenu(getAccessMenu());
+            employeePayslipList.loadData();
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formDashboardMainButtonPayslipKeyPressed
 
     private void formDashboardMainButtonApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonApprovalActionPerformed

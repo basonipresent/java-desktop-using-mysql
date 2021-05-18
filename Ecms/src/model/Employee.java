@@ -213,6 +213,54 @@ public class Employee {
         return result;
     }
     
+    public List<Employee> search(String keyword) throws SQLException {
+        List<Employee> result = new ArrayList<>();
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "SELECT \n"
+                + "e.*,\n"
+                + "concat(p.`level`, ' ', p.`position_name`) as position_name\n"
+                + "FROM \n"
+                + "`e-cms`.employee as e \n"
+                + "INNER JOIN `e-cms`.position as p on p.`id` = e.`id_position`\n"
+                + "WHERE \n"
+                + "('" + keyword + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + keyword + "%')\n"
+                + "ORDER BY \n"
+                + "e.`first_name`,\n"
+                + "e.`last_name`;";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Employee employee = new Employee();
+            
+            employee.setId(Integer.parseInt(resultSet.getString("id")));
+            employee.setIdPosition(Integer.parseInt(resultSet.getString("id_position")));
+            employee.setNik(resultSet.getString("nik"));
+            employee.setFirstName(resultSet.getString("first_name"));
+            employee.setLastName(resultSet.getString("last_name"));
+            employee.setAddress(resultSet.getString("address"));
+            employee.setCity(resultSet.getString("city"));
+            employee.setPhone(resultSet.getString("phone"));
+            employee.setEducationDegree(resultSet.getString("education_degree"));
+            employee.setStatus(resultSet.getString("status"));
+            employee.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
+            employee.setDaysOff(Integer.parseInt(resultSet.getString("days_off")));
+            employee.setCreatedBy(resultSet.getString("created_by"));
+            employee.setCreatedDate(resultSet.getString("created_date"));
+            employee.setUpdatedBy(resultSet.getString("updated_by"));
+            employee.setUpdatedDate(resultSet.getString("updated_date"));
+            employee.setPositionName(resultSet.getString("position_name"));
+            
+            result.add(employee);
+        }
+        
+        return result;
+    }
+    
     public Employee get(int id) throws SQLException {
         Employee result = new Employee();
         

@@ -67,6 +67,7 @@ public class Constanta {
 
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
         public static final int DEFAULT_NUMERIC_VALUE = 0;
+        public static final int DEFAULT_NORMAL_WORKING = 10;
         public static final String DEFAULT_LOCATION = "OFFICE";
         public static final String DEFAULT_CHECKIN_STATUS = "CHECK IN";
         public static final String DEFAULT_CHECKOUT_STATUS = "CHECK OUT";

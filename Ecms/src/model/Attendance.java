@@ -28,6 +28,7 @@ public class Attendance {
     private String check_out;
     private String location;
     private Float duration;
+    private Float overtime;
     private String status;
     private String information;
     private String full_name;
@@ -72,6 +73,13 @@ public class Attendance {
     }
     public void setDuration(Float value){
         this.duration = value;
+    }
+    
+    public Float getOvertime(){
+        return overtime;
+    }
+    public void setOvertime(Float value){
+        this.overtime = value;
     }
     
     public String getStatus(){
@@ -178,6 +186,7 @@ public class Attendance {
             attendance.setCheckOut(resultSet.getString("checkout"));
             attendance.setLocation(resultSet.getString("location"));
             attendance.setDuration(Float.parseFloat(resultSet.getString("duration")));
+            attendance.setOvertime(Float.parseFloat(resultSet.getString("overtime")));
             attendance.setStatus(resultSet.getString("status"));
             attendance.setInformation(resultSet.getString("information"));
             attendance.setFullName(resultSet.getString("full_name"));
@@ -201,12 +210,14 @@ public class Attendance {
                 + "`checkin`,\n"
                 + "`location`,\n"
                 + "`duration`,\n"
+                + "`overtime`,\n"
                 + "`status`,\n"
                 + "`information`)\n"
                 + "VALUES\n"
                 + "('" + params.getUsername() + "',\n"
                 + "'" + params.getCheckIn() + "',\n"
                 + "'" + params.getLocation() + "',\n"
+                + "'" + Constanta.Default.DEFAULT_NUMERIC_VALUE + "',\n"
                 + "'" + Constanta.Default.DEFAULT_NUMERIC_VALUE + "',\n"
                 + "'" + params.getStatus() + "',\n"
                 + "'" + params.getInformation() + "');";
@@ -232,6 +243,7 @@ public class Attendance {
                 + "SET\n"
                 + "`checkout` = NOW(),\n"
                 + "`duration` = ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2),\n"
+                + "`overtime` = CASE WHEN ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2) - " + Constanta.Default.DEFAULT_NORMAL_WORKING + " > 0 THEN ROUND(TIMESTAMPDIFF(MINUTE, checkin, NOW()) / 60.0, 2) - " + Constanta.Default.DEFAULT_NORMAL_WORKING + " ELSE 0 END,\n"
                 + "`status` = '" + Constanta.Default.DEFAULT_CHECKOUT_STATUS + "',\n"
                 + "`information` = '" + params.getInformation() + "'"
                 + "WHERE `id` = " + params.getId() + ";";
@@ -265,6 +277,7 @@ public class Attendance {
             attendance.setCheckOut(resultSet.getString("checkout"));
             attendance.setLocation(resultSet.getString("location"));
             attendance.setDuration(Float.parseFloat(resultSet.getString("duration")));
+            attendance.setOvertime(Float.parseFloat(resultSet.getString("overtime")));
             attendance.setStatus(resultSet.getString("status"));
             attendance.setInformation(resultSet.getString("information"));
         }

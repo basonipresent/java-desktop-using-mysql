@@ -5,7 +5,6 @@
  */
 package model;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
 import config.Connections;
 import config.Constanta;
 import java.sql.Connection;
