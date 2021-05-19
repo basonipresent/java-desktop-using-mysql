@@ -63,7 +63,7 @@ public class Constanta {
         }
     }
 
-    public class Default {
+    public static class Default {
 
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
         public static final int DEFAULT_NUMERIC_VALUE = 0;
@@ -76,6 +76,23 @@ public class Constanta {
 
         public static final String BUTTON_ADD = "Save";
         public static final String BUTTON_UPDATE = "Update";
+        
+        public final HashMap<String, Integer> getMonth() {
+            HashMap<String, Integer> month = new HashMap<>();
+            month.put("Jan", 1);
+            month.put("Feb", 2);
+            month.put("Mar", 3);
+            month.put("Apr", 4);
+            month.put("Mei", 5);
+            month.put("Jun", 6);
+            month.put("Jul", 7);
+            month.put("Agu", 8);
+            month.put("Sep", 9);
+            month.put("Okt", 10);
+            month.put("Nov", 11);
+            month.put("Des", 12);
+            return month;
+        }
     }
 
     public class Role {

@@ -211,4 +211,42 @@ public class Payslip {
 
         return result;
     }
+    
+    public Boolean create(Payslip params) throws SQLException{
+        // local variables
+        boolean result = false;
+        int affected;
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+        
+        query = "INSERT INTO `e-cms`.`payslip`\n"
+                + "(`username`,\n"
+                + "`periode`,\n"
+                + "`working_hour`,\n"
+                + "`overtime_hour`,\n"
+                + "`basic_salary`,\n"
+                + "`overtime_salary`,\n"
+                + "`basic_cuts`,\n"
+                + "`tax_cuts`,\n"
+                + "`net_salary`)\n"
+                + "VALUES\n"
+                + "('" + params.getUsername() + "',\n"
+                + "'" + params.getPeriode() + "',\n"
+                + "" + params.getWorkingHour() + ",\n"
+                + "" + params.getOvertimeHour() + ",\n"
+                + "" + params.getBasicSalary() + ",\n"
+                + "" + params.getOvertimeSalary() + ",\n"
+                + "" + params.getBasicCuts() + ",\n"
+                + "" + params.getTaxCuts() + ",\n"
+                + "" + params.getNetSalary()+");";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        affected = preparedStatement.executeUpdate();
+        connection.close();
+        
+        if(affected > 0)
+            result = true;
+        return result;
+    }
 }

@@ -284,4 +284,34 @@ public class Attendance {
         
         return attendance;
     }
+    
+    public List<Attendance> getByUsernameAndPeriode(String username, String periode) throws SQLException{
+        List<Attendance> result = new ArrayList<>();
+        
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT * FROM `e-cms`.attendance where username = '" + username + "' and left(checkout, 7) = '" + periode +"';";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Attendance attendance = new Attendance();
+            
+            attendance.setId(Integer.parseInt(resultSet.getString("id")));
+            attendance.setUsername(resultSet.getString("username"));
+            attendance.setCheckIn(resultSet.getString("checkin"));
+            attendance.setCheckOut(resultSet.getString("checkout"));
+            attendance.setLocation(resultSet.getString("location"));
+            attendance.setDuration(Float.parseFloat(resultSet.getString("duration")));
+            attendance.setOvertime(Float.parseFloat(resultSet.getString("overtime")));
+            attendance.setStatus(resultSet.getString("status"));
+            attendance.setInformation(resultSet.getString("information"));
+            
+            result.add(attendance);
+        }
+        
+        return result;
+    }
 }

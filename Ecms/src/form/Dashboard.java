@@ -874,11 +874,12 @@ public final class Dashboard extends javax.swing.JFrame {
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainLeaveTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[9];
+            
+            TableColumnModel tableColumnModel = formDashboardMainPayslipTable.getColumnModel();
+            tableColumnModel.getColumn(0).setMaxWidth(0);
+            tableColumnModel.getColumn(0).setMinWidth(0);
+            
             for (int i = 0; i < listLeave.size(); i++) {
-                TableColumnModel tableColumnModel = formDashboardMainLeaveTable.getColumnModel();
-                tableColumnModel.getColumn(0).setMaxWidth(0);
-                tableColumnModel.getColumn(0).setMinWidth(0);
-
                 rows[0] = listLeave.get(i).getId();
                 rows[1] = listLeave.get(i).getUsername();
                 rows[2] = listLeave.get(i).getFullName();
@@ -916,11 +917,12 @@ public final class Dashboard extends javax.swing.JFrame {
             DefaultTableModel defaultTableModel = (DefaultTableModel) formDashboardMainPayslipTable.getModel();
             defaultTableModel.setRowCount(0);
             Object[] rows = new Object[6];
+            
+            TableColumnModel tableColumnModel = formDashboardMainPayslipTable.getColumnModel();
+            tableColumnModel.getColumn(0).setMaxWidth(0);
+            tableColumnModel.getColumn(0).setMinWidth(0);
+            
             for (int i = 0; i < listPayslip.size(); i++) {
-                TableColumnModel tableColumnModel = formDashboardMainPayslipTable.getColumnModel();
-                tableColumnModel.getColumn(0).setMaxWidth(0);
-                tableColumnModel.getColumn(0).setMinWidth(0);
-
                 rows[0] = listPayslip.get(i).getId();
                 rows[1] = listPayslip.get(i).getUsername();
                 rows[2] = listPayslip.get(i).getFullName();
