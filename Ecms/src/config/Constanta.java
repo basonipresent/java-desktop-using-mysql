@@ -5,9 +5,7 @@
  */
 package config;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  *
@@ -23,6 +21,9 @@ public class Constanta {
         public static final String MESSAGE_FAILED_LOGIN = "Username or Password is not match!";
         public static final String MESSAGE_ERROR = "Error : ";
         public static final String MESSAGE_INVALID = "Please fill all required data !";
+        public static final String MESSAGE_NOT_FOUND = "Data not found !";
+        public static final String MESSAGE_ALREADY = "Data already exist !";
+        public static final String MESSAGE_SHOULD_GENERATE = "Please generate payslip before !";
         public static final String MESSAGE_INVALID_REGISTER = "Username is not valid !\n Please, contact administrator";
         public static final String MESSAGE_CONFIRM_LOGOUT = "Are you sure to logout?";
         public static final String MESSAGE_CONFIRM_DELETE = "Are you sure to delete this records?";
@@ -68,6 +69,8 @@ public class Constanta {
         public static final String DEFAULT_VALUE = "[%DEFAULT%]";
         public static final int DEFAULT_NUMERIC_VALUE = 0;
         public static final int DEFAULT_NORMAL_WORKING = 10;
+        public static final int DEFAULT_NORMAL_WORKING_DAYS = 25;
+        public static final int DEFAULT_PPN_TAX = 10;
         public static final String DEFAULT_LOCATION = "OFFICE";
         public static final String DEFAULT_CHECKIN_STATUS = "CHECK IN";
         public static final String DEFAULT_CHECKOUT_STATUS = "CHECK OUT";
@@ -92,6 +95,51 @@ public class Constanta {
             month.put("Nov", 11);
             month.put("Des", 12);
             return month;
+        }
+        
+        public final String getMonth(String value){
+            String result = "";
+            switch(value){
+                case "Jan" :
+                    result = "01";
+                    break;
+                case "Feb" :
+                    result = "02";
+                    break;
+                case "Mar" :
+                    result = "03";
+                    break;
+                case "Apr" :
+                    result = "04";
+                    break;
+                case "Mei" :
+                    result = "05";
+                    break;
+                case "Jun" :
+                    result = "06";
+                    break;
+                case "Jul" :
+                    result = "07";
+                    break;
+                case "Agu" :
+                    result = "08";
+                    break;
+                case "Sep" :
+                    result = "09";
+                    break;
+                case "Okt" :
+                    result = "10";
+                    break;
+                case "Nov" :
+                    result = "11";
+                    break;
+                case "Des" :
+                    result = "12";
+                    break;
+                default:
+                    result = "00";
+            }
+            return result;
         }
     }
 

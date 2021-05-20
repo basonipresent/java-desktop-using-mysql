@@ -443,6 +443,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             generatePayslip.setLabelNik(formEmployeePayslipHeaderLabelNik.getText());
             generatePayslip.setFullName(getFullName());
             generatePayslip.setAccessMenu(getAccessMenu());
+            generatePayslip.loadDataPayslip(employee.getNik());
             this.dispose();
         } catch (NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

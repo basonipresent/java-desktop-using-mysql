@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import model.Attachment;
+import model.Attendance;
 import model.Employee;
 import model.Payslip;
 
@@ -93,6 +96,9 @@ public class GeneratePayslip extends javax.swing.JFrame {
         formGeneratePayslipMainValueOvertimeSalary = new javax.swing.JLabel();
         formGeneratePayslipMainLabelWorkingHours = new javax.swing.JLabel();
         formGeneratePayslipMainValueWorkingHours = new javax.swing.JLabel();
+        formGeneratePayslipMainLabelPerDays = new javax.swing.JLabel();
+        formGeneratePayslipMainValueWorkingDays = new javax.swing.JLabel();
+        formGeneratePayslipMainLabelWorkingDays = new javax.swing.JLabel();
         formGeneratePayslipMainLabelOvertimeHours = new javax.swing.JLabel();
         formGeneratePayslipMainValueOvertimeHours = new javax.swing.JLabel();
         formGeneratePayslipMainLabelBasicCuts = new javax.swing.JLabel();
@@ -314,6 +320,15 @@ public class GeneratePayslip extends javax.swing.JFrame {
         formGeneratePayslipMainValueWorkingHours.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formGeneratePayslipMainValueWorkingHours.setText("WorkingHours");
 
+        formGeneratePayslipMainLabelPerDays.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formGeneratePayslipMainLabelPerDays.setText("/");
+
+        formGeneratePayslipMainValueWorkingDays.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formGeneratePayslipMainValueWorkingDays.setText("Days");
+
+        formGeneratePayslipMainLabelWorkingDays.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formGeneratePayslipMainLabelWorkingDays.setText("Days");
+
         formGeneratePayslipMainLabelOvertimeHours.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formGeneratePayslipMainLabelOvertimeHours.setText("Overtime Hours");
 
@@ -360,10 +375,17 @@ public class GeneratePayslip extends javax.swing.JFrame {
                                 .addGap(102, 102, 102)))
                         .addGroup(formGeneratePayslipMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(formGeneratePayslipMainValueBasicCuts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formGeneratePayslipMainValueWorkingHours, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(formGeneratePayslipMainValueNik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(formGeneratePayslipMainValueBasicSalary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formGeneratePayslipMainValueFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                            .addComponent(formGeneratePayslipMainValueFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addGroup(formGeneratePayslipMainPanelFormLayout.createSequentialGroup()
+                                .addComponent(formGeneratePayslipMainValueWorkingHours)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(formGeneratePayslipMainLabelPerDays)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(formGeneratePayslipMainValueWorkingDays)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(formGeneratePayslipMainLabelWorkingDays)))
                         .addGroup(formGeneratePayslipMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(formGeneratePayslipMainPanelFormLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -386,7 +408,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
                                     .addComponent(formGeneratePayslipMainLabelOvertimeHours)
                                     .addComponent(formGeneratePayslipMainLabelTaxCuts)
                                     .addComponent(formGeneratePayslipMainLabelNetSalary))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(formGeneratePayslipMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formGeneratePayslipMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(formGeneratePayslipMainValuePosition, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +452,10 @@ public class GeneratePayslip extends javax.swing.JFrame {
                     .addComponent(formGeneratePayslipMainLabelWorkingHours)
                     .addComponent(formGeneratePayslipMainValueOvertimeHours)
                     .addComponent(formGeneratePayslipMainValueWorkingHours)
-                    .addComponent(formGeneratePayslipMainLabelOvertimeHours))
+                    .addComponent(formGeneratePayslipMainLabelOvertimeHours)
+                    .addComponent(formGeneratePayslipMainLabelPerDays)
+                    .addComponent(formGeneratePayslipMainValueWorkingDays)
+                    .addComponent(formGeneratePayslipMainLabelWorkingDays))
                 .addGap(18, 18, 18)
                 .addGroup(formGeneratePayslipMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(formGeneratePayslipMainValueTaxCuts)
@@ -555,6 +580,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
     private List<String> access_menu = new ArrayList<>();
     private String full_name;
     public List<Attachment> list_attachments = new ArrayList<>();
+    private Payslip payslip = new Payslip();
 
     public void setLabelId(String text) {
         formGeneratePayslipHeaderLabelId.setText(text);
@@ -589,13 +615,21 @@ public class GeneratePayslip extends javax.swing.JFrame {
         return list_attachments;
     }
 
-    public void loadDataPayslip() throws SQLException {
+    public void setPayslip(Payslip value) {
+        this.payslip = value;
+    }
+
+    public Payslip getPayslip() {
+        return payslip;
+    }
+
+    public void loadDataPayslip(String username) throws SQLException {
         List<Payslip> listPayslip;
 
         listPayslip = Payslip.listParams()
-                .withUsername(getFullName())
+                .withUsername(username)
                 .withPeriode(null)
-                .build();
+                .get();
 
         DefaultTableModel defaultTableModel = (DefaultTableModel) formGeneratePayslipMainTablePayslip.getModel();
         defaultTableModel.setRowCount(0);
@@ -609,7 +643,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
             rows[0] = listPayslip.get(i).getId();
             rows[1] = listPayslip.get(i).getUsername();
             rows[2] = listPayslip.get(i).getFullName();
-            rows[2] = listPayslip.get(i).getPeriode();
+            rows[3] = listPayslip.get(i).getPeriode();
             rows[4] = String.format("%.0f", listPayslip.get(i).getNetSalary());
             rows[5] = String.format("%.0f", listPayslip.get(i).getWorkingHour() + listPayslip.get(i).getOvertimeHour());
 
@@ -628,14 +662,14 @@ public class GeneratePayslip extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }
-    
+
     private void bindMonth() {
         try {
             Constanta.Default constantaDefault = new Constanta.Default();
             HashMap<String, Integer> map = constantaDefault.getMonth();
-            Map<String, Integer> sortedByValue = map.entrySet() 
-                    .stream() 
-                    .sorted(Map.Entry.<String, Integer>comparingByValue()) 
+            Map<String, Integer> sortedByValue = map.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.<String, Integer>comparingByValue())
                     .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
             sortedByValue.entrySet().forEach((entry) -> {
                 formGeneratePayslipMainComboBoxMonth.addItem(entry.getKey());
@@ -646,21 +680,97 @@ public class GeneratePayslip extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("empty-statement")
-    private boolean submit(String action) throws SQLException {
-        boolean result = true;
+    private void generate() throws SQLException {
+        Attendance attendance = new Attendance();
+        Payslip payslip = new Payslip();
+        Constanta.Default constantaDefault = new Constanta.Default();
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        DecimalFormat integerFormat = new DecimalFormat("#");
 
+        String periode = formGeneratePayslipMainComboBoxYear.getSelectedItem() + "-" + constantaDefault.getMonth(formGeneratePayslipMainComboBoxMonth.getSelectedItem().toString());
+        String nik = formGeneratePayslipMainValueNik.getText();
+        List<Attendance> listAttendance = attendance.getByUsernameAndPeriode(nik, periode);
+
+        List<Payslip> listPayslip = payslip.searchByUsernameAndPeriode(nik, periode);
+        boolean isAlready = listPayslip.size() > 0;
+
+        if (!isAlready) {
+            if (listAttendance.size() > 0) {
+                int totalWorking = 0;
+                int totalOvertime = 0;
+                int totalPresent = 0;
+                int totalAbsen = 0;
+                for (Attendance item : listAttendance) {
+                    totalWorking += item.getDuration();
+                    totalPresent++;
+                    if (item.getOvertime() > 0) {
+                        totalOvertime += item.getOvertime();
+                    }
+                    if (item.getAbsen() > 0) {
+                        totalAbsen++;
+                    }
+                }
+
+                Employee employee = new Employee();
+                employee = employee.getByNik(nik);
+                float basicSalary = employee.getBasicSalary();
+                float overtimeSalary = employee.getBasicSalary() / Constanta.Default.DEFAULT_NORMAL_WORKING_DAYS * totalOvertime;
+                if (totalPresent < Constanta.Default.DEFAULT_NORMAL_WORKING_DAYS) {
+                    totalAbsen += (Constanta.Default.DEFAULT_NORMAL_WORKING_DAYS - totalPresent);
+                }
+                float basicCuts = basicSalary / Constanta.Default.DEFAULT_NORMAL_WORKING_DAYS * totalAbsen;
+                float taxCuts = basicSalary * Constanta.Default.DEFAULT_PPN_TAX / 100;
+                float netSalary = (basicSalary + overtimeSalary) - (basicCuts + taxCuts);
+                formGeneratePayslipMainValueBasicSalary.setText(decimalFormat.format(basicSalary));
+                formGeneratePayslipMainValueOvertimeSalary.setText(decimalFormat.format(overtimeSalary));
+                formGeneratePayslipMainValueWorkingHours.setText(integerFormat.format(totalWorking));
+                formGeneratePayslipMainValueWorkingDays.setText(integerFormat.format(totalPresent));
+                formGeneratePayslipMainValueOvertimeHours.setText(integerFormat.format(totalOvertime));
+                formGeneratePayslipMainValueBasicCuts.setText(decimalFormat.format(basicCuts));
+                formGeneratePayslipMainValueTaxCuts.setText(decimalFormat.format(taxCuts));
+                formGeneratePayslipMainValueNetSalary.setText(decimalFormat.format(netSalary));
+
+                payslip = new Payslip();
+                payslip.setUsername(nik);
+                payslip.setPeriode(periode);
+                payslip.setWorkingHour((float) totalWorking);
+                payslip.setOvertimeHour((float) totalOvertime);
+                payslip.setBasicSalary(basicSalary);
+                payslip.setOvertimeSalary(overtimeSalary);
+                payslip.setBasicCuts(basicCuts);
+                payslip.setTaxCuts(taxCuts);
+                payslip.setNetSalary(netSalary);
+                setPayslip(payslip);
+                payslip = new Payslip(); //clear
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_NOT_FOUND);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ALREADY);
+        }
+    }
+
+    public boolean submit() throws SQLException {
+        boolean result;
+        Payslip payslip = new Payslip();
+        result = payslip.create(getPayslip());
         return result;
     }
 
-    public void clear() {
-
-    }
-
-    private boolean validation() {
-
-        boolean result = true;
-
-        return result;
+    public void clear() throws SQLException {
+        String username = formGeneratePayslipMainValueNik.getText();
+        formGeneratePayslipMainValueBasicSalary.setText("0");
+        formGeneratePayslipMainValueOvertimeSalary.setText("0");
+        formGeneratePayslipMainValueWorkingHours.setText("0");
+        formGeneratePayslipMainValueWorkingDays.setText("0");
+        formGeneratePayslipMainValueOvertimeHours.setText("0");
+        formGeneratePayslipMainValueBasicCuts.setText("0");
+        formGeneratePayslipMainValueTaxCuts.setText("0");
+        formGeneratePayslipMainValueNetSalary.setText("0");
+        loadDataPayslip(username);
+        
+        Payslip payslip = new Payslip();
+        setPayslip(payslip);
     }
 
     public void assignValue(Employee employee) {
@@ -670,14 +780,8 @@ public class GeneratePayslip extends javax.swing.JFrame {
             formGeneratePayslipMainValueFullName.setText(employee.getFirstName() + " " + employee.getLastName());
             formGeneratePayslipMainValueNik.setText(employee.getNik());
             formGeneratePayslipMainValuePosition.setText(employee.getPositionName());
-            formGeneratePayslipMainValueBasicSalary.setText("0");
-            formGeneratePayslipMainValueOvertimeSalary.setText("0");
-            formGeneratePayslipMainValueWorkingHours.setText("0");
-            formGeneratePayslipMainValueOvertimeHours.setText("0");
-            formGeneratePayslipMainValueBasicCuts.setText("0");
-            formGeneratePayslipMainValueTaxCuts.setText("0");
-            formGeneratePayslipMainValueNetSalary.setText("0");
-            loadDataPayslip();
+            clear();
+            loadDataPayslip(employee.getNik());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -772,25 +876,20 @@ public class GeneratePayslip extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int action = JOptionPane.showConfirmDialog(null,
-                    Constanta.Messages.MESSAGE_CONFIRM_APPROVED,
+                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
                     Constanta.Messages.BANNER_CONFIRM,
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
             if (action == JOptionPane.YES_OPTION) {
-                if (validation()) {
-                    if (submit(Constanta.Leave.APPROVED)) {
+                if (!formGeneratePayslipMainValueNetSalary.getText().equals("0")) {
+                    if (submit()) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-                        ApprovalDetail approvalDetail = new ApprovalDetail();
-                        approvalDetail.show(true);
-                        approvalDetail.setLabelId(formGeneratePayslipHeaderLabelId.getText());
-                        approvalDetail.setLabelNik(formGeneratePayslipHeaderLabelNik.getText());
-                        approvalDetail.setFullName(getFullName());
-                        approvalDetail.setAccessMenu(getAccessMenu());
-                        approvalDetail.loadDataApproval();
-                        this.dispose();
+                        loadDataPayslip(getPayslip().getUsername());
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SHOULD_GENERATE);
                 }
             }
             clear();
@@ -803,25 +902,20 @@ public class GeneratePayslip extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int action = JOptionPane.showConfirmDialog(null,
-                    Constanta.Messages.MESSAGE_CONFIRM_APPROVED,
+                    Constanta.Messages.MESSAGE_CONFIRM_SUBMIT,
                     Constanta.Messages.BANNER_CONFIRM,
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
             if (action == JOptionPane.YES_OPTION) {
-                if (validation()) {
-                    if (submit(Constanta.Leave.APPROVED)) {
+                if (!formGeneratePayslipMainValueNetSalary.getText().equals("0")) {
+                    if (submit()) {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
-                        ApprovalDetail approvalDetail = new ApprovalDetail();
-                        approvalDetail.show(true);
-                        approvalDetail.setLabelId(formGeneratePayslipHeaderLabelId.getText());
-                        approvalDetail.setLabelNik(formGeneratePayslipHeaderLabelNik.getText());
-                        approvalDetail.setFullName(getFullName());
-                        approvalDetail.setAccessMenu(getAccessMenu());
-                        approvalDetail.loadDataApproval();
-                        this.dispose();
+                        loadDataPayslip(getPayslip().getUsername());
                     } else {
                         JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SHOULD_GENERATE);
                 }
             }
             clear();
@@ -844,6 +938,11 @@ public class GeneratePayslip extends javax.swing.JFrame {
 
     private void formGeneratePayslipMainButtonSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formGeneratePayslipMainButtonSubmit1ActionPerformed
         // TODO add your handling code here:
+        try {
+            generate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formGeneratePayslipMainButtonSubmit1ActionPerformed
 
     private void formGeneratePayslipMainButtonSubmit1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formGeneratePayslipMainButtonSubmit1KeyPressed
@@ -970,9 +1069,11 @@ public class GeneratePayslip extends javax.swing.JFrame {
     private javax.swing.JLabel formGeneratePayslipMainLabelNik;
     private javax.swing.JLabel formGeneratePayslipMainLabelOvertimeHours;
     private javax.swing.JLabel formGeneratePayslipMainLabelOvertimeSalary;
+    private javax.swing.JLabel formGeneratePayslipMainLabelPerDays;
     private javax.swing.JLabel formGeneratePayslipMainLabelPeriode;
     private javax.swing.JLabel formGeneratePayslipMainLabelPosition;
     private javax.swing.JLabel formGeneratePayslipMainLabelTaxCuts;
+    private javax.swing.JLabel formGeneratePayslipMainLabelWorkingDays;
     private javax.swing.JLabel formGeneratePayslipMainLabelWorkingHours;
     private javax.swing.JPanel formGeneratePayslipMainPanelFiles;
     private javax.swing.JPanel formGeneratePayslipMainPanelForm;
@@ -986,6 +1087,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
     private javax.swing.JLabel formGeneratePayslipMainValueOvertimeSalary;
     private javax.swing.JLabel formGeneratePayslipMainValuePosition;
     private javax.swing.JLabel formGeneratePayslipMainValueTaxCuts;
+    private javax.swing.JLabel formGeneratePayslipMainValueWorkingDays;
     private javax.swing.JLabel formGeneratePayslipMainValueWorkingHours;
     private javax.swing.JPanel formGeneratePayslipPanelFooter;
     private javax.swing.JPanel formGeneratePayslipPanelHeader;

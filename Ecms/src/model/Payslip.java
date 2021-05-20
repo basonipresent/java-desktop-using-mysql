@@ -157,6 +157,11 @@ public class Payslip {
             Payslip payslip = new Payslip();
             return payslip.list(this);
         }
+
+        public List<Payslip> get() throws SQLException {
+            Payslip payslip = new Payslip();
+            return payslip.search(username);
+        }
     }
 
     public List<Payslip> list(Params params) throws SQLException {
@@ -211,15 +216,96 @@ public class Payslip {
 
         return result;
     }
+
+    public List<Payslip> search(String username) throws SQLException {
+        List<Payslip> result = new ArrayList<>();
+
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT \n"
+                + "p.*,\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name\n"
+                + "FROM \n"
+                + "`e-cms`.payslip as p\n"
+                + "inner join `e-cms`.employee as e on e.nik = p.username\n"
+                + "WHERE\n"
+                + "e.nik = '" + username + "'\n"
+                + "ORDER BY p.periode DESC;";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Payslip payslip = new Payslip();
+
+            payslip.setId(Integer.parseInt(resultSet.getString("id")));
+            payslip.setUsername(resultSet.getString("username"));
+            payslip.setPeriode(resultSet.getString("periode"));
+            payslip.setWorkingHour(Float.parseFloat(resultSet.getString("working_hour")));
+            payslip.setOvertimeHour(Float.parseFloat(resultSet.getString("overtime_hour")));
+            payslip.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
+            payslip.setOvertimeSalary(Float.parseFloat(resultSet.getString("overtime_salary")));
+            payslip.setBasicCuts(Float.parseFloat(resultSet.getString("basic_cuts")));
+            payslip.setTaxCuts(Float.parseFloat(resultSet.getString("tax_cuts")));
+            payslip.setNetSalary(Float.parseFloat(resultSet.getString("net_salary")));
+            payslip.setFullName(resultSet.getString("full_name"));
+
+            result.add(payslip);
+        }
+
+        return result;
+    }
     
-    public Boolean create(Payslip params) throws SQLException{
+    public List<Payslip> searchByUsernameAndPeriode(String username, String periode) throws SQLException {
+        List<Payslip> result = new ArrayList<>();
+
+        dbConnections.configuration();
+        connection = dbConnections.connection;
+        statement = dbConnections.statement;
+
+        query = "SELECT \n"
+                + "p.*,\n"
+                + "concat(e.first_name, ' ', e.last_name) as full_name\n"
+                + "FROM \n"
+                + "`e-cms`.payslip as p\n"
+                + "inner join `e-cms`.employee as e on e.nik = p.username\n"
+                + "WHERE\n"
+                + "e.nik = '" + username + "'\n"
+                + "and p.periode = '" + periode +"'\n"
+                + "ORDER BY p.periode DESC;";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Payslip payslip = new Payslip();
+
+            payslip.setId(Integer.parseInt(resultSet.getString("id")));
+            payslip.setUsername(resultSet.getString("username"));
+            payslip.setPeriode(resultSet.getString("periode"));
+            payslip.setWorkingHour(Float.parseFloat(resultSet.getString("working_hour")));
+            payslip.setOvertimeHour(Float.parseFloat(resultSet.getString("overtime_hour")));
+            payslip.setBasicSalary(Float.parseFloat(resultSet.getString("basic_salary")));
+            payslip.setOvertimeSalary(Float.parseFloat(resultSet.getString("overtime_salary")));
+            payslip.setBasicCuts(Float.parseFloat(resultSet.getString("basic_cuts")));
+            payslip.setTaxCuts(Float.parseFloat(resultSet.getString("tax_cuts")));
+            payslip.setNetSalary(Float.parseFloat(resultSet.getString("net_salary")));
+            payslip.setFullName(resultSet.getString("full_name"));
+
+            result.add(payslip);
+        }
+
+        return result;
+    }
+
+    public Boolean create(Payslip params) throws SQLException {
         // local variables
         boolean result = false;
         int affected;
         dbConnections.configuration();
         connection = dbConnections.connection;
         statement = dbConnections.statement;
-        
+
         query = "INSERT INTO `e-cms`.`payslip`\n"
                 + "(`username`,\n"
                 + "`periode`,\n"
@@ -239,14 +325,15 @@ public class Payslip {
                 + "" + params.getOvertimeSalary() + ",\n"
                 + "" + params.getBasicCuts() + ",\n"
                 + "" + params.getTaxCuts() + ",\n"
-                + "" + params.getNetSalary()+");";
+                + "" + params.getNetSalary() + ");";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         affected = preparedStatement.executeUpdate();
         connection.close();
-        
-        if(affected > 0)
+
+        if (affected > 0) {
             result = true;
+        }
         return result;
     }
 }

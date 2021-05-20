@@ -32,6 +32,7 @@ public class Attendance {
     private String status;
     private String information;
     private String full_name;
+    private Integer absen;
     
     public Integer getId(){
         return id;
@@ -101,6 +102,13 @@ public class Attendance {
     }
     public void setFullName(String value) {
         this.full_name = value;
+    }
+    
+    public int getAbsen() {
+        return absen;
+    }
+    public void setAbsen(Integer value) {
+        this.absen = value;
     }
     
     // global variables
@@ -292,7 +300,14 @@ public class Attendance {
         connection = dbConnections.connection;
         statement = dbConnections.statement;
 
-        query = "SELECT * FROM `e-cms`.attendance where username = '" + username + "' and left(checkout, 7) = '" + periode +"';";
+        query = "SELECT \n"
+                + "*, \n"
+                + "(CASE \n"
+                + "WHEN duration <= 4 THEN 1 \n"
+                + "ELSE 0 \n"
+                + "END) as absen \n"
+                + "FROM `e-cms`.attendance \n"
+                + "WHERE username = '" + username + "' and left(checkout, 7) = '" + periode +"';";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         resultSet = preparedStatement.executeQuery();
@@ -308,6 +323,7 @@ public class Attendance {
             attendance.setOvertime(Float.parseFloat(resultSet.getString("overtime")));
             attendance.setStatus(resultSet.getString("status"));
             attendance.setInformation(resultSet.getString("information"));
+            attendance.setAbsen(Integer.parseInt(resultSet.getString("absen")));
             
             result.add(attendance);
         }

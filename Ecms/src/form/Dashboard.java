@@ -926,7 +926,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 rows[0] = listPayslip.get(i).getId();
                 rows[1] = listPayslip.get(i).getUsername();
                 rows[2] = listPayslip.get(i).getFullName();
-                rows[2] = listPayslip.get(i).getPeriode();
+                rows[3] = listPayslip.get(i).getPeriode();
                 rows[4] = String.format("%.0f", listPayslip.get(i).getNetSalary());
                 rows[5] = String.format("%.0f", listPayslip.get(i).getWorkingHour() + listPayslip.get(i).getOvertimeHour());
 
