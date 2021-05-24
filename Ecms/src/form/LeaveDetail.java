@@ -545,26 +545,33 @@ public class LeaveDetail extends javax.swing.JFrame {
 
             float[] columnWidth = {3f, 3f, 2f, 2f, 2f, 2f, 2f, 5f};
             pdfPTable.setWidths(columnWidth);
-
-            insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Request Date", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Date From", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Date To", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Reasons", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Type", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Status", Element.ALIGN_CENTER, 1, bfBold12);
+            
+            insertCell(pdfPTable, "Report Leave Request", Element.ALIGN_CENTER, 8, 0, bfNormal12);
             pdfPTable.setHeaderRows(1);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(2);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(3);
+
+            insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Request Date", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Date From", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Date To", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Reasons", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Type", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Status", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            pdfPTable.setHeaderRows(4);
 
             for (int i = 0; i < getListLeave().size(); i++) {
-                insertCell(pdfPTable, getListLeave().get(i).getUsername(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getFullName(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getRequestDate(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getDateFrom(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getDateTo(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getReasons(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getTypeName(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getStatus(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getUsername(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getFullName(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getRequestDate(), Element.ALIGN_CENTER, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getDateFrom(), Element.ALIGN_CENTER, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getDateTo(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getReasons(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getTypeName(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getStatus(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
             }
 
             document.add(pdfPTable);
@@ -579,12 +586,15 @@ public class LeaveDetail extends javax.swing.JFrame {
         return result;
     }
 
-    private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
+    private void insertCell(PdfPTable table, String text, int align, int colspan, int border, Font font) {
         PdfPCell cell;
         text = text == null ? "" : text.trim();
         cell = new PdfPCell(new Phrase(text, font));
         cell.setHorizontalAlignment(align);
         cell.setColspan(colspan);
+        if(border == 0){
+            cell.setBorder(border);
+        }
 
         if (text.trim().equalsIgnoreCase("")) {
             cell.setMinimumHeight(10f);

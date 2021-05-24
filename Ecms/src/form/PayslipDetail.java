@@ -549,20 +549,27 @@ public class PayslipDetail extends javax.swing.JFrame {
 
             float[] columnWidth = {3f, 3f, 2f, 2f, 2f};
             pdfPTable.setWidths(columnWidth);
-
-            insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Periode", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Net Salary", Element.ALIGN_CENTER, 1, bfBold12);
-            insertCell(pdfPTable, "Total Working", Element.ALIGN_CENTER, 1, bfBold12);
+            
+            insertCell(pdfPTable, "Report Payslip", Element.ALIGN_CENTER, 5, 0, bfNormal12);
             pdfPTable.setHeaderRows(1);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 5, 0, bfNormal12);
+            pdfPTable.setHeaderRows(2);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 5, 0, bfNormal12);
+            pdfPTable.setHeaderRows(3);
+
+            insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Periode", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Net Salary", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            insertCell(pdfPTable, "Total Working", Element.ALIGN_CENTER, 1, 1, bfBold12);
+            pdfPTable.setHeaderRows(4);
 
             for (int i = 0; i < getListPayslip().size(); i++) {
-                insertCell(pdfPTable, getListPayslip().get(i).getUsername(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListPayslip().get(i).getFullName(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListPayslip().get(i).getPeriode(), Element.ALIGN_CENTER, 1, bfNormal12);
-                insertCell(pdfPTable, String.format("%.0f", getListPayslip().get(i).getNetSalary()), Element.ALIGN_RIGHT, 1, bfNormal12);
-                insertCell(pdfPTable, String.format("%.0f", getListPayslip().get(i).getWorkingHour()), Element.ALIGN_RIGHT, 1, bfNormal12);
+                insertCell(pdfPTable, getListPayslip().get(i).getUsername(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListPayslip().get(i).getFullName(), Element.ALIGN_LEFT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, getListPayslip().get(i).getPeriode(), Element.ALIGN_CENTER, 1, 1, bfNormal12);
+                insertCell(pdfPTable, String.format("%.0f", getListPayslip().get(i).getNetSalary()), Element.ALIGN_RIGHT, 1, 1, bfNormal12);
+                insertCell(pdfPTable, String.format("%.0f", getListPayslip().get(i).getWorkingHour()), Element.ALIGN_RIGHT, 1, 1, bfNormal12);
             }
 
             document.add(pdfPTable);
@@ -577,13 +584,16 @@ public class PayslipDetail extends javax.swing.JFrame {
         return result;
     }
 
-    private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
+    private void insertCell(PdfPTable table, String text, int align, int colspan, int border, Font font) {
         PdfPCell cell;
         text = text == null ? "" : text.trim();
         cell = new PdfPCell(new Phrase(text, font));
         cell.setHorizontalAlignment(align);
         cell.setColspan(colspan);
-
+        if(border == 0){
+            cell.setBorder(border);
+        }
+        
         if (text.trim().equalsIgnoreCase("")) {
             cell.setMinimumHeight(10f);
         }

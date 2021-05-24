@@ -1,22 +1,27 @@
 package form;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import config.Constanta;
+import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import model.Attachment;
 import model.Attendance;
 import model.Employee;
@@ -494,6 +499,7 @@ public class PrintPayslip extends javax.swing.JFrame {
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    DateTimeFormatter DATETIME_PDF_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     private List<String> access_menu = new ArrayList<>();
     private String full_name;
     public List<Attachment> list_attachments = new ArrayList<>();
@@ -554,9 +560,9 @@ public class PrintPayslip extends javax.swing.JFrame {
         for (Attendance item : listAttendance) {
             totalPresent++;
         }
-        
+
         List<Payslip> listPayslip = payslip.searchByUsernameAndPeriode(nik, periode);
-        for(Payslip payslip : listPayslip){
+        for (Payslip payslip : listPayslip) {
             formPrintPayslipMainValueBasicSalary.setText(decimalFormat.format(payslip.getBasicSalary()));
             formPrintPayslipMainValueOvertimeSalary.setText(decimalFormat.format(payslip.getOvertimeSalary()));
             formPrintPayslipMainValueWorkingHours.setText(integerFormat.format(payslip.getWorkingHour()));
@@ -566,13 +572,6 @@ public class PrintPayslip extends javax.swing.JFrame {
             formPrintPayslipMainValueTaxCuts.setText(decimalFormat.format(payslip.getTaxCuts()));
             formPrintPayslipMainValueNetSalary.setText(decimalFormat.format(payslip.getNetSalary()));
         }
-    }
-
-    public boolean submit() throws SQLException {
-        boolean result;
-        Payslip payslip = new Payslip();
-        result = payslip.create(getPayslip());
-        return result;
     }
 
     public void assignValue(Employee employee, String periode) {
@@ -587,6 +586,111 @@ public class PrintPayslip extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
+    }
+
+    private boolean generateReport() {
+        boolean result = false;
+        Document document = new Document();
+        try {
+            //font setting
+            Font bfBold14 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, new BaseColor(Color.BLACK));
+            Font bfNormal14 = new Font(Font.FontFamily.TIMES_ROMAN, 14);
+            Font bfNormal12 = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+
+            //document header attributes
+            document.addAuthor(Constanta.PdfDocument.DOCUMENT_AUTHOR);
+            document.addCreationDate();
+            document.addProducer();
+            document.addCreator(Constanta.PdfDocument.DOCUMENT_CREATOR);
+            document.addTitle(Constanta.PdfDocument.DOCUMENT_TITLE_ATTENDANCE);
+            document.setPageSize(PageSize.A4);
+
+            PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(
+                    Constanta.PdfDocument.PATH + "PayslipDetail" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
+            document.open();
+
+            PdfPTable pdfPTable = new PdfPTable(3);
+            pdfPTable.setWidthPercentage(Constanta.PdfDocument.WIDTH_PERCENTAGE);
+            pdfPTable.setSpacingBefore(Constanta.PdfDocument.SPACING_BEFORE);
+            pdfPTable.setSpacingAfter(Constanta.PdfDocument.SPACING_AFTER);
+
+            float[] columnWidth = {3f, 1f, 3f};
+            pdfPTable.setWidths(columnWidth);
+
+            insertCell(pdfPTable, "Report Payslip Detail", Element.ALIGN_CENTER, 3, bfNormal12);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 3, bfNormal12);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 3, bfNormal12);
+            
+            insertCell(pdfPTable, "Full Name", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValueFullName.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Nik", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValueNik.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Position", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValuePosition.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Periode", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValuePeriode.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Basic Salary", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueBasicSalary.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Overtime Salary", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueOvertimeSalary.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Working Hours", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValueWorkingHours.getText() + " / " + formPrintPayslipMainValueWorkingDays.getText() + " Days", Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Overtime Hours", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, formPrintPayslipMainValueOvertimeHours.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Basic Cuts", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueBasicCuts.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Tax Cuts", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueTaxCuts.getText(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Net Salary", Element.ALIGN_LEFT, 1, bfBold14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfBold14);
+            insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueNetSalary.getText(), Element.ALIGN_LEFT, 1, bfBold14);
+
+            pdfPTable.setHeaderRows(1);
+
+            document.add(pdfPTable);
+            document.close();
+            pdfWriter.close();
+
+            result = true;
+        } catch (DocumentException | FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+            result = false;
+        }
+        return result;
+    }
+
+    private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
+        PdfPCell cell;
+        text = text == null ? "" : text.trim();
+        cell = new PdfPCell(new Phrase(text, font));
+        cell.setHorizontalAlignment(align);
+        cell.setColspan(colspan);
+        cell.setBorder(0);
+
+        if (text.trim().equalsIgnoreCase("")) {
+            cell.setMinimumHeight(10f);
+        }
+        table.addCell(cell);
     }
 
     private void formPrintPayslipMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formPrintPayslipMainButtonBackActionPerformed
@@ -662,14 +766,29 @@ public class PrintPayslip extends javax.swing.JFrame {
     private void formPrintPayslipMainButtonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formPrintPayslipMainButtonPrintActionPerformed
         // TODO add your handling code here:
         try {
-            generate();
-        } catch (SQLException e) {
+            boolean is_print = generateReport();
+            if (is_print) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formPrintPayslipMainButtonPrintActionPerformed
 
     private void formPrintPayslipMainButtonPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formPrintPayslipMainButtonPrintKeyPressed
         // TODO add your handling code here:
+        try {
+            boolean is_print = generateReport();
+            if (is_print) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
     }//GEN-LAST:event_formPrintPayslipMainButtonPrintKeyPressed
 
     /**
