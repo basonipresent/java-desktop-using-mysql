@@ -31,26 +31,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="formLeavePanelHeader" pref="1280" max="32767" attributes="0"/>
-          <Component id="formLeavePanelFooter" alignment="0" pref="1280" max="32767" attributes="0"/>
-          <Component id="formLeavePanelMain" alignment="0" max="32767" attributes="0"/>
+          <Component id="formPayslipDetailPanelHeader" pref="1280" max="32767" attributes="0"/>
+          <Component id="formPayslipDetailPanelFooter" alignment="0" pref="1280" max="32767" attributes="0"/>
+          <Component id="formPayslipDetailPanelMain" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="formLeavePanelHeader" min="-2" max="-2" attributes="0"/>
+              <Component id="formPayslipDetailPanelHeader" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="formLeavePanelMain" max="32767" attributes="0"/>
+              <Component id="formPayslipDetailPanelMain" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="formLeavePanelFooter" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="formPayslipDetailPanelFooter" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="formLeavePanelHeader">
+    <Container class="javax.swing.JPanel" name="formPayslipDetailPanelHeader">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
@@ -70,11 +70,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="formLeaveHeaderLable" alignment="0" pref="1260" max="32767" attributes="0"/>
+                      <Component id="formPayslipDetailHeaderLable" alignment="0" pref="1260" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="formLeaveHeaderLabelId" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailHeaderLabelId" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveHeaderLabelNik" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailHeaderLabelNik" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -86,30 +86,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formLeaveHeaderLable" pref="73" max="32767" attributes="0"/>
+                  <Component id="formPayslipDetailHeaderLable" pref="73" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formLeaveHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formLeaveHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailHeaderLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailHeaderLabelNik" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formLeaveHeaderLable">
+        <Component class="javax.swing.JLabel" name="formPayslipDetailHeaderLable">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Medium" size="36" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Leave Detail"/>
+            <Property name="text" type="java.lang.String" value="Payslip Detail"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="formLeaveHeaderLabelId">
+        <Component class="javax.swing.JLabel" name="formPayslipDetailHeaderLabelId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -123,7 +123,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="formLeaveHeaderLabelNik">
+        <Component class="javax.swing.JLabel" name="formPayslipDetailHeaderLabelNik">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="8" style="0"/>
@@ -139,7 +139,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formLeavePanelFooter">
+    <Container class="javax.swing.JPanel" name="formPayslipDetailPanelFooter">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1024, 75]"/>
@@ -151,7 +151,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formLeaveLabelFooter2" pref="1260" max="32767" attributes="0"/>
+                  <Component id="formPayslipDetailLabelFooter2" pref="1260" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -160,14 +160,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formLeaveLabelFooter2" min="-2" max="-2" attributes="0"/>
+                  <Component id="formPayslipDetailLabelFooter2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formLeaveLabelFooter2">
+        <Component class="javax.swing.JLabel" name="formPayslipDetailLabelFooter2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto" size="14" style="0"/>
@@ -178,7 +178,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="formLeavePanelMain">
+    <Container class="javax.swing.JPanel" name="formPayslipDetailPanelMain">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -187,15 +187,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLabelFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainLabelFullName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="formLeaveMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainButtonBack" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainButtonLogout" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeavePanelTable" max="32767" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipPanelTable" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -207,19 +207,19 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="formLeaveMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formLeaveMainLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="formLeaveMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailMainButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailMainLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailMainButtonBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="formLeaveMainLeavePanelTable" max="32767" attributes="0"/>
+                  <Component id="formPayslipDetailMainPayslipPanelTable" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="formLeaveMainLabelFullName">
+        <Component class="javax.swing.JLabel" name="formPayslipDetailMainLabelFullName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="1"/>
@@ -227,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="FullName"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="formLeaveMainButtonLogout">
+        <Component class="javax.swing.JButton" name="formPayslipDetailMainButtonLogout">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -235,11 +235,11 @@
             <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainButtonLogoutActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainButtonLogoutKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formPayslipDetailMainButtonLogoutActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formPayslipDetailMainButtonLogoutKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="formLeaveMainButtonBack">
+        <Component class="javax.swing.JButton" name="formPayslipDetailMainButtonBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Roboto Light" size="18" style="0"/>
@@ -247,15 +247,15 @@
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainButtonBackActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainButtonBackKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formPayslipDetailMainButtonBackActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formPayslipDetailMainButtonBackKeyPressed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="formLeaveMainLeavePanelTable">
+        <Container class="javax.swing.JPanel" name="formPayslipDetailMainPayslipPanelTable">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Attendance">
+                <TitledBorder title="Payslip">
                   <Font PropertyName="font" name="Roboto" size="11" style="0"/>
                 </TitledBorder>
               </Border>
@@ -268,10 +268,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="formLeaveMainLeavePanel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipPanel" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="formLeaveMainLeaveGenerate" max="32767" attributes="0"/>
+                                  <Component id="formPayslipDetailMainPayslipGenerate" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -283,11 +283,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="formLeaveMainLeavePanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailMainPayslipPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="365" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="formLeaveMainLeaveGenerate" min="-2" max="-2" attributes="0"/>
+                      <Component id="formPayslipDetailMainPayslipGenerate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -301,41 +301,23 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="formLeaveMainLeaveTable">
+                <Component class="javax.swing.JTable" name="formPayslipDetailMainPayslipTable">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="Id" type="java.lang.Object"/>
                         <Column editable="false" title="Nik" type="java.lang.Object"/>
                         <Column editable="false" title="Full Name" type="java.lang.Object"/>
-                        <Column editable="false" title="Request Date" type="java.lang.Object"/>
-                        <Column editable="false" title="Date From" type="java.lang.Object"/>
-                        <Column editable="false" title="Date To" type="java.lang.Object"/>
-                        <Column editable="false" title="Reasons" type="java.lang.Object"/>
-                        <Column editable="false" title="Type" type="java.lang.Object"/>
-                        <Column editable="false" title="Status" type="java.lang.Object"/>
+                        <Column editable="false" title="Periode" type="java.lang.Object"/>
+                        <Column editable="false" title="Net Salary" type="java.lang.Object"/>
+                        <Column editable="false" title="Total Working" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="1">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -376,41 +358,42 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formPayslipDetailMainPayslipTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="formLeaveMainLeaveGenerate">
+            <Component class="javax.swing.JButton" name="formPayslipDetailMainPayslipGenerate">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto Light" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Generate Leave Report"/>
+                <Property name="text" type="java.lang.String" value="Generate Payslip Report"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainLeaveGenerateActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainLeaveGenerateKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formPayslipDetailMainPayslipGenerateActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formPayslipDetailMainPayslipGenerateKeyPressed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JPanel" name="formLeaveMainLeavePanel">
+            <Container class="javax.swing.JPanel" name="formPayslipDetailMainPayslipPanel">
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveLebelFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipLebelFullName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveTextFieldFullName" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipTextFieldFullName" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveLebelFrom" min="-2" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipLebelFrom" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveJDateChooseFrom" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveLebelTo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="formLeaveMainLeaveJDateChooseTo" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipComboBoxYear" min="-2" pref="195" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipComboBoxMonth" min="-2" pref="195" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="formLeaveMainLeaveButtonSearch" min="-2" pref="207" max="-2" attributes="0"/>
+                          <Component id="formPayslipDetailMainPayslipButtonSearch" min="-2" pref="207" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -420,15 +403,16 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="formLeaveMainLeaveLebelFrom" alignment="0" max="32767" attributes="0"/>
-                              <Component id="formLeaveMainLeaveButtonSearch" alignment="1" max="32767" attributes="0"/>
-                              <Component id="formLeaveMainLeaveJDateChooseTo" alignment="1" max="32767" attributes="0"/>
-                              <Component id="formLeaveMainLeaveJDateChooseFrom" alignment="1" max="32767" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="formLeaveMainLeaveTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="formLeaveMainLeaveLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="formPayslipDetailMainPayslipButtonSearch" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="formPayslipDetailMainPayslipComboBoxYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formPayslipDetailMainPayslipComboBoxMonth" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="formLeaveMainLeaveLebelTo" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="formPayslipDetailMainPayslipTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formPayslipDetailMainPayslipLebelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="formPayslipDetailMainPayslipLebelFrom" alignment="3" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -436,7 +420,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelFullName">
+                <Component class="javax.swing.JLabel" name="formPayslipDetailMainPayslipLebelFullName">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -444,44 +428,22 @@
                     <Property name="text" type="java.lang.String" value="Full Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelFrom">
+                <Component class="javax.swing.JLabel" name="formPayslipDetailMainPayslipLebelFrom">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="From"/>
+                    <Property name="text" type="java.lang.String" value="Periode"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="formLeaveMainLeaveLebelTo">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto Light" size="18" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="To"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="formLeaveMainLeaveTextFieldFullName">
+                <Component class="javax.swing.JTextField" name="formPayslipDetailMainPayslipTextFieldFullName">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="formLeaveMainLeaveJDateChooseFrom">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto Light" size="18" style="0"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="formLeaveMainLeaveJDateChooseTo">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto Light" size="18" style="0"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="formLeaveMainLeaveButtonSearch">
+                <Component class="javax.swing.JButton" name="formPayslipDetailMainPayslipButtonSearch">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto Light" size="18" style="0"/>
@@ -489,9 +451,35 @@
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formLeaveMainLeaveButtonSearchActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formLeaveMainLeaveButtonSearchKeyPressed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formPayslipDetailMainPayslipButtonSearchActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formPayslipDetailMainPayslipButtonSearchKeyPressed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="formPayslipDetailMainPayslipComboBoxYear">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto Light" size="18" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="formPayslipDetailMainPayslipComboBoxMonth">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Roboto Light" size="18" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

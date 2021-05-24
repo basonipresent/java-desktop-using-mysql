@@ -160,7 +160,7 @@ public class Payslip {
 
         public List<Payslip> get() throws SQLException {
             Payslip payslip = new Payslip();
-            return payslip.search(username);
+            return payslip.search(this);
         }
     }
 
@@ -183,15 +183,15 @@ public class Payslip {
 
         if (params.periode != null) {
             query = "SELECT \n"
-                    + "a.*,\n"
+                    + "p.*,\n"
                     + "concat(e.first_name, ' ', e.last_name) as full_name\n"
                     + "FROM \n"
-                    + "`e-cms`.attendance as a\n"
-                    + "inner join `e-cms`.employee as e on e.nik = a.username\n"
+                    + "`e-cms`.payslip as p\n"
+                    + "inner join `e-cms`.employee as e on e.nik = p.username\n"
                     + "WHERE\n"
-                    + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')"
-                    + "and p.periode = " + params.periode + "\n"
-                    + "ORDER BY a.checkin DESC;";
+                    + "('" + params.username + "' = '' or concat(e.first_name, ' ', e.last_name) LIKE '%" + params.username + "%')\n"
+                    + "and p.periode = '" + params.periode + "'\n"
+                    + "ORDER BY p.periode DESC;";
         }
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -217,7 +217,7 @@ public class Payslip {
         return result;
     }
 
-    public List<Payslip> search(String username) throws SQLException {
+    public List<Payslip> search(Params params) throws SQLException {
         List<Payslip> result = new ArrayList<>();
 
         dbConnections.configuration();
@@ -231,8 +231,21 @@ public class Payslip {
                 + "`e-cms`.payslip as p\n"
                 + "inner join `e-cms`.employee as e on e.nik = p.username\n"
                 + "WHERE\n"
-                + "e.nik = '" + username + "'\n"
+                + "e.nik = '" + params.username + "'\n"
                 + "ORDER BY p.periode DESC;";
+
+        if (params.periode != null) {
+            query = "SELECT \n"
+                    + "p.*,\n"
+                    + "concat(e.first_name, ' ', e.last_name) as full_name\n"
+                    + "FROM \n"
+                    + "`e-cms`.payslip as p\n"
+                    + "inner join `e-cms`.employee as e on e.nik = p.username\n"
+                    + "WHERE\n"
+                    + "e.nik = '" + params.username + "'\n"
+                    + "and p.periode = '" + params.periode + "'\n"
+                    + "ORDER BY p.periode DESC;";
+        }
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         resultSet = preparedStatement.executeQuery();
@@ -256,7 +269,7 @@ public class Payslip {
 
         return result;
     }
-    
+
     public List<Payslip> searchByUsernameAndPeriode(String username, String periode) throws SQLException {
         List<Payslip> result = new ArrayList<>();
 
@@ -272,7 +285,7 @@ public class Payslip {
                 + "inner join `e-cms`.employee as e on e.nik = p.username\n"
                 + "WHERE\n"
                 + "e.nik = '" + username + "'\n"
-                + "and p.periode = '" + periode +"'\n"
+                + "and p.periode = '" + periode + "'\n"
                 + "ORDER BY p.periode DESC;";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);

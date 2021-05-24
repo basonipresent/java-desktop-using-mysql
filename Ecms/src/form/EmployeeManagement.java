@@ -889,6 +889,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             dashboard.setAccessMenu(getAccessMenu());
             dashboard.loadDataAttendance();
             dashboard.loadDataLeave();
+            dashboard.loadDataPayslip();
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
@@ -906,6 +907,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             dashboard.setAccessMenu(getAccessMenu());
             dashboard.loadDataAttendance();
             dashboard.loadDataLeave();
+            dashboard.loadDataPayslip();
             this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

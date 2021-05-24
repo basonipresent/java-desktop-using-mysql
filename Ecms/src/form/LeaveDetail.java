@@ -214,7 +214,7 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveMainLeaveTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         formLeaveMainLeaveGenerate.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formLeaveMainLeaveGenerate.setText("Generate Attendance Report");
+        formLeaveMainLeaveGenerate.setText("Generate Leave Report");
         formLeaveMainLeaveGenerate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formLeaveMainLeaveGenerateActionPerformed(evt);
@@ -562,8 +562,8 @@ public class LeaveDetail extends javax.swing.JFrame {
                 insertCell(pdfPTable, getListLeave().get(i).getRequestDate(), Element.ALIGN_CENTER, 1, bfNormal12);
                 insertCell(pdfPTable, getListLeave().get(i).getDateFrom(), Element.ALIGN_CENTER, 1, bfNormal12);
                 insertCell(pdfPTable, getListLeave().get(i).getDateTo(), Element.ALIGN_LEFT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getReasons(), Element.ALIGN_RIGHT, 1, bfNormal12);
-                insertCell(pdfPTable, getListLeave().get(i).getTypeName(), Element.ALIGN_CENTER, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getReasons(), Element.ALIGN_LEFT, 1, bfNormal12);
+                insertCell(pdfPTable, getListLeave().get(i).getTypeName(), Element.ALIGN_LEFT, 1, bfNormal12);
                 insertCell(pdfPTable, getListLeave().get(i).getStatus(), Element.ALIGN_LEFT, 1, bfNormal12);
             }
 
