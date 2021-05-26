@@ -159,12 +159,10 @@ public class Constanta {
         
         public final HashMap<String, Integer> getTypes() {
             HashMap<String, Integer> types = new HashMap<>();
-            types.put("Cuti Tahunan", 1);
-            types.put("Cuti Sakit", 2);
-            types.put("Cuti Hamil", 3);
-            types.put("Cuti Besar", 4);
-            types.put("Cuti Penting", 5);
-            types.put("Cuti Berbayar", 6);
+            types.put("Cuti", 1);
+            types.put("Sakit", 2);
+            types.put("Izin", 3);
+            types.put("Dinas Luar", 4);
             return types;
         }
         

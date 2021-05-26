@@ -518,6 +518,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
             defaultTableModel.addRow(rows);
         }
         formApprovalProcessMainTableAttachment.setAutoCreateRowSorter(true);
+        setListAttachment(list);
     }
     
     private void bindDataStatusLeave() {

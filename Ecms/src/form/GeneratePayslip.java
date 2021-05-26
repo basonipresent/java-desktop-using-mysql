@@ -721,6 +721,10 @@ public class GeneratePayslip extends javax.swing.JFrame {
                 float basicCuts = basicSalary / Constanta.Default.DEFAULT_NORMAL_WORKING_DAYS * totalAbsen;
                 float taxCuts = basicSalary * Constanta.Default.DEFAULT_PPN_TAX / 100;
                 float netSalary = (basicSalary + overtimeSalary) - (basicCuts + taxCuts);
+                if(netSalary <= 0){
+                    netSalary = 0;
+                }
+                
                 formGeneratePayslipMainValueBasicSalary.setText(decimalFormat.format(basicSalary));
                 formGeneratePayslipMainValueOvertimeSalary.setText(decimalFormat.format(overtimeSalary));
                 formGeneratePayslipMainValueWorkingHours.setText(integerFormat.format(totalWorking));

@@ -37,7 +37,6 @@ public class Login extends javax.swing.JFrame {
         formLoginLabelFooter2 = new javax.swing.JLabel();
         formLoginPanelMain = new javax.swing.JPanel();
         formLoginMainPanelButton = new javax.swing.JPanel();
-        formLoginMainButtonForgetPassword = new javax.swing.JButton();
         formLoginMainButtonCreateAccount = new javax.swing.JButton();
         formLoginMainButtonLogin = new javax.swing.JButton();
         formLoginMainPasswordFieldPassword = new javax.swing.JPasswordField();
@@ -48,7 +47,6 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameLogin"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
 
@@ -105,9 +103,6 @@ public class Login extends javax.swing.JFrame {
 
         formLoginMainPanelButton.setPreferredSize(new java.awt.Dimension(479, 151));
 
-        formLoginMainButtonForgetPassword.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formLoginMainButtonForgetPassword.setText("Forget Password");
-
         formLoginMainButtonCreateAccount.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLoginMainButtonCreateAccount.setText("Create Account");
         formLoginMainButtonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +146,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(formLoginMainPanelButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formLoginMainButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formLoginMainButtonCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(formLoginMainPanelButtonLayout.createSequentialGroup()
                         .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(formLoginMainLabelUsername)
@@ -160,17 +157,14 @@ public class Login extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(formLoginMainPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formLoginMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(formLoginMainButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(formLoginMainButtonCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(formLoginMainButtonForgetPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(formLoginMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         formLoginMainPanelButtonLayout.setVerticalGroup(
             formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLoginMainPanelButtonLayout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 39, Short.MAX_VALUE)
                 .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formLoginMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formLoginMainLabelUsername))
@@ -182,9 +176,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(formLoginMainButtonLogin)
                 .addGap(18, 18, 18)
                 .addComponent(formLoginMainButtonCreateAccount)
-                .addGap(18, 18, 18)
-                .addComponent(formLoginMainButtonForgetPassword)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout formLoginPanelMainLayout = new javax.swing.GroupLayout(formLoginPanelMain);
@@ -200,8 +192,8 @@ public class Login extends javax.swing.JFrame {
             formLoginPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLoginPanelMainLayout.createSequentialGroup()
                 .addContainerGap(124, Short.MAX_VALUE)
-                .addComponent(formLoginMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159))
+                .addComponent(formLoginMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,7 +338,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel formLoginLabelFooter2;
     private javax.swing.JLabel formLoginLabelHeader;
     private javax.swing.JButton formLoginMainButtonCreateAccount;
-    private javax.swing.JButton formLoginMainButtonForgetPassword;
     private javax.swing.JButton formLoginMainButtonLogin;
     private javax.swing.JLabel formLoginMainLabelPassword;
     private javax.swing.JLabel formLoginMainLabelUsername;

@@ -809,9 +809,10 @@ public final class Dashboard extends javax.swing.JFrame {
                     || formDashboardHeaderLabelNik.getText().equals("admin")) {
                 listLeave = Leave.listParams()
                         .withUsername("")
+                        .withStatus(Constanta.Leave.ALL)
                         .withDateFrom(null)
                         .withDateTo(null)
-                        .build();
+                        .buildApproval();
             } else {
                 listLeave = Leave.listParams()
                         .withUsername(getFullName())

@@ -627,6 +627,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
             approvalProcess.setLabelNik(formApprovalHeaderLabelNik.getText());
             approvalProcess.setFullName(getFullName());
             approvalProcess.setAccessMenu(getAccessMenu());
+            approvalProcess.loadDataAttachment(leave);
             this.dispose();
         } catch (NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());

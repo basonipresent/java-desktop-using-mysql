@@ -122,7 +122,7 @@ public class Attachment {
                 + "VALUES\n"
                 + "(" + params.getIdLeave()+ ",\n"
                 + "'" + params.getFileName()+ "',\n"
-                + "'" + params.getFilePath()+ "');";
+                + "'" + params.getFilePath().replace("\\", "\\\\")+ "');";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         affected = preparedStatement.executeUpdate();
