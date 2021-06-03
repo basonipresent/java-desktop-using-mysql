@@ -30,9 +30,11 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        formLoginPanelHeader = new javax.swing.JPanel();
+        formLoginPanelHeader = new keeptoo.KGradientPanel();
+        kGradientPanel1 = new keeptoo.KGradientPanel();
         formLoginLabelHeader = new javax.swing.JLabel();
         formLoginPanelFooter = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formLoginLabelFooter = new javax.swing.JLabel();
         formLoginLabelFooter2 = new javax.swing.JLabel();
         formLoginPanelMain = new javax.swing.JPanel();
@@ -45,32 +47,62 @@ public class Login extends javax.swing.JFrame {
         formLoginMainLabelUsername = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
         setName("frameLogin"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        formLoginPanelHeader.setBackground(new java.awt.Color(51, 153, 255));
         formLoginPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
 
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel1.setkGradientFocus(400);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 204, 204));
+
+        formLoginLabelHeader.setBackground(new java.awt.Color(102, 153, 255));
         formLoginLabelHeader.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formLoginLabelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formLoginLabelHeader.setText("Login");
+        formLoginLabelHeader.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formLoginLabelHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formLoginLabelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout formLoginPanelHeaderLayout = new javax.swing.GroupLayout(formLoginPanelHeader);
         formLoginPanelHeader.setLayout(formLoginPanelHeaderLayout);
         formLoginPanelHeaderLayout.setHorizontalGroup(
             formLoginPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLoginPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formLoginLabelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formLoginPanelHeaderLayout.setVerticalGroup(
             formLoginPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formLoginLabelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLoginPanelHeaderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        getContentPane().add(formLoginPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        formLoginPanelHeader.getAccessibleContext().setAccessibleName("");
+        formLoginPanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formLoginPanelFooter.setBackground(new java.awt.Color(51, 153, 255));
+        formLoginPanelFooter.setForeground(new java.awt.Color(0, 204, 255));
         formLoginPanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formLoginLabelFooter.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
         formLoginLabelFooter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,29 +112,52 @@ public class Login extends javax.swing.JFrame {
         formLoginLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formLoginLabelFooter2.setText("CopyRight ©2021");
 
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(formLoginLabelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(formLoginLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formLoginLabelFooter)
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(formLoginLabelFooter2)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout formLoginPanelFooterLayout = new javax.swing.GroupLayout(formLoginPanelFooter);
         formLoginPanelFooter.setLayout(formLoginPanelFooterLayout);
         formLoginPanelFooterLayout.setHorizontalGroup(
             formLoginPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLoginPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formLoginPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formLoginLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                    .addComponent(formLoginLabelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formLoginPanelFooterLayout.setVerticalGroup(
             formLoginPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLoginPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formLoginLabelFooter)
-                .addGap(7, 7, 7)
-                .addComponent(formLoginLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        getContentPane().add(formLoginPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 645, 1280, -1));
+
+        formLoginPanelMain.setBackground(new java.awt.Color(255, 255, 255));
+
+        formLoginMainPanelButton.setBackground(new java.awt.Color(255, 255, 255));
         formLoginMainPanelButton.setPreferredSize(new java.awt.Dimension(479, 151));
 
+        formLoginMainButtonCreateAccount.setBackground(new java.awt.Color(51, 153, 255));
         formLoginMainButtonCreateAccount.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLoginMainButtonCreateAccount.setText("Create Account");
         formLoginMainButtonCreateAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +171,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        formLoginMainButtonLogin.setBackground(new java.awt.Color(51, 153, 255));
         formLoginMainButtonLogin.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLoginMainButtonLogin.setText("Login");
         formLoginMainButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -163,8 +219,8 @@ public class Login extends javax.swing.JFrame {
         );
         formLoginMainPanelButtonLayout.setVerticalGroup(
             formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLoginMainPanelButtonLayout.createSequentialGroup()
-                .addGap(0, 39, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLoginMainPanelButtonLayout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addGroup(formLoginMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formLoginMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formLoginMainLabelUsername))
@@ -176,7 +232,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(formLoginMainButtonLogin)
                 .addGap(18, 18, 18)
                 .addComponent(formLoginMainButtonCreateAccount)
-                .addGap(35, 35, 35))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout formLoginPanelMainLayout = new javax.swing.GroupLayout(formLoginPanelMain);
@@ -186,36 +242,17 @@ public class Login extends javax.swing.JFrame {
             .addGroup(formLoginPanelMainLayout.createSequentialGroup()
                 .addGap(401, 401, 401)
                 .addComponent(formLoginMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
         formLoginPanelMainLayout.setVerticalGroup(
             formLoginPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLoginPanelMainLayout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(141, Short.MAX_VALUE)
                 .addComponent(formLoginMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formLoginPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formLoginPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formLoginPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formLoginPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formLoginPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formLoginPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        formLoginPanelHeader.getAccessibleContext().setAccessibleName("");
-        formLoginPanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formLoginPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 99, -1, 550));
 
         pack();
         setLocationRelativeTo(null);
@@ -347,5 +384,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel formLoginPanelFooter;
     private javax.swing.JPanel formLoginPanelHeader;
     private javax.swing.JPanel formLoginPanelMain;
+    private keeptoo.KGradientPanel kGradientPanel1;
+    private keeptoo.KGradientPanel kGradientPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -52,10 +52,12 @@ public class Register extends javax.swing.JFrame {
     private void initComponents() {
 
         formRegisterPanelHeader = new javax.swing.JPanel();
-        formRegisterLabelHeader = new javax.swing.JLabel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
+        formLoginLabelHeader1 = new javax.swing.JLabel();
         formRegisterPanelFooter = new javax.swing.JPanel();
-        formRegisterLabelFooter = new javax.swing.JLabel();
-        formRegisterLabelFooter2 = new javax.swing.JLabel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
+        formLoginLabelFooter = new javax.swing.JLabel();
+        formLoginLabelFooter2 = new javax.swing.JLabel();
         formRegisterPanelMain = new javax.swing.JPanel();
         formRegisterMainPanelButton = new javax.swing.JPanel();
         formRegisterMainButtonRegister = new javax.swing.JButton();
@@ -71,63 +73,110 @@ public class Register extends javax.swing.JFrame {
         formRegisterMainTextFieldFirstName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Register");
+        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameRegister"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formRegisterPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
 
-        formRegisterLabelHeader.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        formRegisterLabelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formRegisterLabelHeader.setText("Registration Account");
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+
+        formLoginLabelHeader1.setBackground(new java.awt.Color(102, 153, 255));
+        formLoginLabelHeader1.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
+        formLoginLabelHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formLoginLabelHeader1.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formLoginLabelHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formLoginLabelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout formRegisterPanelHeaderLayout = new javax.swing.GroupLayout(formRegisterPanelHeader);
         formRegisterPanelHeader.setLayout(formRegisterPanelHeaderLayout);
         formRegisterPanelHeaderLayout.setHorizontalGroup(
             formRegisterPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRegisterPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formRegisterLabelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formRegisterPanelHeaderLayout.setVerticalGroup(
             formRegisterPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formRegisterLabelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(formRegisterPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        formRegisterPanelHeader.getAccessibleContext().setAccessibleName("");
+        formRegisterPanelHeader.getAccessibleContext().setAccessibleDescription("");
 
         formRegisterPanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
 
-        formRegisterLabelFooter.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
-        formRegisterLabelFooter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formRegisterLabelFooter.setText("Employee Content Management System");
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
-        formRegisterLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formRegisterLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formRegisterLabelFooter2.setText("CopyRight ©2021");
+        formLoginLabelFooter.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        formLoginLabelFooter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formLoginLabelFooter.setText("Employee Content Management System");
+
+        formLoginLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        formLoginLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        formLoginLabelFooter2.setText("CopyRight ©2021");
+
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(formLoginLabelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(formLoginLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(formLoginLabelFooter)
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(formLoginLabelFooter2)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout formRegisterPanelFooterLayout = new javax.swing.GroupLayout(formRegisterPanelFooter);
         formRegisterPanelFooter.setLayout(formRegisterPanelFooterLayout);
         formRegisterPanelFooterLayout.setHorizontalGroup(
             formRegisterPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRegisterPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formRegisterPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formRegisterLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                    .addComponent(formRegisterLabelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formRegisterPanelFooterLayout.setVerticalGroup(
             formRegisterPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formRegisterLabelFooter)
-                .addGap(7, 7, 7)
-                .addComponent(formRegisterLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        getContentPane().add(formRegisterPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 645, 1280, -1));
+
+        formRegisterPanelMain.setBackground(new java.awt.Color(255, 255, 255));
+
+        formRegisterMainPanelButton.setBackground(new java.awt.Color(255, 255, 255));
+
+        formRegisterMainButtonRegister.setBackground(new java.awt.Color(51, 153, 255));
         formRegisterMainButtonRegister.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRegisterMainButtonRegister.setText("Register");
         formRegisterMainButtonRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +190,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        formRegisterMainButtonClear.setBackground(new java.awt.Color(51, 153, 255));
         formRegisterMainButtonClear.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRegisterMainButtonClear.setText("Clear");
         formRegisterMainButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +204,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        formRegisterMainButtonLogin.setBackground(new java.awt.Color(255, 255, 255));
         formRegisterMainButtonLogin.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRegisterMainButtonLogin.setText("Already have account? Login");
         formRegisterMainButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -192,20 +243,14 @@ public class Register extends javax.swing.JFrame {
         formRegisterMainPanelButtonLayout.setHorizontalGroup(
             formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
                         .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(formRegisterMainLabelLastName)
-                                    .addComponent(formRegisterMainLabelUsername)))
-                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(formRegisterMainLabelFirstName))
-                            .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(formRegisterMainLabelPassword)))
+                            .addComponent(formRegisterMainLabelPassword)
+                            .addComponent(formRegisterMainLabelLastName)
+                            .addComponent(formRegisterMainLabelFirstName)
+                            .addComponent(formRegisterMainLabelUsername))
                         .addGap(18, 18, 18)
                         .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(formRegisterMainTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,12 +258,9 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(formRegisterMainTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(formRegisterMainTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(formRegisterMainPanelButtonLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(formRegisterMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formRegisterMainButtonRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formRegisterMainButtonClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formRegisterMainButtonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(formRegisterMainButtonRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formRegisterMainButtonClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formRegisterMainButtonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         formRegisterMainPanelButtonLayout.setVerticalGroup(
@@ -253,39 +295,18 @@ public class Register extends javax.swing.JFrame {
         formRegisterPanelMain.setLayout(formRegisterPanelMainLayout);
         formRegisterPanelMainLayout.setHorizontalGroup(
             formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterPanelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(403, 403, 403))
+            .addGroup(formRegisterPanelMainLayout.createSequentialGroup()
+                .addGap(402, 402, 402)
+                .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         formRegisterPanelMainLayout.setVerticalGroup(
             formRegisterPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formRegisterPanelMainLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+            .addGroup(formRegisterPanelMainLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(formRegisterMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formRegisterPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formRegisterPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formRegisterPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formRegisterPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formRegisterPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formRegisterPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        formRegisterPanelHeader.getAccessibleContext().setAccessibleName("");
-        formRegisterPanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formRegisterPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 99, 1280, 550));
 
         pack();
         setLocationRelativeTo(null);
@@ -437,9 +458,11 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel formRegisterLabelFooter;
-    private javax.swing.JLabel formRegisterLabelFooter2;
-    private javax.swing.JLabel formRegisterLabelHeader;
+    private javax.swing.JLabel formLoginLabelFooter;
+    private javax.swing.JLabel formLoginLabelFooter2;
+    private javax.swing.JLabel formLoginLabelHeader;
+    private javax.swing.JLabel formLoginLabelHeader1;
+    private javax.swing.JPanel formLoginPanelHeader;
     private javax.swing.JButton formRegisterMainButtonClear;
     private javax.swing.JButton formRegisterMainButtonLogin;
     private javax.swing.JButton formRegisterMainButtonRegister;
@@ -455,5 +478,8 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel formRegisterPanelFooter;
     private javax.swing.JPanel formRegisterPanelHeader;
     private javax.swing.JPanel formRegisterPanelMain;
+    private keeptoo.KGradientPanel kGradientPanel1;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }

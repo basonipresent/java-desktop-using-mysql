@@ -70,13 +70,14 @@ public class ApprovalProcess extends javax.swing.JFrame {
     private void initComponents() {
 
         formApprovalProcessPanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formApprovalProcessHeaderLable = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelId = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelNikLeave = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelIdLeave = new javax.swing.JLabel();
         formApprovalProcessHeaderLabelNik = new javax.swing.JLabel();
         formApprovalProcessPanelFooter = new javax.swing.JPanel();
-        formApprovalProcessLabelFooter2 = new javax.swing.JLabel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formApprovalProcessPanelMain = new javax.swing.JPanel();
         formApprovalProcessMainLabelFullNameUser = new javax.swing.JLabel();
         formApprovalProcessMainButtonBack = new javax.swing.JButton();
@@ -102,16 +103,23 @@ public class ApprovalProcess extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formApprovalProcessPanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         formApprovalProcessPanelHeader.setPreferredSize(new java.awt.Dimension(1280, 70));
 
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+
         formApprovalProcessHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formApprovalProcessHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formApprovalProcessHeaderLable.setText("Approval Process");
+        formApprovalProcessHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
 
         formApprovalProcessHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formApprovalProcessHeaderLabelId.setText("Id");
@@ -129,68 +137,102 @@ public class ApprovalProcess extends javax.swing.JFrame {
         formApprovalProcessHeaderLabelNik.setText("Nik");
         formApprovalProcessHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formApprovalProcessPanelHeaderLayout = new javax.swing.GroupLayout(formApprovalProcessPanelHeader);
-        formApprovalProcessPanelHeader.setLayout(formApprovalProcessPanelHeaderLayout);
-        formApprovalProcessPanelHeaderLayout.setHorizontalGroup(
-            formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formApprovalProcessPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formApprovalProcessHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(formApprovalProcessPanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formApprovalProcessHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formApprovalProcessHeaderLabelNikLeave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formApprovalProcessHeaderLabelIdLeave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formApprovalProcessHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formApprovalProcessPanelHeaderLayout.setVerticalGroup(
-            formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formApprovalProcessPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formApprovalProcessHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(formApprovalProcessHeaderLabelId)
+                .addGap(9, 9, 9)
+                .addComponent(formApprovalProcessHeaderLabelNikLeave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formApprovalProcessHeaderLabelId)
-                    .addComponent(formApprovalProcessHeaderLabelNikLeave)
-                    .addComponent(formApprovalProcessHeaderLabelIdLeave)
-                    .addComponent(formApprovalProcessHeaderLabelNik)))
+                .addComponent(formApprovalProcessHeaderLabelIdLeave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formApprovalProcessHeaderLabelNik)
+                .addContainerGap(1174, Short.MAX_VALUE))
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                    .addGap(1, 1, 1)
+                    .addComponent(formApprovalProcessHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1288, Short.MAX_VALUE)
+                    .addGap(1, 1, 1)))
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formApprovalProcessHeaderLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formApprovalProcessHeaderLabelNik)
+                        .addComponent(formApprovalProcessHeaderLabelIdLeave))
+                    .addComponent(formApprovalProcessHeaderLabelNikLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                    .addComponent(formApprovalProcessHeaderLable)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         formApprovalProcessHeaderLable.getAccessibleContext().setAccessibleDescription("");
 
-        formApprovalProcessPanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
+        javax.swing.GroupLayout formApprovalProcessPanelHeaderLayout = new javax.swing.GroupLayout(formApprovalProcessPanelHeader);
+        formApprovalProcessPanelHeader.setLayout(formApprovalProcessPanelHeaderLayout);
+        formApprovalProcessPanelHeaderLayout.setHorizontalGroup(
+            formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formApprovalProcessPanelHeaderLayout.createSequentialGroup()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        formApprovalProcessPanelHeaderLayout.setVerticalGroup(
+            formApprovalProcessPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
-        formApprovalProcessLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formApprovalProcessLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formApprovalProcessLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        getContentPane().add(formApprovalProcessPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 0, 1290, 100));
+        formApprovalProcessPanelHeader.getAccessibleContext().setAccessibleName("");
+        formApprovalProcessPanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formApprovalProcessPanelFooter.setBackground(new java.awt.Color(255, 255, 255));
+        formApprovalProcessPanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
+
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+        );
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout formApprovalProcessPanelFooterLayout = new javax.swing.GroupLayout(formApprovalProcessPanelFooter);
         formApprovalProcessPanelFooter.setLayout(formApprovalProcessPanelFooterLayout);
         formApprovalProcessPanelFooterLayout.setHorizontalGroup(
             formApprovalProcessPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formApprovalProcessPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formApprovalProcessLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formApprovalProcessPanelFooterLayout.setVerticalGroup(
             formApprovalProcessPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formApprovalProcessPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formApprovalProcessLabelFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kGradientPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        getContentPane().add(formApprovalProcessPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
+
+        formApprovalProcessPanelMain.setBackground(new java.awt.Color(255, 255, 255));
         formApprovalProcessPanelMain.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
         formApprovalProcessMainLabelFullNameUser.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formApprovalProcessMainLabelFullNameUser.setText("FullName");
 
+        formApprovalProcessMainButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         formApprovalProcessMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formApprovalProcessMainButtonBack.setText("Back");
         formApprovalProcessMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +246,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
             }
         });
 
+        formApprovalProcessMainButtonLogout.setBackground(new java.awt.Color(255, 255, 255));
         formApprovalProcessMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formApprovalProcessMainButtonLogout.setText("Logout");
         formApprovalProcessMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +260,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
             }
         });
 
+        formApprovalProcessMainPanelForm.setBackground(new java.awt.Color(255, 255, 255));
         formApprovalProcessMainPanelForm.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         formApprovalProcessMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
@@ -262,13 +306,13 @@ public class ApprovalProcess extends javax.swing.JFrame {
                     .addComponent(formApprovalProcessMainLabelFrom)
                     .addComponent(formApprovalProcessMainLabelReasons)
                     .addComponent(formApprovalProcessMainLabelFullName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(formApprovalProcessMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(formApprovalProcessMainPanelFormLayout.createSequentialGroup()
                         .addGroup(formApprovalProcessMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(formApprovalProcessMainDateChooserFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(formApprovalProcessMainTextFieldFullName, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                            .addComponent(formApprovalProcessMainTextFieldFullName))
                         .addGap(61, 61, 61)
                         .addGroup(formApprovalProcessMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(formApprovalProcessMainLabelTo)
@@ -306,6 +350,9 @@ public class ApprovalProcess extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
+        formApprovalProcessMainPanelButton.setBackground(new java.awt.Color(255, 255, 255));
+
+        formApprovalProcessMainButtonApproved.setBackground(new java.awt.Color(51, 153, 255));
         formApprovalProcessMainButtonApproved.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formApprovalProcessMainButtonApproved.setText("Approved");
         formApprovalProcessMainButtonApproved.addActionListener(new java.awt.event.ActionListener() {
@@ -319,6 +366,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
             }
         });
 
+        formApprovalProcessMainButtonRejected.setBackground(new java.awt.Color(51, 153, 255));
         formApprovalProcessMainButtonRejected.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formApprovalProcessMainButtonRejected.setText("Rejected");
         formApprovalProcessMainButtonRejected.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +401,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        formApprovalProcessMainPanelFiles.setBackground(new java.awt.Color(255, 255, 255));
         formApprovalProcessMainPanelFiles.setBorder(javax.swing.BorderFactory.createTitledBorder("List of files"));
 
         formApprovalProcessMainTableAttachment.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -396,7 +445,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
                 .addGroup(formApprovalProcessPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formApprovalProcessPanelMainLayout.createSequentialGroup()
                         .addComponent(formApprovalProcessMainLabelFullNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 908, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 910, Short.MAX_VALUE)
                         .addComponent(formApprovalProcessMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formApprovalProcessMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -417,43 +466,19 @@ public class ApprovalProcess extends javax.swing.JFrame {
                     .addComponent(formApprovalProcessMainButtonLogout)
                     .addComponent(formApprovalProcessMainLabelFullNameUser)
                     .addComponent(formApprovalProcessMainButtonBack))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formApprovalProcessMainPanelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(formApprovalProcessMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(formApprovalProcessPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(formApprovalProcessPanelMainLayout.createSequentialGroup()
                     .addGap(64, 64, 64)
                     .addComponent(formApprovalProcessMainPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(230, Short.MAX_VALUE)))
+                    .addContainerGap(270, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formApprovalProcessPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formApprovalProcessPanelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(formApprovalProcessPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formApprovalProcessPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formApprovalProcessPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formApprovalProcessPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formApprovalProcessPanelHeader.getAccessibleContext().setAccessibleName("");
-        formApprovalProcessPanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formApprovalProcessPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1280, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -905,7 +930,6 @@ public class ApprovalProcess extends javax.swing.JFrame {
     public javax.swing.JLabel formApprovalProcessHeaderLabelNik;
     public javax.swing.JLabel formApprovalProcessHeaderLabelNikLeave;
     private javax.swing.JLabel formApprovalProcessHeaderLable;
-    private javax.swing.JLabel formApprovalProcessLabelFooter2;
     private javax.swing.JButton formApprovalProcessMainButtonApproved;
     private javax.swing.JButton formApprovalProcessMainButtonBack;
     private javax.swing.JButton formApprovalProcessMainButtonLogout;
@@ -930,5 +954,7 @@ public class ApprovalProcess extends javax.swing.JFrame {
     private javax.swing.JPanel formApprovalProcessPanelMain;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }
