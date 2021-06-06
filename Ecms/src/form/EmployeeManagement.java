@@ -35,7 +35,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeHeaderLabelNik.setVisible(false);
         formEmployeeHeaderLabelIsUpdate.setVisible(false);
         formEmployeeHeaderLabelIdEmployee.setVisible(false);
-        formEmployeeMainButtonDelete.setVisible(false);
+        formEmployeeMainButtonDelete.setEnabled(false);
         formEmployeeHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
         formEmployeeHeaderLabelIdEmployee.setText(Constanta.Default.DEFAULT_VALUE);
         bindDataPosition();
@@ -55,13 +55,14 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private void initComponents() {
 
         formEmployeePanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formEmployeeHeaderLable = new javax.swing.JLabel();
+        formEmployeePanelFooter = new javax.swing.JPanel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formEmployeeHeaderLabelId = new javax.swing.JLabel();
         formEmployeeHeaderLabelIsUpdate = new javax.swing.JLabel();
         formEmployeeHeaderLabelIdEmployee = new javax.swing.JLabel();
         formEmployeeHeaderLabelNik = new javax.swing.JLabel();
-        formEmployeePanelFooter = new javax.swing.JPanel();
-        formEmployeeLabelFooter2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         formEmployeePanelMain = new javax.swing.JPanel();
         formEmployeeMainLabelFullName = new javax.swing.JLabel();
@@ -91,25 +92,68 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeMainPanelButton = new javax.swing.JPanel();
         formEmployeeMainButtonSave = new javax.swing.JButton();
         formEmployeeMainButtonClear = new javax.swing.JButton();
+        formEmployeeMainButtonDelete = new javax.swing.JButton();
         formEmployeeMainPanelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         formEmployeeMainTable = new javax.swing.JTable();
-        formEmployeeMainButtonDelete = new javax.swing.JButton();
         formEmployeeMainButtonLogout = new javax.swing.JButton();
         formEmployeeMainButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameEmployee"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1024, 768));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        formEmployeePanelHeader.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeePanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formEmployeePanelHeader.setPreferredSize(new java.awt.Dimension(1280, 70));
+        formEmployeePanelHeader.setPreferredSize(new java.awt.Dimension(1280, 100));
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+        kGradientPanel2.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         formEmployeeHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formEmployeeHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formEmployeeHeaderLable.setText("Employee Management");
+        formEmployeeHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formEmployeeHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formEmployeeHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        formEmployeeHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        javax.swing.GroupLayout formEmployeePanelHeaderLayout = new javax.swing.GroupLayout(formEmployeePanelHeader);
+        formEmployeePanelHeader.setLayout(formEmployeePanelHeaderLayout);
+        formEmployeePanelHeaderLayout.setHorizontalGroup(
+            formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formEmployeePanelHeaderLayout.setVerticalGroup(
+            formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(formEmployeePanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        formEmployeePanelHeader.getAccessibleContext().setAccessibleName("");
+        formEmployeePanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formEmployeePanelFooter.setBackground(new java.awt.Color(255, 255, 255));
+        formEmployeePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formEmployeeHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formEmployeeHeaderLabelId.setText("Id");
@@ -127,62 +171,53 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeeHeaderLabelNik.setText("Nik");
         formEmployeeHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formEmployeePanelHeaderLayout = new javax.swing.GroupLayout(formEmployeePanelHeader);
-        formEmployeePanelHeader.setLayout(formEmployeePanelHeaderLayout);
-        formEmployeePanelHeaderLayout.setHorizontalGroup(
-            formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formEmployeeHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                    .addGroup(formEmployeePanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formEmployeeHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formEmployeeHeaderLabelIsUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formEmployeeHeaderLabelIdEmployee)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formEmployeeHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formEmployeePanelHeaderLayout.setVerticalGroup(
-            formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeeHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formEmployeePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(587, 587, 587)
                     .addComponent(formEmployeeHeaderLabelId)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(formEmployeeHeaderLabelIsUpdate)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(formEmployeeHeaderLabelIdEmployee)
-                    .addComponent(formEmployeeHeaderLabelNik)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(formEmployeeHeaderLabelNik)
+                    .addContainerGap(587, Short.MAX_VALUE)))
         );
-
-        formEmployeeHeaderLable.getAccessibleContext().setAccessibleDescription("");
-
-        formEmployeePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
-
-        formEmployeeLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formEmployeeLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formEmployeeLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formEmployeeHeaderLabelId)
+                        .addComponent(formEmployeeHeaderLabelIsUpdate)
+                        .addComponent(formEmployeeHeaderLabelIdEmployee)
+                        .addComponent(formEmployeeHeaderLabelNik))
+                    .addContainerGap(20, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout formEmployeePanelFooterLayout = new javax.swing.GroupLayout(formEmployeePanelFooter);
         formEmployeePanelFooter.setLayout(formEmployeePanelFooterLayout);
         formEmployeePanelFooterLayout.setHorizontalGroup(
             formEmployeePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeeLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formEmployeePanelFooterLayout.setVerticalGroup(
             formEmployeePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeeLabelFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(formEmployeePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 666, 1280, 50));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+
+        formEmployeePanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
         formEmployeeMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formEmployeeMainLabelFullName.setText("FullName");
@@ -250,6 +285,9 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         formEmployeeMainTextFieldDaysOff.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formEmployeeMainPanelButton.setBackground(new java.awt.Color(255, 255, 255));
+
+        formEmployeeMainButtonSave.setBackground(new java.awt.Color(51, 153, 255));
         formEmployeeMainButtonSave.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeeMainButtonSave.setText("Save");
         formEmployeeMainButtonSave.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +301,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             }
         });
 
+        formEmployeeMainButtonClear.setBackground(new java.awt.Color(51, 153, 255));
         formEmployeeMainButtonClear.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeeMainButtonClear.setText("Clear");
         formEmployeeMainButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -276,6 +315,20 @@ public class EmployeeManagement extends javax.swing.JFrame {
             }
         });
 
+        formEmployeeMainButtonDelete.setBackground(new java.awt.Color(51, 153, 255));
+        formEmployeeMainButtonDelete.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formEmployeeMainButtonDelete.setText("Delete");
+        formEmployeeMainButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formEmployeeMainButtonDeleteActionPerformed(evt);
+            }
+        });
+        formEmployeeMainButtonDelete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formEmployeeMainButtonDeleteKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formEmployeeMainPanelButtonLayout = new javax.swing.GroupLayout(formEmployeeMainPanelButton);
         formEmployeeMainPanelButton.setLayout(formEmployeeMainPanelButtonLayout);
         formEmployeeMainPanelButtonLayout.setHorizontalGroup(
@@ -283,9 +336,11 @@ public class EmployeeManagement extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formEmployeeMainPanelButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(formEmployeeMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(formEmployeeMainButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(342, 342, 342))
+                .addGap(18, 18, 18)
+                .addComponent(formEmployeeMainButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(220, 220, 220))
         );
         formEmployeeMainPanelButtonLayout.setVerticalGroup(
             formEmployeeMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,9 +348,12 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(formEmployeeMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formEmployeeMainButtonClear)
-                    .addComponent(formEmployeeMainButtonSave))
+                    .addComponent(formEmployeeMainButtonSave)
+                    .addComponent(formEmployeeMainButtonDelete))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        formEmployeeMainPanelTable.setBackground(new java.awt.Color(255, 255, 255));
 
         formEmployeeMainTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         formEmployeeMainTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -323,40 +381,24 @@ public class EmployeeManagement extends javax.swing.JFrame {
         jScrollPane2.setViewportView(formEmployeeMainTable);
         formEmployeeMainTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        formEmployeeMainButtonDelete.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formEmployeeMainButtonDelete.setText("Delete");
-        formEmployeeMainButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formEmployeeMainButtonDeleteActionPerformed(evt);
-            }
-        });
-        formEmployeeMainButtonDelete.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formEmployeeMainButtonDeleteKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout formEmployeeMainPanelTableLayout = new javax.swing.GroupLayout(formEmployeeMainPanelTable);
         formEmployeeMainPanelTable.setLayout(formEmployeeMainPanelTableLayout);
         formEmployeeMainPanelTableLayout.setHorizontalGroup(
             formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formEmployeeMainPanelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE)
-                    .addComponent(formEmployeeMainButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1238, Short.MAX_VALUE)
                 .addContainerGap())
         );
         formEmployeeMainPanelTableLayout.setVerticalGroup(
             formEmployeeMainPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formEmployeeMainPanelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formEmployeeMainButtonDelete)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        formEmployeeMainButtonLogout.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeeMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeeMainButtonLogout.setText("Logout");
         formEmployeeMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +412,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             }
         });
 
+        formEmployeeMainButtonCancel.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeeMainButtonCancel.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeeMainButtonCancel.setText("Back");
         formEmployeeMainButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +454,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
                                     .addComponent(formEmployeeMainLabelNationality)
                                     .addComponent(formEmployeeMainLabelCity)
                                     .addComponent(formEmployeeMainLabelAddress))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                                 .addGroup(formEmployeePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(formEmployeeMainComboBoxStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(formEmployeeMainTextFieldDaysOff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -500,32 +543,12 @@ public class EmployeeManagement extends javax.swing.JFrame {
                 .addComponent(formEmployeeMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formEmployeeMainPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
 
         jScrollPane3.setViewportView(formEmployeePanelMain);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formEmployeePanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane3)
-            .addComponent(formEmployeePanelFooter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formEmployeePanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formEmployeePanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formEmployeePanelHeader.getAccessibleContext().setAccessibleName("");
-        formEmployeePanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1280, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -647,7 +670,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             formEmployeeHeaderLabelIsUpdate.setText(Constanta.Default.DEFAULT_VALUE);
             formEmployeeHeaderLabelIdEmployee.setText(Constanta.Default.DEFAULT_VALUE);
             formEmployeeMainButtonSave.setText(Constanta.Default.BUTTON_ADD);
-            formEmployeeMainButtonDelete.setVisible(false);
+            formEmployeeMainButtonDelete.setEnabled(false);
             generate();
             loadData();
         } catch (Exception e) {
@@ -703,7 +726,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
             formEmployeeMainTextFieldSalary.setText(String.format("%.0f", employee.getBasicSalary()));
             formEmployeeMainTextFieldDaysOff.setText(employee.getDaysOff().toString());
             formEmployeeMainButtonSave.setText(Constanta.Default.BUTTON_UPDATE);
-            formEmployeeMainButtonDelete.setVisible(true);
+            formEmployeeMainButtonDelete.setEnabled(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -958,7 +981,6 @@ public class EmployeeManagement extends javax.swing.JFrame {
     public javax.swing.JLabel formEmployeeHeaderLabelIsUpdate;
     public javax.swing.JLabel formEmployeeHeaderLabelNik;
     private javax.swing.JLabel formEmployeeHeaderLable;
-    private javax.swing.JLabel formEmployeeLabelFooter2;
     private javax.swing.JButton formEmployeeMainButtonCancel;
     private javax.swing.JButton formEmployeeMainButtonClear;
     private javax.swing.JButton formEmployeeMainButtonDelete;
@@ -996,5 +1018,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }

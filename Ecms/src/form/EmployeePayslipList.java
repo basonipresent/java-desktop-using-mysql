@@ -47,11 +47,12 @@ public class EmployeePayslipList extends javax.swing.JFrame {
     private void initComponents() {
 
         formEmployeePayslipPanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formEmployeePayslipHeaderLable = new javax.swing.JLabel();
+        formEmployeePayslipPanelFooter = new javax.swing.JPanel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formEmployeePayslipHeaderLabelId = new javax.swing.JLabel();
         formEmployeePayslipHeaderLabelNik = new javax.swing.JLabel();
-        formEmployeePayslipPanelFooter = new javax.swing.JPanel();
-        formEmployeePayslipLabelFooter2 = new javax.swing.JLabel();
         formEmployeePayslipPanelMain = new javax.swing.JPanel();
         formEmployeePayslipMainLabelFullName = new javax.swing.JLabel();
         formEmployeePayslipMainButtonLogout = new javax.swing.JButton();
@@ -65,17 +66,64 @@ public class EmployeePayslipList extends javax.swing.JFrame {
         formEmployeePayslipMainButtonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formEmployeePayslipPanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formEmployeePayslipPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
+        formEmployeePayslipPanelHeader.setPreferredSize(new java.awt.Dimension(1280, 100));
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+        kGradientPanel2.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         formEmployeePayslipHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formEmployeePayslipHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formEmployeePayslipHeaderLable.setText("Employee Payslip");
+        formEmployeePayslipHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formEmployeePayslipHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addComponent(formEmployeePayslipHeaderLable)
+                .addGap(0, 4, Short.MAX_VALUE))
+        );
+
+        formEmployeePayslipHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        javax.swing.GroupLayout formEmployeePayslipPanelHeaderLayout = new javax.swing.GroupLayout(formEmployeePayslipPanelHeader);
+        formEmployeePayslipPanelHeader.setLayout(formEmployeePayslipPanelHeaderLayout);
+        formEmployeePayslipPanelHeaderLayout.setHorizontalGroup(
+            formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formEmployeePayslipPanelHeaderLayout.setVerticalGroup(
+            formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formEmployeePayslipPanelHeaderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(formEmployeePayslipPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        formEmployeePayslipPanelHeader.getAccessibleContext().setAccessibleName("");
+        formEmployeePayslipPanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formEmployeePayslipPanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formEmployeePayslipHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formEmployeePayslipHeaderLabelId.setText("Id");
@@ -85,60 +133,50 @@ public class EmployeePayslipList extends javax.swing.JFrame {
         formEmployeePayslipHeaderLabelNik.setText("Nik");
         formEmployeePayslipHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formEmployeePayslipPanelHeaderLayout = new javax.swing.GroupLayout(formEmployeePayslipPanelHeader);
-        formEmployeePayslipPanelHeader.setLayout(formEmployeePayslipPanelHeaderLayout);
-        formEmployeePayslipPanelHeaderLayout.setHorizontalGroup(
-            formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePayslipPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formEmployeePayslipHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(formEmployeePayslipPanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formEmployeePayslipHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formEmployeePayslipHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formEmployeePayslipPanelHeaderLayout.setVerticalGroup(
-            formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePayslipPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeePayslipHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formEmployeePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(628, 628, 628)
                     .addComponent(formEmployeePayslipHeaderLabelId)
-                    .addComponent(formEmployeePayslipHeaderLabelNik)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(formEmployeePayslipHeaderLabelNik)
+                    .addContainerGap(648, Short.MAX_VALUE)))
         );
-
-        formEmployeePayslipHeaderLable.getAccessibleContext().setAccessibleDescription("");
-
-        formEmployeePayslipPanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
-
-        formEmployeePayslipLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formEmployeePayslipLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formEmployeePayslipLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formEmployeePayslipHeaderLabelId)
+                        .addComponent(formEmployeePayslipHeaderLabelNik))
+                    .addContainerGap(42, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout formEmployeePayslipPanelFooterLayout = new javax.swing.GroupLayout(formEmployeePayslipPanelFooter);
         formEmployeePayslipPanelFooter.setLayout(formEmployeePayslipPanelFooterLayout);
         formEmployeePayslipPanelFooterLayout.setHorizontalGroup(
             formEmployeePayslipPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePayslipPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeePayslipLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formEmployeePayslipPanelFooterLayout.setVerticalGroup(
             formEmployeePayslipPanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formEmployeePayslipPanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formEmployeePayslipLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(formEmployeePayslipPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 669, -1, 50));
+
+        formEmployeePayslipPanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
         formEmployeePayslipMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formEmployeePayslipMainLabelFullName.setText("FullName");
 
+        formEmployeePayslipMainButtonLogout.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeePayslipMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeePayslipMainButtonLogout.setText("Logout");
         formEmployeePayslipMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +190,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             }
         });
 
+        formEmployeePayslipMainButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeePayslipMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeePayslipMainButtonBack.setText("Back");
         formEmployeePayslipMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +204,10 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             }
         });
 
+        formEmployeePayslipMainPanelTable.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeePayslipMainPanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
         formEmployeePayslipMainTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         formEmployeePayslipMainTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -194,11 +236,15 @@ public class EmployeePayslipList extends javax.swing.JFrame {
         jScrollPane2.setViewportView(formEmployeePayslipMainTable);
         formEmployeePayslipMainTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        formEmployeePayslipMainPanelSearch.setBackground(new java.awt.Color(255, 255, 255));
+
+        formEmployeePayslipMainLebelFullName.setBackground(new java.awt.Color(255, 255, 255));
         formEmployeePayslipMainLebelFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeePayslipMainLebelFullName.setText("Full Name");
 
         formEmployeePayslipMainTextFieldFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formEmployeePayslipMainButtonSearch.setBackground(new java.awt.Color(51, 153, 255));
         formEmployeePayslipMainButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formEmployeePayslipMainButtonSearch.setText("Search");
         formEmployeePayslipMainButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +300,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             .addGroup(formEmployeePayslipMainPanelTableLayout.createSequentialGroup()
                 .addComponent(formEmployeePayslipMainPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -289,27 +335,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formEmployeePayslipPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formEmployeePayslipPanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formEmployeePayslipPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formEmployeePayslipPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formEmployeePayslipPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formEmployeePayslipPanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formEmployeePayslipPanelHeader.getAccessibleContext().setAccessibleName("");
-        formEmployeePayslipPanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formEmployeePayslipPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, -1, 580));
 
         pack();
         setLocationRelativeTo(null);
@@ -612,7 +638,6 @@ public class EmployeePayslipList extends javax.swing.JFrame {
     public javax.swing.JLabel formEmployeePayslipHeaderLabelId;
     public javax.swing.JLabel formEmployeePayslipHeaderLabelNik;
     private javax.swing.JLabel formEmployeePayslipHeaderLable;
-    private javax.swing.JLabel formEmployeePayslipLabelFooter2;
     private javax.swing.JButton formEmployeePayslipMainButtonBack;
     private javax.swing.JButton formEmployeePayslipMainButtonLogout;
     private javax.swing.JButton formEmployeePayslipMainButtonSearch;
@@ -626,5 +651,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
     private javax.swing.JPanel formEmployeePayslipPanelHeader;
     private javax.swing.JPanel formEmployeePayslipPanelMain;
     private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }

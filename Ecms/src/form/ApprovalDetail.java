@@ -63,10 +63,10 @@ public class ApprovalDetail extends javax.swing.JFrame {
         formApprovalPanelHeader = new javax.swing.JPanel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         formApprovalHeaderLable = new javax.swing.JLabel();
-        formApprovalHeaderLabelId = new javax.swing.JLabel();
-        formApprovalHeaderLabelNik = new javax.swing.JLabel();
         formApprovalPanelFooter = new javax.swing.JPanel();
         kGradientPanel3 = new keeptoo.KGradientPanel();
+        formApprovalHeaderLabelId = new javax.swing.JLabel();
+        formApprovalHeaderLabelNik = new javax.swing.JLabel();
         formApprovalPanelMain = new javax.swing.JPanel();
         formApprovalMainLabelFullName = new javax.swing.JLabel();
         formApprovalMainButtonLogout = new javax.swing.JButton();
@@ -108,39 +108,17 @@ public class ApprovalDetail extends javax.swing.JFrame {
         formApprovalHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formApprovalHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
 
-        formApprovalHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
-        formApprovalHeaderLabelId.setText("Id");
-        formApprovalHeaderLabelId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        formApprovalHeaderLabelNik.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
-        formApprovalHeaderLabelNik.setText("Nik");
-        formApprovalHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(formApprovalHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(formApprovalHeaderLabelId)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(formApprovalHeaderLabelNik)
-                    .addContainerGap(1246, Short.MAX_VALUE)))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addComponent(formApprovalHeaderLable)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                    .addContainerGap(80, Short.MAX_VALUE)
-                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(formApprovalHeaderLabelId)
-                        .addComponent(formApprovalHeaderLabelNik))
-                    .addGap(6, 6, 6)))
         );
 
         formApprovalHeaderLable.getAccessibleContext().setAccessibleDescription("");
@@ -170,15 +148,37 @@ public class ApprovalDetail extends javax.swing.JFrame {
         kGradientPanel3.setkGradientFocus(400);
         kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
+        formApprovalHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
+        formApprovalHeaderLabelId.setText("Id");
+        formApprovalHeaderLabelId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        formApprovalHeaderLabelNik.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
+        formApprovalHeaderLabelNik.setText("Nik");
+        formApprovalHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
         kGradientPanel3.setLayout(kGradientPanel3Layout);
         kGradientPanel3Layout.setHorizontalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(628, 628, 628)
+                    .addComponent(formApprovalHeaderLabelId)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(formApprovalHeaderLabelNik)
+                    .addContainerGap(628, Short.MAX_VALUE)))
         );
         kGradientPanel3Layout.setVerticalGroup(
             kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formApprovalHeaderLabelId)
+                        .addComponent(formApprovalHeaderLabelNik))
+                    .addContainerGap(20, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout formApprovalPanelFooterLayout = new javax.swing.GroupLayout(formApprovalPanelFooter);

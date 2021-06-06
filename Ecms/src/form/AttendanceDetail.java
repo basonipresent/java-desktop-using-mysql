@@ -58,11 +58,12 @@ public class AttendanceDetail extends javax.swing.JFrame {
     private void initComponents() {
 
         formAttendancePanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formAttendanceHeaderLable = new javax.swing.JLabel();
+        formAttendancePanelFooter = new javax.swing.JPanel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formAttendanceHeaderLabelId = new javax.swing.JLabel();
         formAttendanceHeaderLabelNik = new javax.swing.JLabel();
-        formAttendancePanelFooter = new javax.swing.JPanel();
-        formAttendanceLabelFooter2 = new javax.swing.JLabel();
         formAttendancePanelMain = new javax.swing.JPanel();
         formAttendanceMainLabelFullName = new javax.swing.JLabel();
         formAttendanceMainButtonLogout = new javax.swing.JButton();
@@ -85,13 +86,52 @@ public class AttendanceDetail extends javax.swing.JFrame {
         setName("frameEmployee"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formAttendancePanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         formAttendancePanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
 
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+
         formAttendanceHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formAttendanceHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formAttendanceHeaderLable.setText("Attendance Detail");
+        formAttendanceHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formAttendanceHeaderLable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formAttendanceHeaderLable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+
+        formAttendanceHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        javax.swing.GroupLayout formAttendancePanelHeaderLayout = new javax.swing.GroupLayout(formAttendancePanelHeader);
+        formAttendancePanelHeader.setLayout(formAttendancePanelHeaderLayout);
+        formAttendancePanelHeaderLayout.setHorizontalGroup(
+            formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formAttendancePanelHeaderLayout.setVerticalGroup(
+            formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(formAttendancePanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        formAttendancePanelHeader.getAccessibleContext().setAccessibleName("");
+        formAttendancePanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formAttendancePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formAttendanceHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formAttendanceHeaderLabelId.setText("Id");
@@ -101,60 +141,50 @@ public class AttendanceDetail extends javax.swing.JFrame {
         formAttendanceHeaderLabelNik.setText("Nik");
         formAttendanceHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formAttendancePanelHeaderLayout = new javax.swing.GroupLayout(formAttendancePanelHeader);
-        formAttendancePanelHeader.setLayout(formAttendancePanelHeaderLayout);
-        formAttendancePanelHeaderLayout.setHorizontalGroup(
-            formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formAttendancePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formAttendanceHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                    .addGroup(formAttendancePanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formAttendanceHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formAttendanceHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formAttendancePanelHeaderLayout.setVerticalGroup(
-            formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formAttendancePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formAttendanceHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formAttendancePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(619, 619, 619)
                     .addComponent(formAttendanceHeaderLabelId)
-                    .addComponent(formAttendanceHeaderLabelNik)))
+                    .addGap(24, 24, 24)
+                    .addComponent(formAttendanceHeaderLabelNik)
+                    .addContainerGap(619, Short.MAX_VALUE)))
         );
-
-        formAttendanceHeaderLable.getAccessibleContext().setAccessibleDescription("");
-
-        formAttendancePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
-
-        formAttendanceLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formAttendanceLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formAttendanceLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(14, 14, 14)
+                    .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formAttendanceHeaderLabelNik)
+                        .addComponent(formAttendanceHeaderLabelId))
+                    .addContainerGap(15, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout formAttendancePanelFooterLayout = new javax.swing.GroupLayout(formAttendancePanelFooter);
         formAttendancePanelFooter.setLayout(formAttendancePanelFooterLayout);
         formAttendancePanelFooterLayout.setHorizontalGroup(
             formAttendancePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formAttendancePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formAttendanceLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formAttendancePanelFooterLayout.setVerticalGroup(
             formAttendancePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formAttendancePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formAttendanceLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(formAttendancePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 1280, 50));
+
+        formAttendancePanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
         formAttendanceMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formAttendanceMainLabelFullName.setText("FullName");
 
+        formAttendanceMainButtonLogout.setBackground(new java.awt.Color(255, 255, 255));
         formAttendanceMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formAttendanceMainButtonLogout.setText("Logout");
         formAttendanceMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +198,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
             }
         });
 
+        formAttendanceMainButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         formAttendanceMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formAttendanceMainButtonBack.setText("Back");
         formAttendanceMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +212,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
             }
         });
 
+        formAttendanceMainAttendancePanelTable.setBackground(new java.awt.Color(255, 255, 255));
         formAttendanceMainAttendancePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attendance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
 
         formAttendanceMainAttendanceTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
@@ -221,6 +253,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
             formAttendanceMainAttendanceTable.getColumnModel().getColumn(8).setHeaderValue("Information");
         }
 
+        formDashboardMainAttendanceGenerate.setBackground(new java.awt.Color(51, 153, 255));
         formDashboardMainAttendanceGenerate.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formDashboardMainAttendanceGenerate.setText("Generate Attendance Report");
         formDashboardMainAttendanceGenerate.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +267,8 @@ public class AttendanceDetail extends javax.swing.JFrame {
             }
         });
 
+        formAttendanceMainAttendancePanel.setBackground(new java.awt.Color(255, 255, 255));
+
         formAttendanceMainAttendanceLebelFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formAttendanceMainAttendanceLebelFullName.setText("Full Name");
 
@@ -245,10 +280,13 @@ public class AttendanceDetail extends javax.swing.JFrame {
 
         formAttendanceMainAttendanceTextFieldFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formAttendanceMainAttendanceJDateChooseFrom.setBackground(new java.awt.Color(255, 255, 255));
         formAttendanceMainAttendanceJDateChooseFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formAttendanceMainAttendanceJDateChooseTo.setBackground(new java.awt.Color(255, 255, 255));
         formAttendanceMainAttendanceJDateChooseTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formAttendanceMainAttendanceButtonSearch.setBackground(new java.awt.Color(51, 153, 255));
         formAttendanceMainAttendanceButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formAttendanceMainAttendanceButtonSearch.setText("Search");
         formAttendanceMainAttendanceButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -318,7 +356,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
             .addGroup(formAttendanceMainAttendancePanelTableLayout.createSequentialGroup()
                 .addComponent(formAttendanceMainAttendancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formDashboardMainAttendanceGenerate)
                 .addContainerGap())
@@ -355,27 +393,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formAttendancePanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formAttendancePanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formAttendancePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formAttendancePanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formAttendancePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formAttendancePanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formAttendancePanelHeader.getAccessibleContext().setAccessibleName("");
-        formAttendancePanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formAttendancePanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 99, 1280, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -789,7 +807,6 @@ public class AttendanceDetail extends javax.swing.JFrame {
     public javax.swing.JLabel formAttendanceHeaderLabelId;
     public javax.swing.JLabel formAttendanceHeaderLabelNik;
     private javax.swing.JLabel formAttendanceHeaderLable;
-    private javax.swing.JLabel formAttendanceLabelFooter2;
     private javax.swing.JButton formAttendanceMainAttendanceButtonSearch;
     private com.toedter.calendar.JDateChooser formAttendanceMainAttendanceJDateChooseFrom;
     private com.toedter.calendar.JDateChooser formAttendanceMainAttendanceJDateChooseTo;
@@ -808,5 +825,7 @@ public class AttendanceDetail extends javax.swing.JFrame {
     private javax.swing.JPanel formAttendancePanelMain;
     private javax.swing.JButton formDashboardMainAttendanceGenerate;
     private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }
