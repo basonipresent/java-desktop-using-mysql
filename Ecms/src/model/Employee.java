@@ -355,16 +355,186 @@ public class Employee {
         connection = dbConnections.connection;
         statement = dbConnections.statement;
         
-        query = "SELECT concat(YEAR(NOW()), \n"
-                + "	(CASE \n"
-                + "		WHEN LENGTH(MONTH(NOW())) = 1 THEN concat('0', MONTH(NOW()))\n"
-                + "        ELSE MONTH(NOW())\n"
-                + "	END),\n"
-                + "    (CASE\n"
-                + "		WHEN LENGTH((SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)) = 1 THEN concat('00', (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1))\n"
-                + "        WHEN LENGTH((SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)) = 2 THEN concat('0', (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1))\n"
-                + "        ELSE (SELECT id FROM `e-cms`.employee ORDER BY 1 DESC LIMIT 1)\n"
-                + "	END)) AS generate_nik;";
+        query = "SELECT \n" +
+            "  concat(\n" +
+            "    YEAR(NOW()), \n" +
+            "    (\n" +
+            "      CASE WHEN LENGTH(\n" +
+            "        MONTH(NOW())\n" +
+            "      ) = 1 THEN concat(\n" +
+            "        '0', \n" +
+            "        MONTH(NOW())\n" +
+            "      ) ELSE MONTH(NOW()) END\n" +
+            "    ), \n" +
+            "    (\n" +
+            "      CASE WHEN LENGTH(\n" +
+            "        (\n" +
+            "          CONVERT(\n" +
+            "            IFNULL(\n" +
+            "              RIGHT(\n" +
+            "                (\n" +
+            "                  SELECT \n" +
+            "                    nik \n" +
+            "                  FROM \n" +
+            "                    `e-cms`.employee \n" +
+            "                  WHERE \n" +
+            "                    LEFT(nik, 6) = concat(\n" +
+            "                      YEAR(NOW()), \n" +
+            "                      (\n" +
+            "                        CASE WHEN LENGTH(\n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) = 1 THEN concat(\n" +
+            "                          '0', \n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) ELSE MONTH(NOW()) END\n" +
+            "                      )\n" +
+            "                    ) \n" +
+            "                  ORDER BY \n" +
+            "                    1 DESC \n" +
+            "                  LIMIT \n" +
+            "                    1\n" +
+            "                ), 3\n" +
+            "              ), \n" +
+            "              '000'\n" +
+            "            ), \n" +
+            "            UNSIGNED INTEGER\n" +
+            "          ) + 1\n" +
+            "        )\n" +
+            "      ) = 1 THEN concat(\n" +
+            "        '00', \n" +
+            "        (\n" +
+            "          CONVERT(\n" +
+            "            IFNULL(\n" +
+            "              RIGHT(\n" +
+            "                (\n" +
+            "                  SELECT \n" +
+            "                    nik \n" +
+            "                  FROM \n" +
+            "                    `e-cms`.employee \n" +
+            "                  WHERE \n" +
+            "                    LEFT(nik, 6) = concat(\n" +
+            "                      YEAR(NOW()), \n" +
+            "                      (\n" +
+            "                        CASE WHEN LENGTH(\n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) = 1 THEN concat(\n" +
+            "                          '0', \n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) ELSE MONTH(NOW()) END\n" +
+            "                      )\n" +
+            "                    ) \n" +
+            "                  ORDER BY \n" +
+            "                    1 DESC \n" +
+            "                  LIMIT \n" +
+            "                    1\n" +
+            "                ), 3\n" +
+            "              ), \n" +
+            "              '000'\n" +
+            "            ), \n" +
+            "            UNSIGNED INTEGER\n" +
+            "          ) + 1\n" +
+            "        )\n" +
+            "      ) WHEN LENGTH(\n" +
+            "        (\n" +
+            "          CONVERT(\n" +
+            "            IFNULL(\n" +
+            "              RIGHT(\n" +
+            "                (\n" +
+            "                  SELECT \n" +
+            "                    nik \n" +
+            "                  FROM \n" +
+            "                    `e-cms`.employee \n" +
+            "                  WHERE \n" +
+            "                    LEFT(nik, 6) = concat(\n" +
+            "                      YEAR(NOW()), \n" +
+            "                      (\n" +
+            "                        CASE WHEN LENGTH(\n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) = 1 THEN concat(\n" +
+            "                          '0', \n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) ELSE MONTH(NOW()) END\n" +
+            "                      )\n" +
+            "                    ) \n" +
+            "                  ORDER BY \n" +
+            "                    1 DESC \n" +
+            "                  LIMIT \n" +
+            "                    1\n" +
+            "                ), 3\n" +
+            "              ), \n" +
+            "              '000'\n" +
+            "            ), \n" +
+            "            UNSIGNED INTEGER\n" +
+            "          ) + 1\n" +
+            "        )\n" +
+            "      ) = 2 THEN concat(\n" +
+            "        '0', \n" +
+            "        (\n" +
+            "          CONVERT(\n" +
+            "            IFNULL(\n" +
+            "              RIGHT(\n" +
+            "                (\n" +
+            "                  SELECT \n" +
+            "                    nik \n" +
+            "                  FROM \n" +
+            "                    `e-cms`.employee \n" +
+            "                  WHERE \n" +
+            "                    LEFT(nik, 6) = concat(\n" +
+            "                      YEAR(NOW()), \n" +
+            "                      (\n" +
+            "                        CASE WHEN LENGTH(\n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) = 1 THEN concat(\n" +
+            "                          '0', \n" +
+            "                          MONTH(NOW())\n" +
+            "                        ) ELSE MONTH(NOW()) END\n" +
+            "                      )\n" +
+            "                    ) \n" +
+            "                  ORDER BY \n" +
+            "                    1 DESC \n" +
+            "                  LIMIT \n" +
+            "                    1\n" +
+            "                ), 3\n" +
+            "              ), \n" +
+            "              '000'\n" +
+            "            ), \n" +
+            "            UNSIGNED INTEGER\n" +
+            "          ) + 1\n" +
+            "        )\n" +
+            "      ) ELSE (\n" +
+            "        CONVERT(\n" +
+            "          IFNULL(\n" +
+            "            RIGHT(\n" +
+            "              (\n" +
+            "                SELECT \n" +
+            "                  nik \n" +
+            "                FROM \n" +
+            "                  `e-cms`.employee \n" +
+            "                WHERE \n" +
+            "                  LEFT(nik, 6) = concat(\n" +
+            "                    YEAR(NOW()), \n" +
+            "                    (\n" +
+            "                      CASE WHEN LENGTH(\n" +
+            "                        MONTH(NOW())\n" +
+            "                      ) = 1 THEN concat(\n" +
+            "                        '0', \n" +
+            "                        MONTH(NOW())\n" +
+            "                      ) ELSE MONTH(NOW()) END\n" +
+            "                    )\n" +
+            "                  ) \n" +
+            "                ORDER BY \n" +
+            "                  1 DESC \n" +
+            "                LIMIT \n" +
+            "                  1\n" +
+            "              ), 3\n" +
+            "            ), \n" +
+            "            '000'\n" +
+            "          ), \n" +
+            "          UNSIGNED INTEGER\n" +
+            "        ) + 1\n" +
+            "      ) END\n" +
+            "    )\n" +
+            "  ) AS generate_nik;";
         
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         resultSet = preparedStatement.executeQuery();
