@@ -93,7 +93,6 @@ public class ApprovalDetail extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
