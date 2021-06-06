@@ -90,6 +90,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
         setTitle("Approval Detail");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -98,7 +99,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formApprovalPanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formApprovalPanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
+        formApprovalPanelHeader.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
         kGradientPanel2.setkGradientFocus(400);
@@ -107,17 +108,20 @@ public class ApprovalDetail extends javax.swing.JFrame {
         formApprovalHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formApprovalHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formApprovalHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+        formApprovalHeaderLable.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formApprovalHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addComponent(formApprovalHeaderLable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addComponent(formApprovalHeaderLable)
+                .addComponent(formApprovalHeaderLable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -138,7 +142,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(formApprovalPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 100));
+        getContentPane().add(formApprovalPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
         formApprovalPanelHeader.getAccessibleContext().setAccessibleName("");
         formApprovalPanelHeader.getAccessibleContext().setAccessibleDescription("");
 
@@ -192,7 +196,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
             .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(formApprovalPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 1280, 50));
+        getContentPane().add(formApprovalPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
 
         formApprovalPanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -405,7 +409,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(formApprovalPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 99, 1280, 570));
+        getContentPane().add(formApprovalPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
         setLocationRelativeTo(null);

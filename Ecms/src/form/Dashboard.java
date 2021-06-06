@@ -92,6 +92,7 @@ public final class Dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -140,7 +141,7 @@ public final class Dashboard extends javax.swing.JFrame {
         formDashboardPanelHeader.getAccessibleContext().setAccessibleName("");
         formDashboardPanelHeader.getAccessibleContext().setAccessibleDescription("");
 
-        formDashboardPanelFooter.setPreferredSize(new java.awt.Dimension(1260, 50));
+        formDashboardPanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
 
         kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
         kGradientPanel3.setkGradientFocus(400);
@@ -190,10 +191,10 @@ public final class Dashboard extends javax.swing.JFrame {
             .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(formDashboardPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 659, 1280, 60));
+        getContentPane().add(formDashboardPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, -1, 60));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(1280, 758));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         formDashboardPanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -677,7 +678,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(formDashboardPanelMain);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 98, 1270, 560));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, 560));
 
         pack();
         setLocationRelativeTo(null);

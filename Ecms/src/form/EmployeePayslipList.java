@@ -68,6 +68,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
         setResizable(false);
@@ -169,9 +170,10 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(formEmployeePayslipPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 669, -1, 50));
+        getContentPane().add(formEmployeePayslipPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
 
         formEmployeePayslipPanelMain.setBackground(new java.awt.Color(255, 255, 255));
+        formEmployeePayslipPanelMain.setPreferredSize(new java.awt.Dimension(1280, 570));
 
         formEmployeePayslipMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formEmployeePayslipMainLabelFullName.setText("FullName");
@@ -300,7 +302,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
             .addGroup(formEmployeePayslipMainPanelTableLayout.createSequentialGroup()
                 .addComponent(formEmployeePayslipMainPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -335,7 +337,7 @@ public class EmployeePayslipList extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(formEmployeePayslipPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, -1, 580));
+        getContentPane().add(formEmployeePayslipPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
         setLocationRelativeTo(null);

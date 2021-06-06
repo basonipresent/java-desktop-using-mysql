@@ -66,11 +66,12 @@ public class LeaveDetail extends javax.swing.JFrame {
     private void initComponents() {
 
         formLeavePanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formLeaveHeaderLable = new javax.swing.JLabel();
+        formLeavePanelFooter = new javax.swing.JPanel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formLeaveHeaderLabelId = new javax.swing.JLabel();
         formLeaveHeaderLabelNik = new javax.swing.JLabel();
-        formLeavePanelFooter = new javax.swing.JPanel();
-        formLeaveLabelFooter2 = new javax.swing.JLabel();
         formLeavePanelMain = new javax.swing.JPanel();
         formLeaveMainLabelFullName = new javax.swing.JLabel();
         formLeaveMainButtonLogout = new javax.swing.JButton();
@@ -89,17 +90,65 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveMainLeaveButtonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formLeavePanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formLeavePanelHeader.setPreferredSize(new java.awt.Dimension(1024, 100));
+        formLeavePanelHeader.setPreferredSize(new java.awt.Dimension(1280, 100));
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+        kGradientPanel2.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         formLeaveHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formLeaveHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formLeaveHeaderLable.setText("Leave Detail");
+        formLeaveHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(formLeaveHeaderLable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE))
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(formLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+
+        formLeaveHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        javax.swing.GroupLayout formLeavePanelHeaderLayout = new javax.swing.GroupLayout(formLeavePanelHeader);
+        formLeavePanelHeader.setLayout(formLeavePanelHeaderLayout);
+        formLeavePanelHeaderLayout.setHorizontalGroup(
+            formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formLeavePanelHeaderLayout.setVerticalGroup(
+            formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(formLeavePanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        formLeavePanelHeader.getAccessibleContext().setAccessibleName("");
+        formLeavePanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formLeavePanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formLeaveHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formLeaveHeaderLabelId.setText("Id");
@@ -109,60 +158,46 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveHeaderLabelNik.setText("Nik");
         formLeaveHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formLeavePanelHeaderLayout = new javax.swing.GroupLayout(formLeavePanelHeader);
-        formLeavePanelHeader.setLayout(formLeavePanelHeaderLayout);
-        formLeavePanelHeaderLayout.setHorizontalGroup(
-            formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLeavePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                    .addGroup(formLeavePanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formLeaveHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formLeaveHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formLeavePanelHeaderLayout.setVerticalGroup(
-            formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLeavePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addGap(618, 618, 618)
+                .addComponent(formLeaveHeaderLabelId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formLeaveHeaderLabelId)
-                    .addComponent(formLeaveHeaderLabelNik)))
+                .addComponent(formLeaveHeaderLabelNik)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        formLeaveHeaderLable.getAccessibleContext().setAccessibleDescription("");
-
-        formLeavePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
-
-        formLeaveLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formLeaveLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formLeaveLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(formLeaveHeaderLabelId)
+                    .addComponent(formLeaveHeaderLabelNik))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout formLeavePanelFooterLayout = new javax.swing.GroupLayout(formLeavePanelFooter);
         formLeavePanelFooter.setLayout(formLeavePanelFooterLayout);
         formLeavePanelFooterLayout.setHorizontalGroup(
             formLeavePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLeavePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formLeaveLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formLeavePanelFooterLayout.setVerticalGroup(
             formLeavePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLeavePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formLeaveLabelFooter2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(formLeavePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
+
+        formLeavePanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
         formLeaveMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formLeaveMainLabelFullName.setText("FullName");
 
+        formLeaveMainButtonLogout.setBackground(null);
         formLeaveMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainButtonLogout.setText("Logout");
         formLeaveMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +211,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             }
         });
 
+        formLeaveMainButtonBack.setBackground(null);
         formLeaveMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainButtonBack.setText("Back");
         formLeaveMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +225,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             }
         });
 
+        formLeaveMainLeavePanelTable.setBackground(new java.awt.Color(255, 255, 255));
         formLeaveMainLeavePanelTable.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attendance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 11))); // NOI18N
 
         formLeaveMainLeaveTable.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
@@ -213,6 +250,7 @@ public class LeaveDetail extends javax.swing.JFrame {
         jScrollPane2.setViewportView(formLeaveMainLeaveTable);
         formLeaveMainLeaveTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        formLeaveMainLeaveGenerate.setBackground(new java.awt.Color(51, 153, 255));
         formLeaveMainLeaveGenerate.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveGenerate.setText("Generate Leave Report");
         formLeaveMainLeaveGenerate.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +264,8 @@ public class LeaveDetail extends javax.swing.JFrame {
             }
         });
 
+        formLeaveMainLeavePanel.setBackground(new java.awt.Color(255, 255, 255));
+
         formLeaveMainLeaveLebelFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveLebelFullName.setText("Full Name");
 
@@ -235,12 +275,16 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveMainLeaveLebelTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveLebelTo.setText("To");
 
+        formLeaveMainLeaveTextFieldFullName.setBackground(null);
         formLeaveMainLeaveTextFieldFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formLeaveMainLeaveJDateChooseFrom.setBackground(null);
         formLeaveMainLeaveJDateChooseFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formLeaveMainLeaveJDateChooseTo.setBackground(null);
         formLeaveMainLeaveJDateChooseTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formLeaveMainLeaveButtonSearch.setBackground(new java.awt.Color(51, 153, 255));
         formLeaveMainLeaveButtonSearch.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveButtonSearch.setText("Search");
         formLeaveMainLeaveButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +315,7 @@ public class LeaveDetail extends javax.swing.JFrame {
                 .addComponent(formLeaveMainLeaveLebelTo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formLeaveMainLeaveJDateChooseTo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addComponent(formLeaveMainLeaveButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -310,7 +354,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             .addGroup(formLeaveMainLeavePanelTableLayout.createSequentialGroup()
                 .addComponent(formLeaveMainLeavePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formLeaveMainLeaveGenerate)
                 .addContainerGap())
@@ -347,27 +391,7 @@ public class LeaveDetail extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formLeavePanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formLeavePanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
-            .addComponent(formLeavePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formLeavePanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formLeavePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formLeavePanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formLeavePanelHeader.getAccessibleContext().setAccessibleName("");
-        formLeavePanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formLeavePanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -790,7 +814,6 @@ public class LeaveDetail extends javax.swing.JFrame {
     public javax.swing.JLabel formLeaveHeaderLabelId;
     public javax.swing.JLabel formLeaveHeaderLabelNik;
     private javax.swing.JLabel formLeaveHeaderLable;
-    private javax.swing.JLabel formLeaveLabelFooter2;
     private javax.swing.JButton formLeaveMainButtonBack;
     private javax.swing.JButton formLeaveMainButtonLogout;
     private javax.swing.JLabel formLeaveMainLabelFullName;
@@ -809,5 +832,7 @@ public class LeaveDetail extends javax.swing.JFrame {
     private javax.swing.JPanel formLeavePanelHeader;
     private javax.swing.JPanel formLeavePanelMain;
     private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }

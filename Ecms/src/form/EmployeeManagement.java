@@ -102,9 +102,12 @@ public class EmployeeManagement extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
-        setSize(new java.awt.Dimension(1024, 768));
+        setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formEmployeePanelHeader.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,7 +152,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
         formEmployeePanelHeader.getAccessibleContext().setAccessibleDescription("");
 
         formEmployeePanelFooter.setBackground(new java.awt.Color(255, 255, 255));
-        formEmployeePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
+        formEmployeePanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
 
         kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
         kGradientPanel3.setkGradientFocus(400);
@@ -213,9 +216,10 @@ public class EmployeeManagement extends javax.swing.JFrame {
             .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(formEmployeePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 666, 1280, 50));
+        getContentPane().add(formEmployeePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(1280, 570));
 
         formEmployeePanelMain.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -548,7 +552,7 @@ public class EmployeeManagement extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(formEmployeePanelMain);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1280, 570));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
         setLocationRelativeTo(null);

@@ -114,6 +114,8 @@ public class GeneratePayslip extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
@@ -151,7 +153,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
         formGeneratePayslipPanelHeader.setLayout(formGeneratePayslipPanelHeaderLayout);
         formGeneratePayslipPanelHeaderLayout.setHorizontalGroup(
             formGeneratePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formGeneratePayslipPanelHeaderLayout.setVerticalGroup(
             formGeneratePayslipPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +162,7 @@ public class GeneratePayslip extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(formGeneratePayslipPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 100));
+        getContentPane().add(formGeneratePayslipPanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         formGeneratePayslipPanelHeader.getAccessibleContext().setAccessibleName("");
         formGeneratePayslipPanelHeader.getAccessibleContext().setAccessibleDescription("");
 
@@ -224,11 +226,11 @@ public class GeneratePayslip extends javax.swing.JFrame {
             .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(formGeneratePayslipPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, -1, -1));
+        getContentPane().add(formGeneratePayslipPanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
 
         formGeneratePayslipPanelMain.setBackground(new java.awt.Color(255, 255, 255));
         formGeneratePayslipPanelMain.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
-        formGeneratePayslipPanelMain.setPreferredSize(new java.awt.Dimension(1280, 560));
+        formGeneratePayslipPanelMain.setPreferredSize(new java.awt.Dimension(1280, 570));
 
         formGeneratePayslipMainLabelFullNameUser.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formGeneratePayslipMainLabelFullNameUser.setText("FullName");
@@ -574,17 +576,17 @@ public class GeneratePayslip extends javax.swing.JFrame {
                     .addComponent(formGeneratePayslipMainButtonLogout)
                     .addComponent(formGeneratePayslipMainLabelFullNameUser)
                     .addComponent(formGeneratePayslipMainButtonBack))
-                .addGap(18, 363, Short.MAX_VALUE)
+                .addGap(18, 373, Short.MAX_VALUE)
                 .addComponent(formGeneratePayslipMainPanelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(formGeneratePayslipPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(formGeneratePayslipPanelMainLayout.createSequentialGroup()
                     .addGap(56, 56, 56)
                     .addComponent(formGeneratePayslipMainPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(176, Short.MAX_VALUE)))
+                    .addContainerGap(186, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(formGeneratePayslipPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 96, -1, -1));
+        getContentPane().add(formGeneratePayslipPanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
