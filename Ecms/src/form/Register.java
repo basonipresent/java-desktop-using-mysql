@@ -460,9 +460,7 @@ public class Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel formLoginLabelFooter;
     private javax.swing.JLabel formLoginLabelFooter2;
-    private javax.swing.JLabel formLoginLabelHeader;
     private javax.swing.JLabel formLoginLabelHeader1;
-    private javax.swing.JPanel formLoginPanelHeader;
     private javax.swing.JButton formRegisterMainButtonClear;
     private javax.swing.JButton formRegisterMainButtonLogin;
     private javax.swing.JButton formRegisterMainButtonRegister;
@@ -478,7 +476,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel formRegisterPanelFooter;
     private javax.swing.JPanel formRegisterPanelHeader;
     private javax.swing.JPanel formRegisterPanelMain;
-    private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
     private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables

@@ -64,13 +64,14 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void initComponents() {
 
         formRequestLeavePanelHeader = new javax.swing.JPanel();
+        kGradientPanel2 = new keeptoo.KGradientPanel();
         formRequestLeaveHeaderLable = new javax.swing.JLabel();
+        formRequestLeavePanelFooter = new javax.swing.JPanel();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
         formRequestLeaveHeaderLabelId = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelIsUpdate = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelIdLeave = new javax.swing.JLabel();
         formRequestLeaveHeaderLabelNik = new javax.swing.JLabel();
-        formRequestLeavePanelFooter = new javax.swing.JPanel();
-        formRequestLeaveLabelFooter2 = new javax.swing.JLabel();
         formRequestLeavePanelMain = new javax.swing.JPanel();
         formRequestLeaveMainLabelFullName = new javax.swing.JLabel();
         formRequestLeaveMainButtonBack = new javax.swing.JButton();
@@ -97,16 +98,68 @@ public class LeaveRequest extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         formRequestLeavePanelHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        formRequestLeavePanelHeader.setPreferredSize(new java.awt.Dimension(1280, 70));
+        formRequestLeavePanelHeader.setMaximumSize(new java.awt.Dimension(1280, 70));
+        formRequestLeavePanelHeader.setMinimumSize(new java.awt.Dimension(1280, 70));
+        formRequestLeavePanelHeader.setPreferredSize(new java.awt.Dimension(1280, 100));
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel2.setkGradientFocus(400);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 204, 204));
+        kGradientPanel2.setPreferredSize(new java.awt.Dimension(1280, 100));
 
         formRequestLeaveHeaderLable.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         formRequestLeaveHeaderLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formRequestLeaveHeaderLable.setText("Request Leave");
+        formRequestLeaveHeaderLable.setIcon(new javax.swing.ImageIcon("D:\\dev\\.project\\ecms\\lib\\logo.png")); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(formRequestLeaveHeaderLable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE))
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 101, Short.MAX_VALUE)
+            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                    .addGap(2, 2, 2)
+                    .addComponent(formRequestLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addGap(3, 3, 3)))
+        );
+
+        formRequestLeaveHeaderLable.getAccessibleContext().setAccessibleDescription("");
+
+        javax.swing.GroupLayout formRequestLeavePanelHeaderLayout = new javax.swing.GroupLayout(formRequestLeavePanelHeader);
+        formRequestLeavePanelHeader.setLayout(formRequestLeavePanelHeaderLayout);
+        formRequestLeavePanelHeaderLayout.setHorizontalGroup(
+            formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formRequestLeavePanelHeaderLayout.setVerticalGroup(
+            formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(formRequestLeavePanelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        formRequestLeavePanelHeader.getAccessibleContext().setAccessibleName("");
+        formRequestLeavePanelHeader.getAccessibleContext().setAccessibleDescription("");
+
+        formRequestLeavePanelFooter.setPreferredSize(new java.awt.Dimension(1280, 50));
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel3.setkGradientFocus(400);
+        kGradientPanel3.setkStartColor(new java.awt.Color(0, 204, 204));
 
         formRequestLeaveHeaderLabelId.setFont(new java.awt.Font("Roboto Light", 0, 8)); // NOI18N
         formRequestLeaveHeaderLabelId.setText("Id");
@@ -124,68 +177,58 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveHeaderLabelNik.setText("Nik");
         formRequestLeaveHeaderLabelNik.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout formRequestLeavePanelHeaderLayout = new javax.swing.GroupLayout(formRequestLeavePanelHeader);
-        formRequestLeavePanelHeader.setLayout(formRequestLeavePanelHeaderLayout);
-        formRequestLeavePanelHeaderLayout.setHorizontalGroup(
-            formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRequestLeavePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formRequestLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(formRequestLeavePanelHeaderLayout.createSequentialGroup()
-                        .addComponent(formRequestLeaveHeaderLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formRequestLeaveHeaderLabelIsUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formRequestLeaveHeaderLabelIdLeave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formRequestLeaveHeaderLabelNik)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        formRequestLeavePanelHeaderLayout.setVerticalGroup(
-            formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRequestLeavePanelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formRequestLeaveHeaderLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formRequestLeavePanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(449, 449, 449)
                     .addComponent(formRequestLeaveHeaderLabelId)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(formRequestLeaveHeaderLabelIsUpdate)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(formRequestLeaveHeaderLabelIdLeave)
-                    .addComponent(formRequestLeaveHeaderLabelNik)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(formRequestLeaveHeaderLabelNik)
+                    .addContainerGap(705, Short.MAX_VALUE)))
         );
-
-        formRequestLeaveHeaderLable.getAccessibleContext().setAccessibleDescription("");
-
-        formRequestLeavePanelFooter.setPreferredSize(new java.awt.Dimension(1024, 75));
-
-        formRequestLeaveLabelFooter2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        formRequestLeaveLabelFooter2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formRequestLeaveLabelFooter2.setText("Employee Content Management System CopyRight ©2021");
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(formRequestLeaveHeaderLabelId)
+                        .addComponent(formRequestLeaveHeaderLabelIsUpdate)
+                        .addComponent(formRequestLeaveHeaderLabelIdLeave)
+                        .addComponent(formRequestLeaveHeaderLabelNik))
+                    .addContainerGap(23, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout formRequestLeavePanelFooterLayout = new javax.swing.GroupLayout(formRequestLeavePanelFooter);
         formRequestLeavePanelFooter.setLayout(formRequestLeavePanelFooterLayout);
         formRequestLeavePanelFooterLayout.setHorizontalGroup(
             formRequestLeavePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRequestLeavePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formRequestLeaveLabelFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         formRequestLeavePanelFooterLayout.setVerticalGroup(
             formRequestLeavePanelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formRequestLeavePanelFooterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(formRequestLeaveLabelFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(kGradientPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        getContentPane().add(formRequestLeavePanelFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, -1, -1));
+
+        formRequestLeavePanelMain.setBackground(new java.awt.Color(255, 255, 255));
         formRequestLeavePanelMain.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeavePanelMain.setPreferredSize(new java.awt.Dimension(1280, 570));
 
         formRequestLeaveMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formRequestLeaveMainLabelFullName.setText("FullName");
 
+        formRequestLeaveMainButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         formRequestLeaveMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonBack.setText("Back");
         formRequestLeaveMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +242,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainButtonLogout.setBackground(new java.awt.Color(255, 255, 255));
         formRequestLeaveMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonLogout.setText("Logout");
         formRequestLeaveMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +256,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainPanelForm.setBackground(new java.awt.Color(255, 255, 255));
         formRequestLeaveMainPanelForm.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         formRequestLeaveMainLabelType.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
@@ -231,6 +276,7 @@ public class LeaveRequest extends javax.swing.JFrame {
 
         formRequestLeaveMainComboBoxType.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
+        formRequestLeaveMainButtonChooseFile.setBackground(java.awt.Color.white);
         formRequestLeaveMainButtonChooseFile.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonChooseFile.setText("Choose File");
         formRequestLeaveMainButtonChooseFile.addActionListener(new java.awt.event.ActionListener() {
@@ -244,10 +290,12 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainDateChooserFrom.setBackground(java.awt.Color.white);
         formRequestLeaveMainDateChooserFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainDateChooserFrom.setMinimumSize(new java.awt.Dimension(400, 28));
         formRequestLeaveMainDateChooserFrom.setPreferredSize(new java.awt.Dimension(400, 28));
 
+        formRequestLeaveMainDateChooserTo.setBackground(java.awt.Color.white);
         formRequestLeaveMainDateChooserTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainDateChooserTo.setMinimumSize(new java.awt.Dimension(400, 28));
         formRequestLeaveMainDateChooserTo.setPreferredSize(new java.awt.Dimension(400, 28));
@@ -267,7 +315,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                     .addComponent(formRequestLeaveMainLabelType)
                     .addComponent(formRequestLeaveMainLabelFrom)
                     .addComponent(formRequestLeaveMainLabelReasons))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(formRequestLeaveMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(formRequestLeaveMainPanelFormLayout.createSequentialGroup()
                         .addGroup(formRequestLeaveMainPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -310,6 +358,9 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        formRequestLeaveMainPanelButton.setBackground(new java.awt.Color(255, 255, 255));
+
+        formRequestLeaveMainButtonSave.setBackground(new java.awt.Color(51, 153, 255));
         formRequestLeaveMainButtonSave.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonSave.setText("Save Draf");
         formRequestLeaveMainButtonSave.addActionListener(new java.awt.event.ActionListener() {
@@ -323,6 +374,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainButtonSubmit.setBackground(new java.awt.Color(51, 153, 255));
         formRequestLeaveMainButtonSubmit.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonSubmit.setText("Submit");
         formRequestLeaveMainButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -336,6 +388,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainButtonDelete.setBackground(new java.awt.Color(51, 153, 255));
         formRequestLeaveMainButtonDelete.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formRequestLeaveMainButtonDelete.setText("Delete");
         formRequestLeaveMainButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -373,6 +426,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        formRequestLeaveMainPanelFiles.setBackground(new java.awt.Color(255, 255, 255));
         formRequestLeaveMainPanelFiles.setBorder(javax.swing.BorderFactory.createTitledBorder("List of files"));
 
         formRequestLeaveMainTableAttachment.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -416,7 +470,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGroup(formRequestLeavePanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formRequestLeavePanelMainLayout.createSequentialGroup()
                         .addComponent(formRequestLeaveMainLabelFullName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 890, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 910, Short.MAX_VALUE)
                         .addComponent(formRequestLeaveMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formRequestLeaveMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -435,38 +489,14 @@ public class LeaveRequest extends javax.swing.JFrame {
                     .addComponent(formRequestLeaveMainButtonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formRequestLeaveMainPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(formRequestLeaveMainPanelFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formRequestLeaveMainPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(formRequestLeavePanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(formRequestLeavePanelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(formRequestLeavePanelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(formRequestLeavePanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formRequestLeavePanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(formRequestLeavePanelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        formRequestLeavePanelHeader.getAccessibleContext().setAccessibleName("");
-        formRequestLeavePanelHeader.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(formRequestLeavePanelMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -1001,7 +1031,6 @@ public class LeaveRequest extends javax.swing.JFrame {
     public javax.swing.JLabel formRequestLeaveHeaderLabelIsUpdate;
     public javax.swing.JLabel formRequestLeaveHeaderLabelNik;
     private javax.swing.JLabel formRequestLeaveHeaderLable;
-    private javax.swing.JLabel formRequestLeaveLabelFooter2;
     private javax.swing.JButton formRequestLeaveMainButtonBack;
     private javax.swing.JButton formRequestLeaveMainButtonChooseFile;
     private javax.swing.JButton formRequestLeaveMainButtonDelete;
@@ -1027,5 +1056,7 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JPanel formRequestLeavePanelMain;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
     // End of variables declaration//GEN-END:variables
 }

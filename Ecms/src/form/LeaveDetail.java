@@ -95,7 +95,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -197,7 +196,6 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveMainLabelFullName.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         formLeaveMainLabelFullName.setText("FullName");
 
-        formLeaveMainButtonLogout.setBackground(null);
         formLeaveMainButtonLogout.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainButtonLogout.setText("Logout");
         formLeaveMainButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +209,6 @@ public class LeaveDetail extends javax.swing.JFrame {
             }
         });
 
-        formLeaveMainButtonBack.setBackground(null);
         formLeaveMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainButtonBack.setText("Back");
         formLeaveMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -275,13 +272,10 @@ public class LeaveDetail extends javax.swing.JFrame {
         formLeaveMainLeaveLebelTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         formLeaveMainLeaveLebelTo.setText("To");
 
-        formLeaveMainLeaveTextFieldFullName.setBackground(null);
         formLeaveMainLeaveTextFieldFullName.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
-        formLeaveMainLeaveJDateChooseFrom.setBackground(null);
         formLeaveMainLeaveJDateChooseFrom.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
-        formLeaveMainLeaveJDateChooseTo.setBackground(null);
         formLeaveMainLeaveJDateChooseTo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
 
         formLeaveMainLeaveButtonSearch.setBackground(new java.awt.Color(51, 153, 255));
