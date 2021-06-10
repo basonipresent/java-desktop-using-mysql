@@ -58,6 +58,7 @@ public final class Dashboard extends javax.swing.JFrame {
         formDashboardPanelMain = new javax.swing.JPanel();
         formDashboardMainLabelFullName = new javax.swing.JLabel();
         formDashboardMainButtonLogout = new javax.swing.JButton();
+        formDashboardMainButtonBack = new javax.swing.JButton();
         formDashboardMainButtonEmployee = new javax.swing.JButton();
         formDashboardMainButtonPayslip = new javax.swing.JButton();
         formDashboardMainButtonApproval = new javax.swing.JButton();
@@ -212,6 +213,20 @@ public final class Dashboard extends javax.swing.JFrame {
         formDashboardMainButtonLogout.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formDashboardMainButtonLogoutKeyPressed(evt);
+            }
+        });
+
+        formDashboardMainButtonBack.setBackground(new java.awt.Color(255, 255, 255));
+        formDashboardMainButtonBack.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formDashboardMainButtonBack.setText("Back");
+        formDashboardMainButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formDashboardMainButtonBackActionPerformed(evt);
+            }
+        });
+        formDashboardMainButtonBack.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formDashboardMainButtonBackKeyPressed(evt);
             }
         });
 
@@ -401,7 +416,7 @@ public final class Dashboard extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(formDashboardMainAttendancePanelTableLayout.createSequentialGroup()
                         .addComponent(formDashboardMainAttendanceCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                         .addComponent(formDashboardMainAttendanceCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(146, 146, 146)
                         .addComponent(formDashboardMainAttendanceViewMore, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -645,16 +660,18 @@ public final class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formDashboardMainButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
-                .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
-                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                .addComponent(formDashboardMainPayslipPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formDashboardPanelMainLayout.createSequentialGroup()
-                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                .addComponent(formDashboardMainLeavePanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
                 .addContainerGap())
         );
         formDashboardPanelMainLayout.setVerticalGroup(
@@ -666,7 +683,8 @@ public final class Dashboard extends javax.swing.JFrame {
                     .addComponent(formDashboardMainLabelFullName)
                     .addComponent(formDashboardMainButtonEmployee)
                     .addComponent(formDashboardMainButtonPayslip)
-                    .addComponent(formDashboardMainButtonApproval))
+                    .addComponent(formDashboardMainButtonApproval)
+                    .addComponent(formDashboardMainButtonBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formDashboardMainAttendancePanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1421,6 +1439,44 @@ public final class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formDashboardMainPayslipViewKeyPressed
 
+    private void formDashboardMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formDashboardMainButtonBackActionPerformed
+        // TODO add your handling code here:
+        try {
+            Users users = new Users();
+            users = users.get(getLabelId());
+            
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.show(true);
+            mainMenu.setLabelId(users.getId().toString());
+            mainMenu.setLabelNik(users.getUsername());
+            mainMenu.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+            mainMenu.setAccessMenu(users.getAccessMenu());
+            mainMenu.setUsers(users);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainButtonBackActionPerformed
+
+    private void formDashboardMainButtonBackKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formDashboardMainButtonBackKeyPressed
+        // TODO add your handling code here:
+        try {
+            Users users = new Users();
+            users = users.get(getLabelId());
+            
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.show(true);
+            mainMenu.setLabelId(users.getId().toString());
+            mainMenu.setLabelNik(users.getUsername());
+            mainMenu.setFullName(users.getFirstName().trim() + " " + users.getLastName().trim());
+            mainMenu.setAccessMenu(users.getAccessMenu());
+            mainMenu.setUsers(users);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formDashboardMainButtonBackKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1479,6 +1535,7 @@ public final class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable formDashboardMainAttendanceTable;
     private javax.swing.JButton formDashboardMainAttendanceViewMore;
     private javax.swing.JButton formDashboardMainButtonApproval;
+    private javax.swing.JButton formDashboardMainButtonBack;
     private javax.swing.JButton formDashboardMainButtonEmployee;
     private javax.swing.JButton formDashboardMainButtonLogout;
     private javax.swing.JButton formDashboardMainButtonPayslip;

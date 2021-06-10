@@ -1,10 +1,12 @@
 package form;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -16,6 +18,7 @@ import java.awt.Color;
 import java.awt.HeadlessException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
@@ -109,7 +112,6 @@ public class PrintPayslip extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -615,7 +617,7 @@ public class PrintPayslip extends javax.swing.JFrame {
         }
     }
 
-    private boolean generateReport() {
+    private boolean generateReport() throws BadElementException, IOException {
         boolean result = false;
         Document document = new Document();
         try {
@@ -643,6 +645,14 @@ public class PrintPayslip extends javax.swing.JFrame {
 
             float[] columnWidth = {3f, 1f, 3f};
             pdfPTable.setWidths(columnWidth);
+            
+            String imagePath = Constanta.PdfDocument.PATH_LOGO;
+            Image image = Image.getInstance(imagePath);
+            image.setAlignment(Image.MIDDLE);
+            
+            pdfPTable.addCell(image);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 3, bfNormal12);
+            pdfPTable.setHeaderRows(1);
 
             insertCell(pdfPTable, "Report Payslip Detail", Element.ALIGN_CENTER, 3, bfNormal12);
             insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 3, bfNormal12);
@@ -692,7 +702,7 @@ public class PrintPayslip extends javax.swing.JFrame {
             insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfBold14);
             insertCell(pdfPTable, "IDR " + formPrintPayslipMainValueNetSalary.getText(), Element.ALIGN_LEFT, 1, bfBold14);
 
-            pdfPTable.setHeaderRows(1);
+            pdfPTable.setHeaderRows(2);
 
             document.add(pdfPTable);
             document.close();
@@ -799,7 +809,7 @@ public class PrintPayslip extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formPrintPayslipMainButtonPrintActionPerformed
@@ -813,7 +823,7 @@ public class PrintPayslip extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formPrintPayslipMainButtonPrintKeyPressed

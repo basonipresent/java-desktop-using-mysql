@@ -182,6 +182,7 @@ public class Constanta {
         public static final float SPACING_BEFORE = 10f;
         public static final float SPACING_AFTER = 10f;
         public static final String PATH = "D:\\dev\\.project\\ecms\\docs\\";
+        public static final String PATH_LOGO = "D:\\dev\\.project\\ecms\\lib\\logo.png";
         public static final String DOCUMENT_TITLE_ATTENDANCE = "Report Attendance";
         public static final String DOCUMENT_TITLE_PAYSLIP = "Report Payslip";
         public static final String DOCUMENT_TITLE_LEAVE = "Report Leave";

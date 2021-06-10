@@ -1,5 +1,6 @@
 package form;
 
+import com.itextpdf.text.BadElementException;
 import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.HeadlessException;
@@ -23,9 +24,11 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Image; 
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.TreeMap;
 import model.Leave;
@@ -93,7 +96,6 @@ public class ApprovalDetail extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -553,7 +555,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
         }
     }
 
-    private boolean generateReport() {
+    private boolean generateReport() throws BadElementException, IOException {
         boolean result = false;
         Document document = new Document();
         try {
@@ -572,21 +574,28 @@ public class ApprovalDetail extends javax.swing.JFrame {
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(
                     Constanta.PdfDocument.PATH + "Approval" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
             document.open();
-
+            
             PdfPTable pdfPTable = new PdfPTable(8);
             pdfPTable.setWidthPercentage(Constanta.PdfDocument.WIDTH_PERCENTAGE);
             pdfPTable.setSpacingBefore(Constanta.PdfDocument.SPACING_BEFORE);
             pdfPTable.setSpacingAfter(Constanta.PdfDocument.SPACING_AFTER);
-
+            
             float[] columnWidth = {3f, 3f, 2f, 2f, 2f, 2f, 2f, 5f};
             pdfPTable.setWidths(columnWidth);
             
-            insertCell(pdfPTable, "Report Approval", Element.ALIGN_CENTER, 8, 0, bfNormal12);
-            pdfPTable.setHeaderRows(1);
-            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 8, 0, bfNormal12);
-            pdfPTable.setHeaderRows(2);
+            String imagePath = Constanta.PdfDocument.PATH_LOGO;
+            Image image = Image.getInstance(imagePath);
+            image.setAlignment(Image.MIDDLE);
+            
+            pdfPTable.addCell(image);
             insertCell(pdfPTable, "", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(1);
+            insertCell(pdfPTable, "Report Approval", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(2);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 8, 0, bfNormal12);
             pdfPTable.setHeaderRows(3);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(4);
 
             insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, 1, bfBold12);
             insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, 1, bfBold12);
@@ -760,7 +769,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formApprovalMainApprovalGenerateActionPerformed
@@ -774,7 +783,7 @@ public class ApprovalDetail extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formApprovalMainApprovalGenerateKeyPressed

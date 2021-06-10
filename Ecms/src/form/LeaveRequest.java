@@ -1,11 +1,26 @@
 package form;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import config.Constanta;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -92,6 +107,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         formRequestLeaveMainButtonSave = new javax.swing.JButton();
         formRequestLeaveMainButtonSubmit = new javax.swing.JButton();
         formRequestLeaveMainButtonDelete = new javax.swing.JButton();
+        formRequestLeaveMainButtonPrint = new javax.swing.JButton();
         formRequestLeaveMainPanelFiles = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         formRequestLeaveMainTableAttachment = new javax.swing.JTable();
@@ -102,7 +118,6 @@ public class LeaveRequest extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("frameEmployee"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -403,17 +418,33 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
         });
 
+        formRequestLeaveMainButtonPrint.setBackground(new java.awt.Color(51, 153, 255));
+        formRequestLeaveMainButtonPrint.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        formRequestLeaveMainButtonPrint.setText("Print");
+        formRequestLeaveMainButtonPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formRequestLeaveMainButtonPrintActionPerformed(evt);
+            }
+        });
+        formRequestLeaveMainButtonPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formRequestLeaveMainButtonPrintKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formRequestLeaveMainPanelButtonLayout = new javax.swing.GroupLayout(formRequestLeaveMainPanelButton);
         formRequestLeaveMainPanelButton.setLayout(formRequestLeaveMainPanelButtonLayout);
         formRequestLeaveMainPanelButtonLayout.setHorizontalGroup(
             formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formRequestLeaveMainPanelButtonLayout.createSequentialGroup()
-                .addGap(194, 194, 194)
+                .addGap(98, 98, 98)
                 .addComponent(formRequestLeaveMainButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(18, 18, 18)
                 .addComponent(formRequestLeaveMainButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
                 .addComponent(formRequestLeaveMainButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formRequestLeaveMainButtonPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         formRequestLeaveMainPanelButtonLayout.setVerticalGroup(
@@ -423,7 +454,8 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGroup(formRequestLeaveMainPanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(formRequestLeaveMainButtonSubmit)
                     .addComponent(formRequestLeaveMainButtonSave)
-                    .addComponent(formRequestLeaveMainButtonDelete))
+                    .addComponent(formRequestLeaveMainButtonDelete)
+                    .addComponent(formRequestLeaveMainButtonPrint))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -505,8 +537,10 @@ public class LeaveRequest extends javax.swing.JFrame {
 
     LocalDateTime localDateTimeNow = LocalDateTime.now();
     DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    DateTimeFormatter DATETIME_PDF_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     private List<String> access_menu = new ArrayList<>();
     private String full_name;
+    private Leave leave;
     public List<Attachment> list_attachments = new ArrayList<>();
 
     public void setLabelId(String text) {
@@ -534,6 +568,14 @@ public class LeaveRequest extends javax.swing.JFrame {
         this.access_menu = value;
     }
 
+    public void setLeave(Leave value) {
+        this.leave = value;
+    }
+
+    public Leave getLeave() {
+        return leave;
+    }
+    
     public void setListAttachment(List<Attachment> value) {
         this.list_attachments = value;
     }
@@ -698,6 +740,8 @@ public class LeaveRequest extends javax.swing.JFrame {
                 formRequestLeaveMainButtonSubmit.setEnabled(true);
                 formRequestLeaveMainButtonDelete.setEnabled(true);
             }
+            
+            setLeave(leave);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
@@ -716,6 +760,110 @@ public class LeaveRequest extends javax.swing.JFrame {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
+    }
+    
+    private boolean generateReport() throws BadElementException, IOException, SQLException {
+        boolean result = false;
+        Document document = new Document();
+        try {
+            //font setting
+            Font bfBold14 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, new BaseColor(Color.BLACK));
+            Font bfNormal14 = new Font(Font.FontFamily.TIMES_ROMAN, 14);
+            Font bfNormal12 = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+
+            //document header attributes
+            document.addAuthor(Constanta.PdfDocument.DOCUMENT_AUTHOR);
+            document.addCreationDate();
+            document.addProducer();
+            document.addCreator(Constanta.PdfDocument.DOCUMENT_CREATOR);
+            document.addTitle(Constanta.PdfDocument.DOCUMENT_TITLE_ATTENDANCE);
+            document.setPageSize(PageSize.A4);
+
+            PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(
+                    Constanta.PdfDocument.PATH + "RequestLeaveDetail" + localDateTimeNow.format(DATETIME_PDF_FORMATTER) + ".pdf"));
+            document.open();
+
+            PdfPTable pdfPTable = new PdfPTable(3);
+            pdfPTable.setWidthPercentage(Constanta.PdfDocument.WIDTH_PERCENTAGE);
+            pdfPTable.setSpacingBefore(Constanta.PdfDocument.SPACING_BEFORE);
+            pdfPTable.setSpacingAfter(Constanta.PdfDocument.SPACING_AFTER);
+
+            float[] columnWidth = {3f, 1f, 3f};
+            pdfPTable.setWidths(columnWidth);
+            
+            String imagePath = Constanta.PdfDocument.PATH_LOGO;
+            Image image = Image.getInstance(imagePath);
+            image.setAlignment(Image.MIDDLE);
+            
+            pdfPTable.addCell(image);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 3, bfNormal12);
+            pdfPTable.setHeaderRows(1);
+
+            insertCell(pdfPTable, "Report Request Leave Detail", Element.ALIGN_CENTER, 3, bfNormal12);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 3, bfNormal12);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 3, bfNormal12);
+            
+            insertCell(pdfPTable, "Full Name", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getFullName(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Request Date", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getRequestDate(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "From", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getDateFrom(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "To", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getDateTo(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Status", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getStatus(), Element.ALIGN_LEFT, 1, bfNormal14);
+
+            insertCell(pdfPTable, "Reasons", Element.ALIGN_LEFT, 1, bfNormal14);
+            insertCell(pdfPTable, ":", Element.ALIGN_CENTER, 1, bfNormal14);
+            insertCell(pdfPTable, getLeave().getReasons(), Element.ALIGN_LEFT, 1, bfNormal14);
+            
+            insertCell(pdfPTable, "Attachments", Element.ALIGN_LEFT, 3, bfNormal14);
+            Attachment attachment = new Attachment();
+            List<Attachment> attachments = attachment.getByHeader(getLeave().getId());
+            for (int i = 0; i < attachments.size(); i++) {
+                String attachmentImage = attachments.get(i).getFilePath();
+                Image attacmentImage = Image.getInstance(attachmentImage);
+                image.setAlignment(Image.MIDDLE);
+                pdfPTable.addCell(attacmentImage);
+                insertCell(pdfPTable, "", Element.ALIGN_CENTER, 3, bfNormal12);
+                insertCell(pdfPTable, attachments.get(i).getFileName(), Element.ALIGN_CENTER, 3, bfNormal12);
+            }
+
+            document.add(pdfPTable);
+            document.close();
+            pdfWriter.close();
+
+            result = true;
+        } catch (DocumentException | FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+            result = false;
+        }
+        return result;
+    }
+    
+    
+    private void insertCell(PdfPTable table, String text, int align, int colspan, Font font) {
+        PdfPCell cell;
+        text = text == null ? "" : text.trim();
+        cell = new PdfPCell(new Phrase(text, font));
+        cell.setHorizontalAlignment(align);
+        cell.setColspan(colspan);
+        cell.setBorder(0);
+
+        if (text.trim().equalsIgnoreCase("")) {
+            cell.setMinimumHeight(10f);
+        }
+        table.addCell(cell);
     }
 
     private void formRequestLeaveMainButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonBackActionPerformed
@@ -984,6 +1132,34 @@ public class LeaveRequest extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formRequestLeaveMainTableAttachmentMouseClicked
 
+    private void formRequestLeaveMainButtonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonPrintActionPerformed
+        // TODO add your handling code here:
+        try {
+            boolean is_print = generateReport();
+            if (is_print) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+        } catch (HeadlessException | BadElementException | IOException | SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonPrintActionPerformed
+
+    private void formRequestLeaveMainButtonPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formRequestLeaveMainButtonPrintKeyPressed
+        // TODO add your handling code here:
+        try {
+            boolean is_print = generateReport();
+            if (is_print) {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_SUCCESS);
+            } else {
+                JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
+            }
+        } catch (HeadlessException | BadElementException | IOException | SQLException e) {
+            JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
+        }
+    }//GEN-LAST:event_formRequestLeaveMainButtonPrintKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1036,6 +1212,7 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JButton formRequestLeaveMainButtonChooseFile;
     private javax.swing.JButton formRequestLeaveMainButtonDelete;
     private javax.swing.JButton formRequestLeaveMainButtonLogout;
+    private javax.swing.JButton formRequestLeaveMainButtonPrint;
     private javax.swing.JButton formRequestLeaveMainButtonSave;
     private javax.swing.JButton formRequestLeaveMainButtonSubmit;
     private javax.swing.JComboBox<String> formRequestLeaveMainComboBoxType;

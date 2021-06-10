@@ -1,5 +1,6 @@
 package form;
 
+import com.itextpdf.text.BadElementException;
 import javax.swing.JOptionPane;
 import config.Constanta;
 import java.awt.HeadlessException;
@@ -18,6 +19,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -537,7 +539,7 @@ public class LeaveDetail extends javax.swing.JFrame {
         }
     }
 
-    private boolean generateReport() {
+    private boolean generateReport() throws BadElementException, IOException {
         boolean result = false;
         Document document = new Document();
         try {
@@ -565,12 +567,19 @@ public class LeaveDetail extends javax.swing.JFrame {
             float[] columnWidth = {3f, 3f, 2f, 2f, 2f, 2f, 2f, 5f};
             pdfPTable.setWidths(columnWidth);
             
-            insertCell(pdfPTable, "Report Leave Request", Element.ALIGN_CENTER, 8, 0, bfNormal12);
-            pdfPTable.setHeaderRows(1);
-            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 8, 0, bfNormal12);
-            pdfPTable.setHeaderRows(2);
+            String imagePath = Constanta.PdfDocument.PATH_LOGO;
+            Image image = Image.getInstance(imagePath);
+            image.setAlignment(Image.MIDDLE);
+            
+            pdfPTable.addCell(image);
             insertCell(pdfPTable, "", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(1);
+            insertCell(pdfPTable, "Report Leave Request", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(2);
+            insertCell(pdfPTable, "Employee Content Management System", Element.ALIGN_CENTER, 8, 0, bfNormal12);
             pdfPTable.setHeaderRows(3);
+            insertCell(pdfPTable, "", Element.ALIGN_CENTER, 8, 0, bfNormal12);
+            pdfPTable.setHeaderRows(4);
 
             insertCell(pdfPTable, "Nik", Element.ALIGN_CENTER, 1, 1, bfBold12);
             insertCell(pdfPTable, "Full Name", Element.ALIGN_CENTER, 1, 1, bfBold12);
@@ -720,7 +729,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formLeaveMainLeaveGenerateActionPerformed
@@ -734,7 +743,7 @@ public class LeaveDetail extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_FAILED);
             }
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | BadElementException | IOException e) {
             JOptionPane.showMessageDialog(null, Constanta.Messages.MESSAGE_ERROR + e.getMessage());
         }
     }//GEN-LAST:event_formLeaveMainLeaveGenerateKeyPressed
